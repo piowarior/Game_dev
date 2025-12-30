@@ -1,0 +1,162 @@
+[gd_scene load_steps=8 format=3 uid="uid://dyoghnes22w3l"]
+
+[ext_resource type="Script" uid="uid://c7atmau35h876" path="res://scripts/gameplay_ui.gd" id="1_auo1w"]
+[ext_resource type="Texture2D" uid="uid://cw6pyjuli0c6x" path="res://assets/tilesets/item_icon/icon_timer-removebg-preview.png" id="2_05bsj"]
+[ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="3_76m5b"]
+[ext_resource type="Texture2D" uid="uid://ydg67fpnjx26" path="res://assets/tilesets/item_icon/people (1).png" id="3_ti4kg"]
+[ext_resource type="Texture2D" uid="uid://cqv11sl8x7sju" path="res://assets/tilesets/item_icon/icon_DPS-removebg-preview.png" id="4_76m5b"]
+[ext_resource type="PackedScene" uid="uid://3u8uwit4858y" path="res://scenes/menus/computer_ui.tscn" id="5_ti4kg"]
+[ext_resource type="PackedScene" uid="uid://ban2yis40xxsh" path="res://scenes/menus/PauseMenu.tscn" id="6_76m5b"]
+
+[node name="GameplayUi" type="CanvasLayer"]
+script = ExtResource("1_auo1w")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -613.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBarRoot" type="Control" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimerBox" type="Control" parent="HUD/TopBarRoot"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 1.0
+offset_right = 150.0
+offset_bottom = 130.0
+
+[node name="IconTimer" type="TextureRect" parent="HUD/TopBarRoot/TimerBox"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -55.0
+offset_right = 63.75
+offset_bottom = -4.5
+grow_vertical = 2
+texture = ExtResource("2_05bsj")
+expand_mode = 1
+
+[node name="LabelTimer" type="Label" parent="HUD/TopBarRoot/TimerBox"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -41.0
+offset_bottom = -18.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_76m5b")
+theme_override_font_sizes/font_size = 22
+
+[node name="VictimBox" type="Control" parent="HUD/TopBarRoot"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 175.0
+offset_right = 375.0
+offset_bottom = 130.0
+
+[node name="IconVictim" type="TextureRect" parent="HUD/TopBarRoot/VictimBox"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -55.0
+offset_right = 50.0
+offset_bottom = -5.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_ti4kg")
+expand_mode = 1
+
+[node name="LabelVictim" type="Label" parent="HUD/TopBarRoot/VictimBox"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -41.0
+offset_right = -59.0
+offset_bottom = -18.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_76m5b")
+theme_override_font_sizes/font_size = 22
+
+[node name="DPSBox" type="Control" parent="HUD/TopBarRoot"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 349.0
+offset_top = 1.0
+offset_right = 499.0
+offset_bottom = 131.0
+
+[node name="IconDPS" type="TextureRect" parent="HUD/TopBarRoot/DPSBox"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -55.0
+offset_right = 37.0
+offset_bottom = -5.2857056
+grow_vertical = 2
+texture = ExtResource("4_76m5b")
+expand_mode = 1
+
+[node name="LabelDPS" type="Label" parent="HUD/TopBarRoot/DPSBox"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -41.0
+offset_right = -59.0
+offset_bottom = -18.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_76m5b")
+theme_override_font_sizes/font_size = 22
+
+[node name="BtnPause" type="Button" parent="HUD/TopBarRoot"]
+layout_mode = 0
+offset_left = 1223.0
+offset_top = 19.0
+offset_right = 1269.0
+offset_bottom = 62.0
+text = "☰"
+
+[node name="BtnMission" type="Button" parent="HUD/TopBarRoot"]
+layout_mode = 0
+offset_left = 1173.0
+offset_top = 658.0
+offset_right = 1261.0
+offset_bottom = 707.0
+theme_override_fonts/font = ExtResource("3_76m5b")
+text = "Misi"
+
+[node name="ComputerUI" parent="." instance=ExtResource("5_ti4kg")]
+process_mode = 3
+visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_76m5b")]
+process_mode = 2
+visible = false

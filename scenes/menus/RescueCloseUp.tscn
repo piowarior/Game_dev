@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://niikcea06qvt"]
+
+[ext_resource type="Script" uid="uid://l3qq5evjbu8k" path="res://scenes/menus/rescue_close_up.gd" id="1_xb2qe"]
+[ext_resource type="Texture2D" uid="uid://c3y664i3mb8jx" path="res://assets/NPC/Close_up_npc/asset game npc pria frame 1.png" id="2_x7fv3"]
+[ext_resource type="Texture2D" uid="uid://3xlr0ns4kpiv" path="res://assets/NPC/Close_up_npc/asset game npc pria frame 2.png" id="3_8wn3j"]
+[ext_resource type="Texture2D" uid="uid://cp1716wxkjpp4" path="res://assets/NPC/Close_up_npc/asset game npc pria frame 3.png" id="4_ghex1"]
+[ext_resource type="Texture2D" uid="uid://d0qjwxu2v1dmv" path="res://assets/NPC/Close_up_npc/asset game npc pria frame 4.png" id="5_1oya7"]
+[ext_resource type="Texture2D" uid="uid://c1rl7sgj3udqn" path="res://assets/NPC/Close_up_npc/asset game npc pria frame 5.png" id="6_5375c"]
+[ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="7_nw8ch"]
+[ext_resource type="PackedScene" uid="uid://tjfmwtm3ij2v" path="res://scenes/menus/hotbar.tscn" id="8_x7fv3"]
+
+[node name="RescueCloseUp" type="CanvasLayer"]
+script = ExtResource("1_xb2qe")
+victim_layers = Array[Texture2D]([ExtResource("2_x7fv3"), ExtResource("3_8wn3j"), ExtResource("4_ghex1"), ExtResource("5_1oya7"), ExtResource("6_5375c")])
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.24705882)
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelMain" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VictimContainer" type="Control" parent="PanelMain"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LayerSprite" type="Sprite2D" parent="PanelMain/VictimContainer"]
+
+[node name="ToolCursor" type="Sprite2D" parent="PanelMain/VictimContainer"]
+
+[node name="StepIcon" type="Label" parent="PanelMain"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ProgressUI" type="Control" parent="PanelMain"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -25.0
+offset_right = 38.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelMain/ProgressUI"]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="LabelProgress" type="Label" parent="PanelMain/ProgressUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.27600002
+anchor_right = 2.8500001
+anchor_bottom = 1.9970001
+offset_left = 102.564
+offset_top = 8.0
+offset_right = -126.65001
+offset_bottom = -83.80501
+theme_override_fonts/font = ExtResource("7_nw8ch")
+text = "Proses...."
+
+[node name="HintLabel" type="Label" parent="PanelMain"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 12.0
+offset_right = 202.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("7_nw8ch")
+text = "Tahan klik kiri untuk bekerja"
+
+[node name="BtnExit" type="Button" parent="."]
+offset_left = 798.0
+offset_top = 514.0
+offset_right = 880.0
+offset_bottom = 545.0
+text = "Exit
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Hotbar" parent="." instance=ExtResource("8_x7fv3")]
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]

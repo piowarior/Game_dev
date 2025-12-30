@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=3 uid="uid://stagebox"]
+
+[ext_resource type="Script" uid="uid://ciy4pdwxpattw" path="res://scenes/menus/stage_box.gd" id="1_oo0b0"]
+[ext_resource type="Texture2D" uid="uid://cj77c0wjc3gfv" path="res://assets/stage/starkosong.png" id="2_92j4d"]
+[ext_resource type="Texture2D" uid="uid://s4df5vf77ok2" path="res://assets/stage/lock.png" id="3_n4g8j"]
+
+[node name="StageBox" type="Button"]
+custom_minimum_size = Vector2(220, 300)
+offset_right = 220.0
+offset_bottom = 300.0
+size_flags_horizontal = 4
+script = ExtResource("1_oo0b0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="StarContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Star1" type="TextureRect" parent="VBoxContainer/StarContainer"]
+layout_mode = 2
+texture = ExtResource("2_92j4d")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Star2" type="TextureRect" parent="VBoxContainer/StarContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+texture = ExtResource("2_92j4d")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Star3" type="TextureRect" parent="VBoxContainer/StarContainer"]
+layout_mode = 2
+texture = ExtResource("2_92j4d")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelImage" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LevelName" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "STAGE NAME"
+
+[node name="LockOverlay" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="LockOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="LockIcon" type="TextureRect" parent="LockOverlay"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_n4g8j")
+expand_mode = 1
+stretch_mode = 5

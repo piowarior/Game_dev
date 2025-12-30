@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpultirg5p5sp"]
+
+[ext_resource type="Script" uid="uid://dwbn7v5yeb1lc" path="res://scripts/main_menu.gd" id="1_imvie"]
+[ext_resource type="Texture2D" uid="uid://cvria1xnqj4u5" path="res://assets/mainmenu/bgloadingscreen.png" id="2_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://c48g757mat3i0" path="res://assets/mainmenu/bgmenu.png" id="3_fu7sn"]
+[ext_resource type="AudioStream" uid="uid://dgr7hqwgtkm8q" path="res://assets/mainmenu/backsoundmenu.mp3" id="4_jix8l"]
+[ext_resource type="AudioStream" uid="uid://dsx24v1hfxeeb" path="res://assets/mainmenu/clicksfx.wav" id="5_glbon"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhts7"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_imvie")
+
+[node name="LoadingPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -767.0
+offset_bottom = -432.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rhts7")
+
+[node name="BackgroundTexture" type="TextureRect" parent="LoadingPanel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -163.0
+offset_right = 1281.0
+offset_bottom = 770.0
+texture = ExtResource("2_7vrkn")
+
+[node name="LoadingBar" type="ProgressBar" parent="LoadingPanel"]
+layout_mode = 0
+offset_left = 375.0
+offset_top = 520.0
+offset_right = 775.0
+offset_bottom = 547.0
+
+[node name="LoadingLabel" type="Label" parent="LoadingPanel"]
+layout_mode = 0
+offset_left = 539.0
+offset_top = 552.0
+offset_right = 614.0
+offset_bottom = 575.0
+text = "Loading..."
+
+[node name="MenuBackground" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -9.0
+offset_top = -91.0
+offset_right = 1279.0
+offset_bottom = 768.0
+texture = ExtResource("3_fu7sn")
+
+[node name="MenuContainer" type="VBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0.003921569)
+layout_mode = 1
+offset_left = 448.0
+offset_top = 395.0
+offset_right = 698.0
+offset_bottom = 595.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="StartButton" type="Button" parent="MenuContainer"]
+layout_mode = 2
+shortcut_in_tooltip = false
+text = "Start"
+
+[node name="OptionButton" type="Button" parent="MenuContainer"]
+layout_mode = 2
+text = "Option"
+
+[node name="ExitButton" type="Button" parent="MenuContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="LoadingTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jix8l")
+autoplay = true
+bus = &"music"
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_glbon")
+
+[connection signal="pressed" from="MenuContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuContainer/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="MenuContainer/ExitButton" to="." method="_on_exit_button_pressed"]

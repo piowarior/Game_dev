@@ -1,0 +1,127 @@
+[gd_scene load_steps=14 format=3 uid="uid://tjfmwtm3ij2v"]
+
+[ext_resource type="Script" uid="uid://brrhkmp7wtqs0" path="res://scripts/hotbar.gd" id="1_fw2el"]
+[ext_resource type="Script" uid="uid://cl7fc2tbpkqe5" path="res://scripts/h_box_container.gd" id="2_at6ff"]
+[ext_resource type="Texture2D" uid="uid://d1e71pceewpvo" path="res://assets/tilesets/UI/Inventory/Inventory-Chosen.png" id="3_as78x"]
+[ext_resource type="Script" uid="uid://cwvgslt0ji37i" path="res://scripts/panelhotbar.gd" id="4_nag0n"]
+[ext_resource type="Script" uid="uid://cr4bjd32grwel" path="res://scripts/panel_2hotbar.gd" id="5_61wp2"]
+[ext_resource type="Script" uid="uid://cwhf45xtsl3il" path="res://scripts/panel_3hotbar.gd" id="6_0yqsr"]
+[ext_resource type="Script" uid="uid://dldv0s5qtu5yr" path="res://scripts/panel_4hotbar.gd" id="7_1bu4i"]
+[ext_resource type="Script" uid="uid://5lyf4051yppv" path="res://scripts/panel_5hotbar.gd" id="8_vfnmy"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b185e"]
+texture = ExtResource("3_as78x")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ay4w"]
+texture = ExtResource("3_as78x")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bd3kl"]
+texture = ExtResource("3_as78x")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m436x"]
+texture = ExtResource("3_as78x")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hon0v"]
+texture = ExtResource("3_as78x")
+
+[node name="Hotbar" type="CanvasLayer"]
+script = ExtResource("1_fw2el")
+
+[node name="Bar" type="HBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.29700002
+anchor_top = 0.88900006
+anchor_right = 0.70100003
+anchor_bottom = 0.97800004
+offset_left = -0.16003418
+offset_top = -0.08001709
+offset_right = -0.2800293
+offset_bottom = -0.16003418
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+script = ExtResource("2_at6ff")
+
+[node name="Slot1" type="Panel" parent="Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_b185e")
+script = ExtResource("4_nag0n")
+
+[node name="Icon" type="TextureRect" parent="Bar/Slot1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.87500006
+anchor_bottom = 0.87500006
+offset_left = 8.0
+offset_top = 7.0
+mouse_filter = 2
+stretch_mode = 5
+
+[node name="Slot2" type="Panel" parent="Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ay4w")
+script = ExtResource("5_61wp2")
+
+[node name="Icon" type="TextureRect" parent="Bar/Slot2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.89100003
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -0.024002075
+offset_bottom = -8.0
+mouse_filter = 2
+stretch_mode = 5
+
+[node name="Slot3" type="Panel" parent="Bar"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bd3kl")
+script = ExtResource("6_0yqsr")
+
+[node name="Icon" type="TextureRect" parent="Bar/Slot3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.89100003
+anchor_bottom = 0.87500006
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -0.024002075
+mouse_filter = 2
+stretch_mode = 5
+
+[node name="Slot4" type="Panel" parent="Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_m436x")
+script = ExtResource("7_1bu4i")
+
+[node name="Icon" type="TextureRect" parent="Bar/Slot4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.87500006
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_bottom = -7.0
+mouse_filter = 2
+stretch_mode = 5
+
+[node name="Slot5" type="Panel" parent="Bar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_hon0v")
+script = ExtResource("8_vfnmy")
+
+[node name="Icon" type="TextureRect" parent="Bar/Slot5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.87500006
+anchor_bottom = 0.87500006
+offset_left = 8.0
+offset_top = 8.0
+mouse_filter = 2
+stretch_mode = 5

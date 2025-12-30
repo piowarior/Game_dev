@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://ban2yis40xxsh"]
+
+[ext_resource type="Script" uid="uid://dg8qcgns34rlb" path="res://scripts/pause_menu.gd" id="1_wgnbc"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_wgnbc")
+
+[node name="Panel" type="Panel" parent="."]
+process_mode = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BtnResume" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = 2.5
+offset_right = 43.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lanjutkan"
+
+[node name="BtnQuit" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -38.5
+offset_right = 54.0
+offset_bottom = -7.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Keluar Game"

@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3lgey5cmv0do"]
+
+[ext_resource type="Script" uid="uid://dixeryv66idbb" path="res://scripts/LevelSelect.gd" id="1_t7mlp"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_t7mlp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(100.1, 150.15)
+layout_mode = 0
+offset_left = 328.25616
+offset_top = 306.72128
+offset_right = 428.35617
+offset_bottom = 456.87128
+
+[node name="LevelButtons" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="GempaButton" type="Button" parent="MarginContainer/LevelButtons"]
+layout_mode = 2
+text = "Gempa"
+
+[node name="BanjirButton" type="Button" parent="MarginContainer/LevelButtons"]
+layout_mode = 2
+text = "banjir"
+
+[node name="KebakaranButton" type="Button" parent="MarginContainer/LevelButtons"]
+layout_mode = 2
+text = "Kebakaran"
+
+[node name="BackButton" type="Button" parent="MarginContainer/LevelButtons"]
+layout_mode = 2
+text = "back
+"
+
+[connection signal="pressed" from="MarginContainer/LevelButtons/GempaButton" to="." method="_on_gempa_button_pressed"]
+[connection signal="pressed" from="MarginContainer/LevelButtons/BanjirButton" to="." method="_on_banjir_button_pressed"]
+[connection signal="pressed" from="MarginContainer/LevelButtons/KebakaranButton" to="." method="_on_kebakaran_button_pressed"]

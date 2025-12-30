@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnglfp7pplslx"]
+
+[ext_resource type="Script" uid="uid://bk07wy8xu3yfk" path="res://scripts/option_panel.gd" id="1_grfou"]
+[ext_resource type="FontFile" uid="uid://b2tonhw04ev1s" path="res://assets/font/Axolotl.ttf" id="2_grfou"]
+
+[node name="OptionsPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_grfou")
+
+[node name="Color_Rect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="Panel_Container" type="PanelContainer" parent="Color_Rect"]
+layout_mode = 0
+offset_left = 430.0
+offset_top = 220.0
+offset_right = 787.0
+offset_bottom = 460.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Color_Rect/Panel_Container"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Pengaturan" type="Label" parent="Color_Rect/Panel_Container/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_grfou")
+theme_override_font_sizes/font_size = 40
+text = "PENGATURAN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Volume_Container" type="VBoxContainer" parent="Color_Rect/Panel_Container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VolumeLabel" type="Label" parent="Color_Rect/Panel_Container/VBoxContainer/Volume_Container"]
+z_index = 2
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_grfou")
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="Color_Rect/Panel_Container/VBoxContainer/Volume_Container"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Music_Container" type="CenterContainer" parent="Color_Rect/Panel_Container/VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicCheckButton" type="CheckButton" parent="Color_Rect/Panel_Container/VBoxContainer/Music_Container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_grfou")
+theme_override_font_sizes/font_size = 35
+text = "Background Music"
+
+[node name="Back_Container" type="CenterContainer" parent="Color_Rect/Panel_Container/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Color_Rect/Panel_Container/VBoxContainer/Back_Container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_grfou")
+theme_override_font_sizes/font_size = 35
+text = "Back To Menu"
+
+[connection signal="value_changed" from="Color_Rect/Panel_Container/VBoxContainer/Volume_Container/VolumeSlider" to="." method="_on_volume_slider_value_changed"]

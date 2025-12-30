@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwj7i66c0bs6d"]
+
+[ext_resource type="Script" uid="uid://stgglwdhn0l3" path="res://scripts/npc_2.gd" id="1_etjmq"]
+[ext_resource type="Texture2D" uid="uid://k70v8vy4lgcp" path="res://assets/NPC/breathing-idle/south/frame_000.png" id="1_f8r33"]
+[ext_resource type="Texture2D" uid="uid://c4514duyncevv" path="res://assets/NPC/breathing-idle/south/frame_001.png" id="2_etjmq"]
+[ext_resource type="Texture2D" uid="uid://lvx4bclfrqbd" path="res://assets/NPC/breathing-idle/south/frame_002.png" id="3_fk682"]
+[ext_resource type="Texture2D" uid="uid://v1tpgraal8b4" path="res://assets/NPC/breathing-idle/south/frame_003.png" id="4_1qlri"]
+[ext_resource type="Texture2D" uid="uid://cchhvat5jlp05" path="res://player/sprite/aksesoris/shadow-2d game.png" id="6_fk682"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ep07"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f8r33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_etjmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fk682")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1qlri")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_etjmq"]
+radius = 16.27882
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fk682"]
+radius = 25.019993
+
+[node name="NPC" type="CharacterBody2D"]
+script = ExtResource("1_etjmq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+scale = Vector2(2.015625, 2.015625)
+sprite_frames = SubResource("SpriteFrames_5ep07")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 41)
+scale = Vector2(1, 0.4)
+shape = SubResource("CircleShape2D_etjmq")
+
+[node name="shadow" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(0, 37.000004)
+scale = Vector2(0.16757426, 0.18282549)
+texture = ExtResource("6_fk682")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 41)
+scale = Vector2(1, 0.6)
+shape = SubResource("CircleShape2D_fk682")

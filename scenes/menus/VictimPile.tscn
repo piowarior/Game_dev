@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://c5mm0rrukj47t"]
+
+[ext_resource type="Script" uid="uid://bojger5kbqu66" path="res://scripts/victim_pile.gd" id="1_j4cxr"]
+[ext_resource type="Texture2D" uid="uid://cn732htqdpa1r" path="res://assets/obstacle/victim/obstacle tertimpa.png" id="2_j4cxr"]
+[ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="3_2pl6e"]
+[ext_resource type="Texture2D" uid="uid://c3y664i3mb8jx" path="res://assets/NPC/Close_up_npc/asset game npc pria frame 1.png" id="3_yiehf"]
+[ext_resource type="Texture2D" uid="uid://3xlr0ns4kpiv" path="res://assets/NPC/Close_up_npc/asset game npc pria frame 2.png" id="4_4ry6q"]
+[ext_resource type="PackedScene" uid="uid://niikcea06qvt" path="res://scenes/menus/RescueCloseUp.tscn" id="4_d2qik"]
+[ext_resource type="Texture2D" uid="uid://cp1716wxkjpp4" path="res://assets/NPC/Close_up_npc/asset game npc pria frame 3.png" id="5_vigbr"]
+[ext_resource type="Texture2D" uid="uid://d0qjwxu2v1dmv" path="res://assets/NPC/Close_up_npc/asset game npc pria frame 4.png" id="6_w5xhc"]
+[ext_resource type="Texture2D" uid="uid://c1rl7sgj3udqn" path="res://assets/NPC/Close_up_npc/asset game npc pria frame 5.png" id="7_c1v5j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j4cxr"]
+radius = 80.65358
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2i57d"]
+radius = 61.188232
+
+[node name="VictimPile" type="Node2D"]
+script = ExtResource("1_j4cxr")
+rescue_closeup_scene = ExtResource("4_d2qik")
+rescue_profile = {
+"evac_layers": [{
+"label": "Membersihkan puing ringan",
+"texture": ExtResource("3_yiehf"),
+"tool": "Sarung Tangan"
+}, {
+"label": "Memotong kayu tertindih",
+"texture": ExtResource("4_4ry6q"),
+"tool": "Gergaji"
+}, {
+"label": "Menghancurkan beton",
+"texture": ExtResource("5_vigbr"),
+"tool": "Pickaxe"
+}, {
+"label": "Membuka besi berat",
+"texture": ExtResource("6_w5xhc"),
+"tool": "Linggis"
+}, {
+"label": "Membuka akses korban",
+"texture": ExtResource("7_c1v5j"),
+"tool": "Linggis"
+}]
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, -1.0000038)
+scale = Vector2(0.3, 0.295)
+texture = ExtResource("2_j4cxr")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 10)
+scale = Vector2(0.9, 0.7)
+shape = SubResource("CircleShape2D_j4cxr")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -31.0
+offset_top = 23.0
+offset_right = 38.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("3_2pl6e")
+theme_override_font_sizes/font_size = 23
+text = "Press F"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11, 20)
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_2i57d")

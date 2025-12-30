@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo3fxsbpmkby0"]
+
+[ext_resource type="Script" uid="uid://cwltc6j783lii" path="res://scripts/camera_2d.gd" id="1_owp7q"]
+
+[node name="Camera2D" type="Camera2D"]
+limit_left = 0
+limit_top = 0
+limit_right = 1390
+limit_bottom = 0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+script = ExtResource("1_owp7q")

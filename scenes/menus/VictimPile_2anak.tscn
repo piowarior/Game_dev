@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://btntmvy42gea"]
+
+[ext_resource type="Script" uid="uid://bojger5kbqu66" path="res://scripts/victim_pile.gd" id="1_8vdx0"]
+[ext_resource type="PackedScene" uid="uid://niikcea06qvt" path="res://scenes/menus/RescueCloseUp.tscn" id="2_x6nlv"]
+[ext_resource type="Texture2D" uid="uid://cn732htqdpa1r" path="res://assets/obstacle/victim/obstacle tertimpa.png" id="3_3jg71"]
+[ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="4_vgey4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j4cxr"]
+radius = 80.65358
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2i57d"]
+radius = 61.188232
+
+[node name="VictimPile" type="Node2D"]
+script = ExtResource("1_8vdx0")
+rescue_closeup_scene = ExtResource("2_x6nlv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, -1.0000038)
+scale = Vector2(0.3, 0.295)
+texture = ExtResource("3_3jg71")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 10)
+scale = Vector2(0.9, 0.7)
+shape = SubResource("CircleShape2D_j4cxr")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -31.0
+offset_top = 23.0
+offset_right = 38.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("4_vgey4")
+theme_override_font_sizes/font_size = 23
+text = "Press F"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11, 20)
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_2i57d")

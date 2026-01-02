@@ -10,7 +10,9 @@ func _ready():
 	btn_close.pressed.connect(_on_close)
 
 func _on_berangkat():
-	get_tree().change_scene_to_file("res://scenes/levels/Map_Gempa.tscn")
+	GameState.next_scene_path = "res://scenes/levels/Map_Gempa.tscn"  # sesuaikan level
+	get_tree().change_scene_to_file("res://scenes/menus/LoadingScreen.tscn")
+
 
 func _on_close():
 	visible = false

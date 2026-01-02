@@ -26,8 +26,17 @@ extends CanvasLayer
 # =========================
 signal rescue_finished
 
+signal rescue_aborted(stage, layer_index)
+
+var anim_time := 0.0
+var base_tool_scale := Vector2.ONE
+var base_tool_color := Color.WHITE
+
+
 var evac_layers: Array = []
 var layer_index := 0
+var aborted := false
+
 
 var holding := false
 var hold_progress := 0.0
@@ -41,6 +50,11 @@ var medic_layers: Array = []
 # READY
 # =========================
 func _ready():
+	
+	base_tool_scale = tool_cursor.scale
+	base_tool_color = tool_cursor.modulate
+
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 
@@ -48,12 +62,24 @@ func _ready():
 	hint_label.visible = true
 	tool_cursor.visible = false
 
-	btn_exit.pressed.connect(close)
+	btn_exit.pressed.connect(_on_exit_pressed)
 
 	if hotbar and hotbar.has_signal("item_changed"):
 		hotbar.item_changed.connect(_on_tool_changed)
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func _on_exit_pressed():
+	emit_signal("rescue_aborted", stage, layer_index)
+	get_tree().paused = false
+	visible = false
+	queue_free()
+
+func set_resume_state(_stage, _layer_index):
+	stage = _stage
+	layer_index = _layer_index
+	aborted = true
+
 
 # =========================
 # PROFILE
@@ -76,11 +102,14 @@ func open():
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-	layer_index = 0
+	if not aborted:
+		layer_index = 0
+		stage = "EVAC"
+	
 	hold_progress = 0
 	progress_bar.value = 0
-
 	load_layer()
+
 
 
 func close():
@@ -161,9 +190,36 @@ func _process(delta):
 	tool_cursor.global_position = get_viewport().get_mouse_position()
 
 	if not holding:
+		anim_time = 0.0
 		return
 
-	tool_cursor.rotation += delta * 5
+	anim_time += delta
+
+	# =========================
+	# ANIMASI ∞ (figure eight)
+	# =========================
+	var offset_x = sin(anim_time * 6.0) * 12
+	var offset_y = sin(anim_time * 12.0) * 6
+	tool_cursor.position += Vector2(offset_x, offset_y)
+
+	# =========================
+	# AYUNAN KECIL KIRI-KANAN
+	# =========================
+	tool_cursor.rotation = sin(anim_time * 6.0) * 0.25
+
+	# =========================
+	# EFEK MENDEP
+	# =========================
+	tool_cursor.scale = base_tool_scale * Vector2(0.92, 0.92)
+
+	# =========================
+	# EFEK GELAP
+	# =========================
+	tool_cursor.modulate = Color(0.85, 0.85, 0.85, 1)
+
+	# =========================
+	# PROGRESS
+	# =========================
 	hold_progress += delta
 	progress_bar.value = (hold_progress / hold_time) * 100
 	shake()
@@ -171,6 +227,7 @@ func _process(delta):
 	if hold_progress >= hold_time:
 		stop_hold()
 		next_layer()
+
 
 # =========================
 # LAYER
@@ -201,8 +258,10 @@ func next_layer():
 		return
 
 	if stage == "MEDIC" and layer_index >= medic_layers.size():
+		aborted = false
 		close()
 		return
+
 
 	load_layer()
 

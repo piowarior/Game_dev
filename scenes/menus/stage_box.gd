@@ -63,4 +63,5 @@ func _on_button_pressed():
 	else:
 		print("ERROR: GameState belum di-autoload")
 
-	get_tree().change_scene_to_file("res://scenes/menus/Basecamp.tscn")
+	GameState.next_scene_path = "res://scenes/menus/Basecamp.tscn"
+	get_tree().change_scene_to_file("res://scenes/menus/LoadingScreen.tscn")

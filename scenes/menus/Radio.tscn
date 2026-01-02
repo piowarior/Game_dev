@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2y8ep0cisf6y"]
+
+[ext_resource type="Script" uid="uid://bcn0tyuujxdxg" path="res://scripts/radio.gd" id="1_us5g0"]
+[ext_resource type="Texture2D" uid="uid://cj1vq35jj45cu" path="res://assets/tilesets/asset gemini/basecamp/meja radio.png" id="2_6r52g"]
+[ext_resource type="Texture2D" uid="uid://ki5wh5kwsqbk" path="res://assets/tilesets/asset gemini/basecamp/radio-removebg-preview.png" id="3_8f6fj"]
+[ext_resource type="AudioStream" uid="uid://bxx268vu0b7nm" path="res://assets/sound/radio-chatter-relief-needed-29636.mp3" id="3_606yu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_606yu"]
+radius = 196.49936
+
+[node name="Radio" type="Sprite2D"]
+texture = ExtResource("2_6r52g")
+script = ExtResource("1_us5g0")
+
+[node name="RadioSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_8f6fj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1, 0.7)
+shape = SubResource("CircleShape2D_606yu")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_606yu")
+volume_db = -20.0
+max_distance = 400.0
+attenuation = 1.5
+max_polyphony = 2

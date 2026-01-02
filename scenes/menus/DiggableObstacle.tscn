@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cjq5w4xj0ak04" path="res://assets/obstacle/beton/beton_3-removebg-preview.png" id="7_uvj4j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6abck"]
-size = Vector2(140, 50)
+size = Vector2(137, 47)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0dkl0"]
 size = Vector2(170, 77)
@@ -28,7 +28,7 @@ y_sort_enabled = true
 texture_filter = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(5, 19)
+position = Vector2(6.5, 20.5)
 shape = SubResource("RectangleShape2D_6abck")
 
 [node name="Area2D" type="Area2D" parent="."]

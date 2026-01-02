@@ -1,26 +1,17 @@
 extends CanvasLayer
 
 @onready var panel = $Panel
-@onready var list = $Panel/ItemList
 @onready var info = $Panel/InfoLabel
 @onready var take_button = $Panel/TakeButton
 @onready var close_button = $Panel/CloseButton
+@onready var vbox = $Panel/ScrollContainer/VBoxContainer
+@onready var audio_open = $AudioStreamPlayer_Open
+@onready var audio_close = $AudioStreamPlayer_Close
 
 const MAX_TAKE: int = 5
-
 var selected_items: Array[String] = []
 
-# =========================
-# URUTAN KATEGORI & LABEL
-# =========================
-const CATEGORY_ORDER: Array = [
-	"LIGHT",
-	"EVAC",
-	"MEDIC",
-	"COMM",
-	"SAFETY"
-]
-
+const CATEGORY_ORDER: Array = ["LIGHT", "EVAC", "MEDIC", "COMM", "SAFETY"]
 const CATEGORY_LABEL: Dictionary = {
 	"LIGHT": "🔦 PENERANGAN",
 	"EVAC": "🧰 EVAKUASI",
@@ -29,142 +20,157 @@ const CATEGORY_LABEL: Dictionary = {
 	"SAFETY": "🛡️ KEAMANAN"
 }
 
-# =========================
-# READY
-# =========================
 func _ready() -> void:
+	# awal panel hidden
 	panel.visible = false
-
-	list.item_clicked.connect(_on_item_clicked)
+	
+	# connect button dengan Godot 4.5 syntax
 	take_button.pressed.connect(_on_take_pressed)
 	close_button.pressed.connect(hide_menu)
-
-	_setup_itemlist()
-	load_items()
-
+	
+	# ubah teks button via kode (opsional)
+	take_button.text = "Ambil Alat"
+	close_button.text = "Tutup"
+	
 # =========================
-# ITEMLIST SETUP
-# =========================
-func _setup_itemlist() -> void:
-	list.fixed_icon_size = Vector2(64, 64)
-	list.same_column_width = true
-	list.icon_mode = ItemList.ICON_MODE_TOP
-	list.max_columns = 5
-	list.select_mode = ItemList.SELECT_SINGLE
-
-# =========================
-# LOAD + SORT ITEM
-# =========================
-func load_items() -> void:
-	list.clear()
-
-	for category in CATEGORY_ORDER:
-		# HEADER
-		list.add_item(CATEGORY_LABEL[category])
-		var header_index: int = list.item_count - 1
-		list.set_item_selectable(header_index, false)
-		list.set_item_disabled(header_index, true)
-		list.set_item_custom_fg_color(header_index, Color.YELLOW)
-
-		# ITEM DALAM KATEGORI
-		for name_key in GameState.item_database.keys():
-			var data = GameState.get_item_data(name_key)
-			if data.category != category:
-				continue
-
-			list.add_item(name_key, data.icon)
-			var item_index: int = list.item_count - 1
-			list.set_item_custom_fg_color(item_index, Color.WHITE)
-			list.set_item_icon_modulate(item_index, Color(1,1,1,1)) # putih normal
-
-# =========================
-# OPEN MENU
+# Buka Equipment UI + sound
 # =========================
 func open_equipment_menu() -> void:
+	audio_open.play()  # putar sound buka
 	panel.visible = true
-
 	selected_items = GameState.backpack.duplicate()
+	_populate_items()
 
-	# RESET WARNA ITEM
-	for i in range(list.item_count):
-		if list.is_item_selectable(i):
-			list.set_item_custom_fg_color(i, Color.WHITE)
-			list.set_item_icon_modulate(i, Color(1,1,1,1))
+# =========================
+# Atur tampilan slot alat
+# =========================
+func _update_slot_visual(slot_node: PanelContainer, is_selected: bool):
+	var style = StyleBoxFlat.new()
+	style.set_border_width_all(3)
+	style.corner_radius_top_left = 10
+	style.corner_radius_bottom_right = 10
+	
+	if is_selected:
+		style.bg_color = Color(0.1, 0.6, 0.1, 0.7) # hijau
+		style.border_color = Color(0.4, 1.0, 0.4, 1.0)
+	else:
+		style.bg_color = Color(0.1, 0.1, 0.1, 0.8) # gelap
+		style.border_color = Color(0.3, 0.3, 0.3, 1.0)
+		
+	slot_node.add_theme_stylebox_override("panel", style)
 
-	# TANDA ITEM LAMA
-	for i in range(list.item_count):
-		if not list.is_item_selectable(i):
+# =========================
+# Isi GridContainer dengan slot
+# =========================
+func _populate_items() -> void:
+	for category in CATEGORY_ORDER:
+		var container = vbox.find_child("CategoryContainer_" + category, true, false)
+		if container == null:
+			print("DEBUG: Tidak ketemu Container untuk kategori: ", category)
 			continue
-
-		var item_name: String = list.get_item_text(i)
-		if selected_items.has(item_name):
-			list.set_item_custom_fg_color(i, Color.GREEN)
-			list.set_item_icon_modulate(i, Color(0,1,0,1)) # hijau icon
-
-	info.text = "Pilih tepat %d alat. Klik kanan untuk melepas." % MAX_TAKE
+		
+		# update label otomatis
+		var index = container.get_index()
+		if index > 0:
+			var label_node = vbox.get_child(index - 1)
+			if label_node is Label:
+				label_node.text = CATEGORY_LABEL[category]
+		
+		# hapus slot lama
+		for child in container.get_children():
+			child.queue_free()
+		
+		# jarak antar kotak
+		container.add_theme_constant_override("h_separation", 25)
+		container.add_theme_constant_override("v_separation", 25)
+		
+		# isi slot dari database
+		for name_key in GameState.item_database.keys():
+			var data = GameState.item_database[name_key]
+			if data.category != category:
+				continue
+			
+			# slot kotak
+			var slot = PanelContainer.new()
+			slot.custom_minimum_size = Vector2(100,100)
+			slot.set_meta("item_name", name_key)
+			slot.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+			
+			# ikon
+			var icon = TextureRect.new()
+			icon.texture = data.icon
+			icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			icon.custom_minimum_size = Vector2(70,70)
+			slot.add_child(icon)
+			
+			# koneksi klik (Godot 4.5)
+			slot.gui_input.connect(func(event: InputEvent) -> void:
+				_on_item_gui_input(event, slot)
+			)
+			
+			_update_slot_visual(slot, selected_items.has(name_key))
+			container.add_child(slot)
 
 # =========================
-# ITEM CLICK
+# Klik kiri/kanan
 # =========================
-func _on_item_clicked(index: int, _pos: Vector2, button: int) -> void:
-	if not list.is_item_selectable(index):
+func _on_item_gui_input(event: InputEvent, slot: PanelContainer) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		var item_name = slot.get_meta("item_name")
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			_select_item(item_name, slot)
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			_deselect_item(item_name, slot)
+
+# =========================
+# Pilih / hapus alat
+# =========================
+func _select_item(item_name: String, slot: PanelContainer) -> void:
+	if selected_items.has(item_name):
+		_show_item_info(item_name)
 		return
-
-	var name: String = list.get_item_text(index)
-	show_item_info(name)
-
-	if button == MOUSE_BUTTON_LEFT:
-		if selected_items.has(name):
-			return
-
-		if selected_items.size() >= MAX_TAKE:
-			info.text = "Backpack penuh. Lepas alat lama dulu ⚠️"
-			return
-
-		selected_items.append(name)
-		list.set_item_custom_fg_color(index, Color.GREEN)
-		list.set_item_icon_modulate(index, Color(0,1,0,1)) # hijau icon
-
-	elif button == MOUSE_BUTTON_RIGHT:
-		if selected_items.has(name):
-			selected_items.erase(name)
-			list.set_item_custom_fg_color(index, Color.WHITE)
-			list.set_item_icon_modulate(index, Color(1,1,1,1)) # reset icon
-
-# =========================
-# INFO LABEL
-# =========================
-func show_item_info(name: String) -> void:
-	var data = GameState.get_item_data(name)
-	if data == null:
+	
+	if selected_items.size() >= MAX_TAKE:
+		info.text = "Tas penuh! Lepas alat lain dulu ⚠️"
 		return
+	
+	selected_items.append(item_name)
+	_update_slot_visual(slot, true)
+	_show_item_info(item_name)
 
-	var text: String = "[b]%s[/b]\n" % name
-	text += "%s\n\n" % data.description
-	text += "Kategori: %s\n" % data.category
-	text += "Digunakan: %s\n" % ", ".join(data.usage_context)
-
-	info.text = text
+func _deselect_item(item_name: String, slot: PanelContainer) -> void:
+	if selected_items.has(item_name):
+		selected_items.erase(item_name)
+		_update_slot_visual(slot, false)
+		_show_item_info(item_name)
 
 # =========================
-# HIDE MENU
+# Tampilkan info alat
+# =========================
+func _show_item_info(item_name: String) -> void:
+	var data = GameState.get_item_data(item_name)
+	if data == null: return
+	info.text = "[b]%s[/b]\n%s\n\nKategori: %s" % [item_name, data.description, data.category]
+
+# =========================
+# Tutup Equipment UI + sound
 # =========================
 func hide_menu() -> void:
+	audio_close.play()
 	panel.visible = false
 
 # =========================
-# TAKE BUTTON
+# Take button
 # =========================
 func _on_take_pressed() -> void:
 	if selected_items.size() < MAX_TAKE:
-		info.text = "⚠️ Harus memilih %d alat (%d dipilih)." % [MAX_TAKE, selected_items.size()]
+		info.text = "⚠️ Pilih minimal %d alat!" % MAX_TAKE
 		return
-
+	
 	GameState.reset_backpack()
 	for item in selected_items:
 		GameState.add_item(item)
-		
-	GameState.emit_signal("backpack_changed")
-
-	print("Backpack final:", GameState.backpack)
+	if GameState.has_signal("backpack_changed"):
+		GameState.emit_signal("backpack_changed")
 	hide_menu()

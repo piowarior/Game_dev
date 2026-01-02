@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://c0qjs6pcoqmtx"]
+[gd_scene load_steps=46 format=3 uid="uid://c0qjs6pcoqmtx"]
 
 [ext_resource type="PackedScene" uid="uid://dlpcru2e77pci" path="res://player/player.tscn" id="1_uti30"]
 [ext_resource type="Texture2D" uid="uid://dvigx5ss7ijem" path="res://assets/tilesets/asset gemini/basecamp/gambar - latar basecamp1.png" id="2_svugy"]
@@ -20,9 +20,13 @@
 [ext_resource type="PackedScene" uid="uid://tjfmwtm3ij2v" path="res://scenes/menus/hotbar.tscn" id="16_b185e"]
 [ext_resource type="Texture2D" uid="uid://bmwdnsy7yq0fn" path="res://assets/tilesets/asset gemini/basecamp/label_max_gitu-removebg-preview.png" id="16_wguex"]
 [ext_resource type="PackedScene" uid="uid://cpr6mkrpy6vrm" path="res://scenes/menus/backpack_ui.tscn" id="21_0hkjv"]
+[ext_resource type="AudioStream" uid="uid://balqtruch4tix" path="res://assets/sound/277311__elliotlp__open-toolbox.mp3" id="22_ts7go"]
 [ext_resource type="PackedScene" uid="uid://3u8uwit4858y" path="res://scenes/menus/computer_ui.tscn" id="23_hon0v"]
+[ext_resource type="AudioStream" uid="uid://gygdg3fibj1f" path="res://assets/sound/790072__omiranda14__sfx_inventorysounds_equipping_05.mp3" id="23_okxjf"]
 [ext_resource type="Script" uid="uid://prkh5npbld2g" path="res://scripts/computer_desk.gd" id="28_hon0v"]
+[ext_resource type="PackedScene" uid="uid://b2y8ep0cisf6y" path="res://scenes/menus/Radio.tscn" id="30_0hkjv"]
 [ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="31_b185e"]
+[ext_resource type="Texture2D" uid="uid://bd0a52xaf4fou" path="res://assets/tilesets/asset gemini/basecamp/lemaribesi.png" id="31_udq64"]
 [ext_resource type="Script" uid="uid://hel8r4j8vnnb" path="res://scripts/object_exit_door.gd" id="32_6qudo"]
 [ext_resource type="Texture2D" uid="uid://dxbgm2048j66j" path="res://assets/tilesets/asset gemini/basecamp/pintu exit removebg.png" id="33_lccqh"]
 [ext_resource type="Script" uid="uid://coc2hbl7f3ej6" path="res://scripts/exit_confirm_ui.gd" id="34_bbpfq"]
@@ -24855,7 +24859,7 @@ text = "Press F"
 script = ExtResource("12_rtabk")
 
 [node name="Panel" type="Panel" parent="EquipmentUI"]
-offset_right = 1400.0
+offset_right = 1283.0
 offset_bottom = 720.0
 script = ExtResource("15_rv6ys")
 
@@ -24867,28 +24871,52 @@ texture = ExtResource("15_3bj7y")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="EquipmentUI/Panel"]
 layout_mode = 0
-offset_top = 91.0
-offset_right = 1279.0
-offset_bottom = 474.0
+offset_left = 92.0
+offset_top = 88.0
+offset_right = 774.0
+offset_bottom = 563.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EquipmentUI/Panel/ScrollContainer"]
 layout_mode = 2
+alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EquipmentUI/Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="InfoLabel" type="Label" parent="EquipmentUI/Panel/HBoxContainer"]
+[node name="Label_LIGHT" type="Label" parent="EquipmentUI/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TakeButton" type="Button" parent="EquipmentUI/Panel/HBoxContainer"]
+[node name="CategoryContainer_LIGHT" type="GridContainer" parent="EquipmentUI/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Label_EVAC" type="Label" parent="EquipmentUI/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="CloseButton" type="Button" parent="EquipmentUI/Panel/HBoxContainer"]
+[node name="CategoryContainer_EVAC" type="GridContainer" parent="EquipmentUI/Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+columns = 5
+
+[node name="Label_MEDIC" type="Label" parent="EquipmentUI/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CategoryContainer_MEDIC" type="GridContainer" parent="EquipmentUI/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Label_COMM" type="Label" parent="EquipmentUI/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CategoryContainer_COMM" type="GridContainer" parent="EquipmentUI/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Label_SAFETY" type="Label" parent="EquipmentUI/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CategoryContainer_SAFETY" type="GridContainer" parent="EquipmentUI/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+columns = 5
 
 [node name="ItemList" type="ItemList" parent="EquipmentUI/Panel"]
+visible = false
 layout_mode = 0
 offset_top = 93.0
 offset_right = 1278.0
@@ -24951,16 +24979,22 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_left = 446.0
 offset_top = 610.0
-offset_right = 578.0
-offset_bottom = 641.0
+offset_right = 596.0
+offset_bottom = 660.0
+theme_override_constants/line_spacing = 100
+theme_override_fonts/font = ExtResource("35_fnmt5")
+theme_override_font_sizes/font_size = 20
 text = "CONFIRM"
 
 [node name="CloseButton" type="Button" parent="EquipmentUI/Panel"]
 layout_mode = 0
 offset_left = 640.0
 offset_top = 611.0
-offset_right = 772.0
-offset_bottom = 642.0
+offset_right = 790.0
+offset_bottom = 661.0
+theme_override_constants/line_spacing = 5
+theme_override_fonts/font = ExtResource("35_fnmt5")
+theme_override_font_sizes/font_size = 20
 text = "CANCEL"
 
 [node name="info max" type="Label" parent="EquipmentUI/Panel"]
@@ -24984,10 +25018,18 @@ texture = ExtResource("16_wguex")
 
 [node name="InfoLabel" type="Label" parent="EquipmentUI/Panel"]
 layout_mode = 0
-offset_left = 896.0
-offset_top = 487.0
-offset_right = 1262.0
-offset_bottom = 594.0
+offset_left = 884.0
+offset_top = 113.0
+offset_right = 1250.0
+offset_bottom = 563.0
+
+[node name="AudioStreamPlayer_Open" type="AudioStreamPlayer" parent="EquipmentUI"]
+stream = ExtResource("22_ts7go")
+volume_db = -15.0
+
+[node name="AudioStreamPlayer_Close" type="AudioStreamPlayer" parent="EquipmentUI"]
+stream = ExtResource("23_okxjf")
+volume_db = -15.0
 
 [node name="BackpackUI" parent="." instance=ExtResource("21_0hkjv")]
 
@@ -25085,5 +25127,14 @@ offset_left = 1240.0
 offset_right = 1280.0
 offset_bottom = 40.0
 script = ExtResource("38_fnmt5")
+
+[node name="Radio" parent="." instance=ExtResource("30_0hkjv")]
+position = Vector2(935, 170)
+
+[node name="lemaribesi" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(282.5, 116)
+scale = Vector2(0.7459676, 0.75454545)
+texture = ExtResource("31_udq64")
 
 [connection signal="pressed" from="EquipmentUI/Panel/CloseButton" to="EquipmentUI" method="_on_take_button_2_pressed"]

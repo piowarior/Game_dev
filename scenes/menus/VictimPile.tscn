@@ -64,7 +64,12 @@ theme_override_fonts/font = ExtResource("3_2pl6e")
 theme_override_font_sizes/font_size = 23
 text = "Press F"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="body" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
+y_sort_enabled = true
 position = Vector2(11, 20)
 scale = Vector2(1, 0.5)
 shape = SubResource("CircleShape2D_2i57d")

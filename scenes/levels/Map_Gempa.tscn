@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dp3lgmneadjw"]
+[gd_scene load_steps=33 format=3 uid="uid://dp3lgmneadjw"]
 
 [ext_resource type="Texture2D" uid="uid://cmow0pxcq1ih5" path="res://assets/tilesets/asset gemini/asset 10.png" id="2_di5ef"]
 [ext_resource type="Texture2D" uid="uid://b4ogmg6ewvrik" path="res://assets/tilesets/asset gemini/asset 9.jpg" id="2_sh21r"]
@@ -41202,6 +41202,12 @@ sources/7 = SubResource("TileSetAtlasSource_0l3hr")
 sources/8 = SubResource("TileSetAtlasSource_rywwx")
 sources/9 = SubResource("TileSetAtlasSource_5dk5o")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dk5o"]
+size = Vector2(333, 153)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6xi8"]
+size = Vector2(414, 113)
+
 [node name="MapGempa" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(0, -19)
@@ -41226,7 +41232,6 @@ map_type = "gempa"
 [node name="Hotbar" parent="." instance=ExtResource("12_6rp7x")]
 
 [node name="BackpackUI" parent="." instance=ExtResource("14_i6bpw")]
-visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(300, -380)
@@ -41264,3 +41269,22 @@ y_sort_enabled = true
 position = Vector2(860, 249)
 collision_layer = 16
 collision_mask = 0
+
+[node name="markas2" type="Node2D" parent="."]
+visible = false
+position = Vector2(225, 231)
+
+[node name="Sprite2D" type="Sprite2D" parent="markas2"]
+position = Vector2(-2, -125)
+texture = ExtResource("11_0l3hr")
+
+[node name="Area2D" type="Area2D" parent="markas2"]
+position = Vector2(144, 176)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="markas2/Area2D"]
+position = Vector2(-189.5, -173.5)
+shape = SubResource("RectangleShape2D_5dk5o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="markas2"]
+position = Vector2(-16, -9.5)
+shape = SubResource("RectangleShape2D_w6xi8")

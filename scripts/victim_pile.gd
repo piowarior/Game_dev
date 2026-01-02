@@ -3,9 +3,12 @@ extends Node2D
 @export var rescue_closeup_scene: PackedScene
 @export var rescue_profile: Dictionary
 
-
 @onready var label: Label = $Label
 @onready var area: Area2D = $Area2D
+
+var saved_layer_index := 0
+var saved_stage := "EVAC"
+
 
 var player_in_range := false
 var opened := false
@@ -27,8 +30,8 @@ func _process(_delta):
 		return
 
 	if player_in_range and Input.is_action_just_pressed("interact"):
-		print("Kunci F ditekan!")
 		open_rescue()
+
 
 
 func open_rescue():
@@ -36,25 +39,38 @@ func open_rescue():
 		push_error("WAJIB: Masukkan scene RescueCloseUp di Inspector!")
 		return
 
-	opened = true
+	opened = true   # 🔑 KUNCI: tandai sedang dibuka
 
 	var closeup = rescue_closeup_scene.instantiate()
 	get_tree().root.add_child(closeup)
 
-	# 🔑 INI KUNCI UTAMANYA
+	# Kirim data layer
 	if closeup.has_method("set_profile"):
 		closeup.set_profile(rescue_profile)
-	else:
-		push_error("RescueCloseUp belum punya set_profile()")
-		return
 
+	# Jika rescue selesai total → hapus victim
 	if closeup.has_signal("rescue_finished"):
 		closeup.rescue_finished.connect(_on_rescue_finished)
+
+	# Jika rescue dibatalkan (EXIT) → bisa lanjut lagi
+	if closeup.has_signal("rescue_aborted"):
+		closeup.rescue_aborted.connect(_on_rescue_aborted)
+		
+	if closeup.has_method("set_resume_state"):
+		closeup.set_resume_state(saved_stage, saved_layer_index)
 
 	if closeup.has_method("open"):
 		closeup.open()
 
 	label.visible = false
+
+
+func _on_rescue_aborted(stage, layer_index):
+	print("Rescue dibatalkan di:", stage, layer_index)
+
+	saved_stage = stage
+	saved_layer_index = layer_index
+	opened = false
 
 
 
@@ -68,11 +84,9 @@ func _on_enter(body):
 		player_in_range = true
 		if not opened:
 			label.visible = true
-			print("Player mendekat")
 
 
 func _on_exit(body):
 	if body is CharacterBody2D:
 		player_in_range = false
 		label.visible = false
-		print("Player menjauh")

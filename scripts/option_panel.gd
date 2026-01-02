@@ -16,6 +16,7 @@ var is_audio_initialized = false # Flag untuk memastikan inisialisasi hanya seka
 @onready var back_button = get_node("Color_Rect/Panel_Container/VBoxContainer/Back_Container/BackButton")
 # -----------------------------------------------------------------------------------------
 
+
 # Fungsi baru untuk mencari dan menginisialisasi Bus
 func _initialize_audio():
 	music_bus_index = AudioServer.get_bus_index("music")

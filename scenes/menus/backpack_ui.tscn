@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpr6mkrpy6vrm"]
+[gd_scene load_steps=6 format=3 uid="uid://cpr6mkrpy6vrm"]
 
 [ext_resource type="Script" uid="uid://cxualfj1rt1gs" path="res://scripts/backpack_ui.gd" id="1_6hu2t"]
 [ext_resource type="Texture2D" uid="uid://bo8upuowpmp34" path="res://assets/tilesets/asset gemini/basecamp/bappack.png" id="2_bli3m"]
 [ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="3_kpe44"]
+[ext_resource type="AudioStream" uid="uid://bioqgrvx6ryvb" path="res://assets/sound/18727__lg__zipper04.mp3" id="4_kpe44"]
+[ext_resource type="AudioStream" uid="uid://308mcc5ch473" path="res://assets/sound/467604__triqystudio__openbag.mp3" id="5_i1bl0"]
 
 [node name="BackpackUI" type="CanvasLayer"]
 script = ExtResource("1_6hu2t")
@@ -72,3 +74,11 @@ fixed_icon_size = Vector2i(48, 48)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_kpe44")
 text = "TUTUP"
+
+[node name="AudioStreamPlayer_Open" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kpe44")
+volume_db = -15.0
+
+[node name="AudioStreamPlayer_Close" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_i1bl0")
+volume_db = -15.0

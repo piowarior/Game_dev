@@ -7,6 +7,8 @@ var disaster_selected = ""
 var backpack: Array[String] = []
 var current_item := ""
 var decision_points := 10
+var next_scene_path: String = ""
+
 
 const MAX_ITEM := 5
 

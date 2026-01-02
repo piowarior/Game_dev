@@ -4,6 +4,14 @@ extends CharacterBody2D
 @onready var hand_item = $HandItem
 @export var map_type := "basecamp"
 
+# -----------------
+# AUDIO (Tambahan saja)
+# -----------------
+@export var run_sound: AudioStream
+@export var tool_sound: AudioStream
+@onready var audio_run: AudioStreamPlayer2D = $AudioPlayer_Run
+@onready var audio_tool: AudioStreamPlayer2D = $AudioPlayer_Tool
+
 # --------- PARAMETER GAME ----------
 var speed = 200
 var last_direction = "South"
@@ -30,8 +38,13 @@ var base_scale := Vector2.ONE
 
 # Item
 var last_item_in_hand = ""
-
 var dig_tool := ""   # "Sekop" atau "Pickaxe"
+
+# =========================
+# STEP AUDIO CONTROL
+# =========================
+var step_timer := 0.0
+@export var step_interval := 0.35  # suara langkah setiap 0.35 detik saat bergerak
 
 # --------------------------------------------------------
 # READY
@@ -39,7 +52,6 @@ var dig_tool := ""   # "Sekop" atau "Pickaxe"
 func _ready():
 	sprite.animation = "Idle_South"
 	sprite.play()
-
 
 	if map_type == "basecamp":
 		base_scale = Vector2(4, 4)
@@ -82,7 +94,7 @@ func _physics_process(delta):
 	_limit_player_position()
 
 # --------------------------------------------------------
-# 🪓 DIG SYSTEM (BARU)
+# DIG SYSTEM
 # --------------------------------------------------------
 func _handle_dig():
 	var current_item = GameState.current_item
@@ -93,6 +105,8 @@ func _handle_dig():
 			is_digging = false
 			sprite.animation = "Idle_%s" % last_direction
 			sprite.play()
+			if audio_tool.playing:
+				audio_tool.stop()
 		return
 
 	# Simpan alat yang dipakai
@@ -103,23 +117,26 @@ func _handle_dig():
 		if not is_digging:
 			is_digging = true
 			velocity = Vector2.ZERO
-
 			var dig_anim = "Dig_%s" % last_direction
 			if sprite.animation != dig_anim:
 				sprite.animation = dig_anim
 				sprite.play()
+
+			# 🔊 PLAY TOOL SOUND
+			if tool_sound and not audio_tool.playing:
+				audio_tool.stream = tool_sound
+				audio_tool.play()
 	else:
 		# 🔴 LEPAS E → STOP DIG
 		if is_digging:
 			is_digging = false
 			sprite.animation = "Idle_%s" % last_direction
 			sprite.play()
-
-
-
+			if audio_tool.playing:
+				audio_tool.stop()
 
 # --------------------------------------------------------
-# 🎮 GERAK PLAYER (ASLI, TIDAK DIHILANGKAN)
+# GERAK PLAYER
 # --------------------------------------------------------
 func _move_player(delta):
 	var input_vector = Vector2.ZERO
@@ -157,11 +174,23 @@ func _move_player(delta):
 	if input_vector != Vector2.ZERO:
 		input_vector = input_vector.normalized()
 
+	# 🔊 STEP SOUND
+	if input_vector != Vector2.ZERO:
+		audio_run.volume_db = 0
+		
+		if not audio_run.playing:
+			audio_run.stream = run_sound
+			audio_run.play()
+
+	else:
+		if audio_run.playing:
+			audio_run.stop()
+
 	velocity = input_vector * speed
 	move_and_slide()
 
 # --------------------------------------------------------
-# 🔹 ITEM DI TANGAN (ASLI)
+# ITEM DI TANGAN
 # --------------------------------------------------------
 func _update_hand_item():
 	var current = GameState.current_item
@@ -202,14 +231,14 @@ func _on_hotbar_item_changed(item_name):
 		hand_item.texture = null
 
 # --------------------------------------------------------
-# ⛔ BATAS MAP
+# BATAS MAP
 # --------------------------------------------------------
 func _limit_player_position():
 	global_position.x = clamp(global_position.x, min_x, max_x)
 	global_position.y = clamp(global_position.y, min_y, max_y)
 
 # --------------------------------------------------------
-# 🎯 PERSPEKTIF SCALE (ASLI)
+# PERSPEKTIF SCALE
 # --------------------------------------------------------
 func _apply_perspective_scale():
 	if map_type != "gempa":

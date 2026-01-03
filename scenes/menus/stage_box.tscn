@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://stagebox"]
+[gd_scene load_steps=5 format=3 uid="uid://stagebox"]
 
 [ext_resource type="Script" uid="uid://ciy4pdwxpattw" path="res://scenes/menus/stage_box.gd" id="1_oo0b0"]
 [ext_resource type="Texture2D" uid="uid://cj77c0wjc3gfv" path="res://assets/stage/starkosong.png" id="2_92j4d"]
+[ext_resource type="FontFile" uid="uid://b2tonhw04ev1s" path="res://assets/font/Axolotl.ttf" id="3_i7ysl"]
 [ext_resource type="Texture2D" uid="uid://s4df5vf77ok2" path="res://assets/stage/lock.png" id="3_n4g8j"]
 
 [node name="StageBox" type="Button"]
@@ -57,7 +58,8 @@ stretch_mode = 6
 [node name="LevelName" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("3_i7ysl")
+theme_override_font_sizes/font_size = 30
 text = "STAGE NAME"
 
 [node name="LockOverlay" type="Control" parent="."]

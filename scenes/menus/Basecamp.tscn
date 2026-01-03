@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://c0qjs6pcoqmtx"]
+[gd_scene load_steps=51 format=3 uid="uid://c0qjs6pcoqmtx"]
 
 [ext_resource type="PackedScene" uid="uid://dlpcru2e77pci" path="res://player/player.tscn" id="1_uti30"]
 [ext_resource type="Texture2D" uid="uid://dvigx5ss7ijem" path="res://assets/tilesets/asset gemini/basecamp/gambar - latar basecamp1.png" id="2_svugy"]
@@ -23,8 +23,13 @@
 [ext_resource type="AudioStream" uid="uid://balqtruch4tix" path="res://assets/sound/277311__elliotlp__open-toolbox.mp3" id="22_ts7go"]
 [ext_resource type="PackedScene" uid="uid://3u8uwit4858y" path="res://scenes/menus/computer_ui.tscn" id="23_hon0v"]
 [ext_resource type="AudioStream" uid="uid://gygdg3fibj1f" path="res://assets/sound/790072__omiranda14__sfx_inventorysounds_equipping_05.mp3" id="23_okxjf"]
+[ext_resource type="Texture2D" uid="uid://ca034qu4bm7s" path="res://assets/tilesets/asset gemini/CoffeMug.png" id="26_okxjf"]
+[ext_resource type="Texture2D" uid="uid://cwus7xq571k3d" path="res://assets/tilesets/asset gemini/smoke1.png" id="27_fnmt5"]
+[ext_resource type="Texture2D" uid="uid://du8st3cwwmn7c" path="res://assets/tilesets/asset gemini/smoke2.png" id="28_e8vnd"]
 [ext_resource type="Script" uid="uid://prkh5npbld2g" path="res://scripts/computer_desk.gd" id="28_hon0v"]
+[ext_resource type="Texture2D" uid="uid://dexn1urts6j7g" path="res://assets/tilesets/asset gemini/smoke3.png" id="29_lch73"]
 [ext_resource type="PackedScene" uid="uid://b2y8ep0cisf6y" path="res://scenes/menus/Radio.tscn" id="30_0hkjv"]
+[ext_resource type="Texture2D" uid="uid://c8s52if168jgk" path="res://assets/tilesets/asset gemini/smoke4.png" id="30_wa6ji"]
 [ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="31_b185e"]
 [ext_resource type="Texture2D" uid="uid://bd0a52xaf4fou" path="res://assets/tilesets/asset gemini/basecamp/lemaribesi.png" id="31_udq64"]
 [ext_resource type="Script" uid="uid://hel8r4j8vnnb" path="res://scripts/object_exit_door.gd" id="32_6qudo"]
@@ -24746,9 +24751,6 @@ sources/3 = SubResource("TileSetAtlasSource_rtabk")
 sources/5 = SubResource("TileSetAtlasSource_24s6u")
 sources/6 = SubResource("TileSetAtlasSource_agl1u")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_eje2e"]
-size = Vector2(1391.5, 650.5)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agl1u"]
 size = Vector2(264, 188)
 
@@ -24757,6 +24759,26 @@ size = Vector2(271, 196)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b185e"]
 size = Vector2(210, 57)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eqhqp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_fnmt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_e8vnd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_lch73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_wa6ji")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8vnd"]
 size = Vector2(102.5, 223)
@@ -24818,10 +24840,6 @@ position = Vector2(4, 3)
 color = Color(0.9019608, 0.9019608, 0.9019608, 1)
 
 [node name="MoveLimit" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveLimit"]
-position = Vector2(695.25, 2.75)
-shape = SubResource("RectangleShape2D_eje2e")
 
 [node name="Objects" type="Node2D" parent="."]
 
@@ -24916,7 +24934,6 @@ layout_mode = 2
 columns = 5
 
 [node name="ItemList" type="ItemList" parent="EquipmentUI/Panel"]
-visible = false
 layout_mode = 0
 offset_top = 93.0
 offset_right = 1278.0
@@ -25059,6 +25076,19 @@ position = Vector2(-18, 76.5)
 shape = SubResource("RectangleShape2D_b185e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object_komputer/ComputerDesk"]
+
+[node name="Mug" type="Sprite2D" parent="Object_komputer/ComputerDesk"]
+z_index = 1
+position = Vector2(76.5, -18)
+scale = Vector2(1.4375, 1.5)
+texture = ExtResource("26_okxjf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Object_komputer/ComputerDesk/Mug"]
+position = Vector2(-0.3478233, -10.666666)
+scale = Vector2(0.12176121, 0.124999955)
+sprite_frames = SubResource("SpriteFrames_eqhqp")
+autoplay = "default"
+frame_progress = 0.507732
 
 [node name="ComputerUI" parent="." instance=ExtResource("23_hon0v")]
 

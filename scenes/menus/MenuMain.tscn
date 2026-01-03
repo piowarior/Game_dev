@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbmcy1cd1jl8j"]
+[gd_scene load_steps=3 format=3 uid="uid://bbmcy1cd1jl8j"]
 
 [ext_resource type="Script" uid="uid://tn32ortsogvv" path="res://scripts/menu_main.gd" id="1_efho8"]
+[ext_resource type="FontFile" uid="uid://b2tonhw04ev1s" path="res://assets/font/Axolotl.ttf" id="2_mcdqc"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -19,14 +20,20 @@ alignment = 1
 
 [node name="PlayButton" type="Button" parent="MarginContainer/MenuButtons"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mcdqc")
+theme_override_font_sizes/font_size = 30
 text = "Play"
 
 [node name="OptionButton" type="Button" parent="MarginContainer/MenuButtons"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mcdqc")
+theme_override_font_sizes/font_size = 30
 text = "Option"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/MenuButtons"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_mcdqc")
+theme_override_font_sizes/font_size = 30
 text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/MenuButtons/PlayButton" to="." method="_on_play_button_pressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c51471oi5ilyn"
-path="res://.godot/imported/frame_002.png-365c5c494fa42c36b1d529b48139ca1c.ctex"
+uid="uid://ft0jruxjxcw3"
+path="res://.godot/imported/frame_001.png-78ee20eae123f9e66637294017e14f0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/sprite/throw-object/east/frame_002.png"
-dest_files=["res://.godot/imported/frame_002.png-365c5c494fa42c36b1d529b48139ca1c.ctex"]
+source_file="res://player/sprite/throw-object/north/frame_001.png"
+dest_files=["res://.godot/imported/frame_001.png-78ee20eae123f9e66637294017e14f0c.ctex"]
 
 [params]
 

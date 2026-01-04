@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc366x350bdy4"]
+
+[ext_resource type="Script" uid="uid://byk0jor1klh0n" path="res://scenes/levels/markas_confirm_ui.gd" id="1_a35wy"]
+[ext_resource type="Texture2D" uid="uid://cedxce4qxryjx" path="res://assets/tilesets/asset gemini/gambar tim sar ingin pulang.png" id="2_dibv7"]
+
+[node name="ConfirmBackToBase" type="CanvasLayer"]
+script = ExtResource("1_a35wy")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1276.0
+offset_bottom = 721.0
+texture = ExtResource("2_dibv7")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BtnYes" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 425.0
+offset_top = 617.0
+offset_right = 518.0
+offset_bottom = 648.0
+text = "Konfirmasi"
+
+[node name="BtnNo" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 722.0
+offset_top = 618.0
+offset_right = 772.0
+offset_bottom = 649.0
+text = "Tidak"
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 499.0
+offset_top = 220.0
+offset_right = 700.0
+offset_bottom = 295.0
+text = "\"Balik ke Markas?
+NPC & DPS akan dihitung\"
+"

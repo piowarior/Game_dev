@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dp3lgmneadjw"]
+[gd_scene load_steps=35 format=3 uid="uid://dp3lgmneadjw"]
 
 [ext_resource type="Texture2D" uid="uid://cmow0pxcq1ih5" path="res://assets/tilesets/asset gemini/asset 10.png" id="2_di5ef"]
 [ext_resource type="Texture2D" uid="uid://b4ogmg6ewvrik" path="res://assets/tilesets/asset gemini/asset 9.jpg" id="2_sh21r"]
@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://0igcefewmofg" path="res://scenes/menus/DiggableObstacle.tscn" id="16_cxhgx"]
 [ext_resource type="PackedScene" uid="uid://c5mm0rrukj47t" path="res://scenes/menus/VictimPile.tscn" id="18_5dk5o"]
 [ext_resource type="PackedScene" uid="uid://dwj7i66c0bs6d" path="res://scenes/menus/npc2.tscn" id="18_rywwx"]
+[ext_resource type="Script" uid="uid://2ighrjerh8ty" path="res://scenes/levels/markas_2.gd" id="20_w6xi8"]
+[ext_resource type="PackedScene" uid="uid://cc366x350bdy4" path="res://scenes/levels/confirm_back_to_base.tscn" id="21_xdvy2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6p8lb"]
 texture = ExtResource("2_sh21r")
@@ -41225,13 +41227,14 @@ position = Vector2(223, 106)
 texture = ExtResource("11_0l3hr")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("11_imqpt")]
-position = Vector2(63, 276)
+position = Vector2(94, 318)
 collision_mask = 16
 map_type = "gempa"
 
 [node name="Hotbar" parent="." instance=ExtResource("12_6rp7x")]
 
 [node name="BackpackUI" parent="." instance=ExtResource("14_i6bpw")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(300, -380)
@@ -41271,8 +41274,9 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="markas2" type="Node2D" parent="."]
-visible = false
 position = Vector2(225, 231)
+script = ExtResource("20_w6xi8")
+confirm_ui_scene = ExtResource("21_xdvy2")
 
 [node name="Sprite2D" type="Sprite2D" parent="markas2"]
 position = Vector2(-2, -125)
@@ -41288,3 +41292,10 @@ shape = SubResource("RectangleShape2D_5dk5o")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="markas2"]
 position = Vector2(-16, -9.5)
 shape = SubResource("RectangleShape2D_w6xi8")
+
+[node name="Label" type="Label" parent="markas2"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Press f"
+
+[node name="ConfirmBackToBase" parent="." instance=ExtResource("21_xdvy2")]

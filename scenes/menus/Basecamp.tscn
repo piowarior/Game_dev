@@ -24957,6 +24957,7 @@ layout_mode = 2
 columns = 5
 
 [node name="ItemList" type="ItemList" parent="EquipmentUI/Panel"]
+visible = false
 layout_mode = 0
 offset_top = 93.0
 offset_right = 1278.0

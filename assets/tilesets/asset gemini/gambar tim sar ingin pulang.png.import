@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c51471oi5ilyn"
-path="res://.godot/imported/frame_002.png-365c5c494fa42c36b1d529b48139ca1c.ctex"
+uid="uid://cedxce4qxryjx"
+path="res://.godot/imported/gambar tim sar ingin pulang.png-6cce7911fac169e5bdef33b7fd3ead51.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/sprite/throw-object/east/frame_002.png"
-dest_files=["res://.godot/imported/frame_002.png-365c5c494fa42c36b1d529b48139ca1c.ctex"]
+source_file="res://assets/tilesets/asset gemini/gambar tim sar ingin pulang.png"
+dest_files=["res://.godot/imported/gambar tim sar ingin pulang.png-6cce7911fac169e5bdef33b7fd3ead51.ctex"]
 
 [params]
 

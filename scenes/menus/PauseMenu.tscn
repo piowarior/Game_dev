@@ -5,11 +5,13 @@
 [ext_resource type="FontFile" uid="uid://b2tonhw04ev1s" path="res://assets/font/Axolotl.ttf" id="2_i7533"]
 
 [node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 10
 script = ExtResource("1_wgnbc")
 options_panel_scene = ExtResource("2_5c87e")
 
 [node name="Panel" type="Panel" parent="."]
-process_mode = 2
+process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -17,6 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BtnResume" type="Button" parent="Panel"]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -34,6 +37,8 @@ theme_override_font_sizes/font_size = 30
 text = "Lanjutkan"
 
 [node name="BtnOption" type="Button" parent="Panel"]
+process_mode = 3
+visibility_layer = 2
 layout_mode = 0
 offset_left = 541.0
 offset_top = 260.0
@@ -44,6 +49,7 @@ theme_override_font_sizes/font_size = 30
 text = "Option"
 
 [node name="BtnQuit" type="Button" parent="Panel"]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -59,3 +65,5 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_i7533")
 theme_override_font_sizes/font_size = 30
 text = "Keluar Game"
+
+[connection signal="pressed" from="Panel/BtnOption" to="." method="_on_btn_option_pressed"]

@@ -36,8 +36,8 @@
 [ext_resource type="Texture2D" uid="uid://dxbgm2048j66j" path="res://assets/tilesets/asset gemini/basecamp/pintu exit removebg.png" id="33_lccqh"]
 [ext_resource type="Script" uid="uid://coc2hbl7f3ej6" path="res://scripts/exit_confirm_ui.gd" id="34_bbpfq"]
 [ext_resource type="FontFile" uid="uid://yfvbpsvkhyf1" path="res://assets/font/cs-caleb-mono-demo/CSCalebMono-Regular_demo.otf" id="35_fnmt5"]
+[ext_resource type="PackedScene" uid="uid://bheerotva48ol" path="res://scenes/menus/PauseButton.tscn" id="36_wa6ji"]
 [ext_resource type="PackedScene" uid="uid://ban2yis40xxsh" path="res://scenes/menus/PauseMenu.tscn" id="37_bbpfq"]
-[ext_resource type="Script" uid="uid://cae5atvg60qv3" path="res://scripts/texture_button.gd" id="38_fnmt5"]
 [ext_resource type="FontFile" uid="uid://b2tonhw04ev1s" path="res://assets/font/Axolotl.ttf" id="39_lch73"]
 [ext_resource type="Texture2D" uid="uid://cm4non8srdixf" path="res://assets/tilesets/asset gemini/clock.png" id="39_wa6ji"]
 [ext_resource type="Script" uid="uid://dfh4gle7kgimj" path="res://scenes/menus/jam_digital.gd" id="40_wa6ji"]
@@ -24798,6 +24798,26 @@ layer_0/tile_data = PackedInt32Array(-1048576, 0, 17, -983040, 0, 18, -917504, 0
 position = Vector2(227, 223)
 collision_mask = 16
 
+[node name="JamDigital" type="Label" parent="."]
+z_index = 2
+custom_minimum_size = Vector2(20, 20)
+offset_left = 482.5
+offset_top = -133.0
+offset_right = 546.5
+offset_bottom = -108.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("39_lch73")
+theme_override_font_sizes/font_size = 30
+text = "00:00:00"
+script = ExtResource("40_wa6ji")
+
+[node name="Jam" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(514.5, -117)
+scale = Vector2(1.4807693, 1.5666667)
+texture = ExtResource("39_wa6ji")
+
 [node name="GeminiGeneratedImageYb2n6Gyb2n6Gyb2nRemovebgPreview" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
@@ -25081,6 +25101,7 @@ shape = SubResource("RectangleShape2D_b185e")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object_komputer/ComputerDesk"]
 
 [node name="Mug" type="Sprite2D" parent="Object_komputer/ComputerDesk"]
+visibility_layer = 512
 z_index = 1
 position = Vector2(76.5, -18)
 scale = Vector2(1.4375, 1.5)
@@ -25153,13 +25174,7 @@ text = "Batal"
 
 [node name="PauseMenu" parent="." instance=ExtResource("37_bbpfq")]
 
-[node name="PauseButton" type="CanvasLayer" parent="."]
-
-[node name="TextureButton" type="TextureButton" parent="PauseButton"]
-offset_left = 1240.0
-offset_right = 1280.0
-offset_bottom = 40.0
-script = ExtResource("38_fnmt5")
+[node name="PauseButton" parent="." instance=ExtResource("36_wa6ji")]
 
 [node name="Radio" parent="." instance=ExtResource("30_0hkjv")]
 position = Vector2(935, 170)
@@ -25173,22 +25188,8 @@ texture = ExtResource("31_udq64")
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 100
 
-[node name="Jam" type="Sprite2D" parent="HUD"]
-position = Vector2(509, 239)
-scale = Vector2(1.4807693, 1.5666667)
-texture = ExtResource("39_wa6ji")
+[node name="PauseButton" parent="HUD" instance=ExtResource("36_wa6ji")]
 
-[node name="JamDigital" type="Label" parent="HUD"]
-custom_minimum_size = Vector2(20, 20)
-offset_left = 480.0
-offset_top = 222.0
-offset_right = 544.0
-offset_bottom = 247.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("39_lch73")
-theme_override_font_sizes/font_size = 30
-text = "00:00:00"
-script = ExtResource("40_wa6ji")
+[node name="PauseMenu2" parent="." instance=ExtResource("37_bbpfq")]
 
 [connection signal="pressed" from="EquipmentUI/Panel/CloseButton" to="EquipmentUI" method="_on_take_button_2_pressed"]

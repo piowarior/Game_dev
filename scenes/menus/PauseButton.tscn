@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bheerotva48ol"]
+
+[ext_resource type="Script" uid="uid://cae5atvg60qv3" path="res://scripts/texture_button.gd" id="1_15ws7"]
+[ext_resource type="Texture2D" uid="uid://dp1la6draenqh" path="res://assets/tilesets/asset gemini/mdvlpause.png" id="1_m4i4j"]
+
+[node name="PauseButton" type="CanvasLayer"]
+process_mode = 3
+
+[node name="TextureButton" type="TextureButton" parent="."]
+process_mode = 3
+offset_left = 1213.0
+offset_top = 48.0
+offset_right = 1267.0
+offset_bottom = 96.0
+mouse_filter = 1
+texture_normal = ExtResource("1_m4i4j")
+stretch_mode = 0
+script = ExtResource("1_15ws7")

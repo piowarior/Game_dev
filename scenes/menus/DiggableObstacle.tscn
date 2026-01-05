@@ -19,6 +19,7 @@ y_sort_enabled = true
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_6abck")
+material_type = "beton"
 tanah_sprites = Array[Texture2D]([ExtResource("2_0dkl0"), ExtResource("3_gpou0"), ExtResource("4_sklt7")])
 beton_sprites = Array[Texture2D]([ExtResource("5_6ek3s"), ExtResource("6_w8ea0"), ExtResource("7_uvj4j")])
 has_victim = true

@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://dkjc0ytwojlf2" path="res://scripts/loading_screen.gd" id="1_si7r8"]
 [ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="2_8l3i8"]
 
-[sub_resource type="Animation" id="Animation_vyo8w"]
-resource_name = "fade_in"
-
 [sub_resource type="Animation" id="Animation_mhth0"]
 length = 0.001
+
+[sub_resource type="Animation" id="Animation_vyo8w"]
+resource_name = "fade_in"
 
 [sub_resource type="Animation" id="Animation_si7r8"]
 resource_name = "fade_out"
@@ -27,7 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_si7r8")
-loading_time = 10.0
+loading_time = 6.0
 
 [node name="BackgroundLayer" type="Control" parent="."]
 layout_mode = 1
@@ -77,5 +77,5 @@ libraries = {
 }
 
 [node name="ChangeTimer" type="Timer" parent="."]
-wait_time = 3.5
+wait_time = 2.0
 autostart = true

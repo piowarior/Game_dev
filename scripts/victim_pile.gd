@@ -2,7 +2,10 @@ extends Node2D
 
 @export var rescue_closeup_scene: PackedScene
 @export var rescue_profile: Dictionary
+@export var victim_id: String
+@export_enum("SADAR", "PINGSAN") var condition := "SADAR"
 
+@export var follow_npc_scene: PackedScene
 @onready var label: Label = $Label
 @onready var area: Area2D = $Area2D
 
@@ -15,14 +18,32 @@ var opened := false
 var can_interact := false
 
 func _ready():
-	label.visible = false
+	if victim_id == "":
+		push_error("Victim WAJIB punya victim_id!")
+		return
 
+	# Kalau sudah diselamatkan → hapus
+	if GameState.rescued_victims.has(victim_id):
+		queue_free()
+		return
+
+	label.visible = false
 	area.body_entered.connect(_on_enter)
 	area.body_exited.connect(_on_exit)
 
-	# Delay kecil supaya tidak auto kebuka
+	# Restore rescue state
+	if GameState.victim_rescue_state.has(victim_id):
+		var data = GameState.victim_rescue_state[victim_id]
+		saved_stage = data.stage
+		saved_layer_index = data.layer
+
 	await get_tree().create_timer(0.2).timeout
 	can_interact = true
+	
+	await get_tree().process_frame
+	restore_visual_state()
+
+
 
 
 func _process(_delta):
@@ -58,6 +79,10 @@ func open_rescue():
 		
 	if closeup.has_method("set_resume_state"):
 		closeup.set_resume_state(saved_stage, saved_layer_index)
+		
+	if closeup.has_method("set_victim_id"):
+		closeup.set_victim_id(victim_id)
+
 
 	if closeup.has_method("open"):
 		closeup.open()
@@ -66,24 +91,69 @@ func open_rescue():
 
 
 func _on_rescue_aborted(stage, layer_index):
-	print("Rescue dibatalkan di:", stage, layer_index)
-
 	saved_stage = stage
 	saved_layer_index = layer_index
-	opened = false
 
+	GameState.victim_rescue_state[victim_id] = {
+		"stage": stage,
+		"layer": layer_index
+	}
+
+	opened = false
+	restore_visual_state()
+
+	# 🔥 INI YANG HILANG
+	if player_in_range:
+		label.visible = true
+
+func restore_visual_state():
+	if not GameState.victim_rescue_state.has(victim_id):
+		return
+
+	var data = GameState.victim_rescue_state[victim_id]
+	saved_stage = data.stage
+	saved_layer_index = data.layer
+
+	# 🔥 tampilkan kembali visual korban tertimbun
+	if has_node("Sprite2D"):
+		$Sprite2D.visible = true
+
+	if has_node("Label"):
+		label.visible = player_in_range
 
 
 func _on_rescue_finished():
+	GameState.rescued_victims[victim_id] = true
+	GameState.victim_rescue_state.erase(victim_id)
+	GameState.spawned_victims.erase(victim_id) # 🔥 PENTING
 	print("Rescue selesai → VictimPile dihapus")
+
+	if condition == "SADAR":
+		spawn_follow_npc()
+		
 	queue_free()
+
+func spawn_follow_npc():
+	if follow_npc_scene == null:
+		push_error("Follow NPC scene belum diisi!")
+		return
+
+	var npc = follow_npc_scene.instantiate()
+	npc.global_position = global_position
+	npc.victim_id = victim_id
+
+	# 🔥 INI WAJIB
+	npc.target = get_tree().current_scene.get_node("CharacterBody2D")
+
+	get_tree().current_scene.add_child(npc)
+
 
 
 func _on_enter(body):
 	if body is CharacterBody2D:
 		player_in_range = true
-		if not opened:
-			label.visible = true
+		if not opened and can_interact:
+			restore_visual_state()
 
 
 func _on_exit(body):

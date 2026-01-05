@@ -36,6 +36,7 @@ var base_tool_color := Color.WHITE
 var evac_layers: Array = []
 var layer_index := 0
 var aborted := false
+var victim_id := ""
 
 
 var holding := false
@@ -70,10 +71,27 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_exit_pressed():
+	aborted = true   # 🔑 PENTING
+
+	if victim_id != "":
+		GameState.victim_rescue_state[victim_id] = {
+			"stage": stage,
+			"layer": layer_index
+		}
+
 	emit_signal("rescue_aborted", stage, layer_index)
+
 	get_tree().paused = false
 	visible = false
 	queue_free()
+
+
+
+func _exit_tree():
+	# Kalau close-up mati karena change scene / force close
+	if not aborted:
+		emit_signal("rescue_aborted", stage, layer_index)
+
 
 func set_resume_state(_stage, _layer_index):
 	stage = _stage
@@ -92,6 +110,9 @@ func set_profile(profile: Dictionary):
 		stage = "MEDIC"
 	else:
 		stage = "EVAC"
+
+func set_victim_id(id: String):
+	victim_id = id
 
 
 # =========================
@@ -113,10 +134,15 @@ func open():
 
 
 func close():
+	if victim_id != "":
+		GameState.victim_rescue_state.erase(victim_id)
+
 	get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	emit_signal("rescue_finished")
 	queue_free()
+
+
 
 # =========================
 # HOTBAR

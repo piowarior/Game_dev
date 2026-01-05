@@ -2,6 +2,7 @@ extends Node2D
 
 @export_enum("tanah", "beton") var material_type := "tanah"
 
+@export var obstacle_id: String
 @export var tanah_sprites: Array[Texture2D]
 @export var beton_sprites: Array[Texture2D]
 
@@ -20,9 +21,20 @@ var current_player = null
 
 # ------------------------------------------------
 func _ready():
+	if obstacle_id == "":
+		push_error("Obstacle WAJIB punya obstacle_id!")
+		return
+
+	# Kalau sudah dihancurkan sebelumnya → langsung hapus
+	if GameState.destroyed_obstacles.has(obstacle_id):
+		queue_free()
+		return
+		
+
 	_randomize_sprite()
 	area.body_entered.connect(_on_body_entered)
 	area.body_exited.connect(_on_body_exited)
+
 
 # ------------------------------------------------
 func _randomize_sprite():
@@ -56,14 +68,21 @@ func _process(delta):
 
 # ------------------------------------------------
 func _on_destroyed():
-	print("HAS VICTIM:", has_victim)
-	print("VICTIM SCENE:", victim_pile_scene)
+	GameState.destroyed_obstacles[obstacle_id] = true
 
 	if has_victim and victim_pile_scene:
-		print("SPAWN VICTIM")
+		# 🔴 SIMPAN DATA SPAWN
+		GameState.spawned_victims[obstacle_id] = {
+		"position": global_position,
+		"scene": victim_pile_scene.resource_path
+		}
+
+
 		var victim = victim_pile_scene.instantiate()
 		victim.global_position = global_position
+		victim.victim_id = obstacle_id
 		get_tree().current_scene.add_child(victim)
+
 
 	queue_free()
 

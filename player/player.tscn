@@ -371,7 +371,7 @@ _data = {
 &"dig": SubResource("Animation_0iv1a")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 collision_mask = 0
 motion_mode = 1
 wall_min_slide_angle = 0.18151425

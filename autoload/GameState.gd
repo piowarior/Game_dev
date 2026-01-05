@@ -9,8 +9,39 @@ var current_item := ""
 var decision_points := 10
 var next_scene_path: String = ""
 
+# =========================
+# MAP PROGRESS (PERSISTENT)
+# =========================
+var destroyed_obstacles := {}   # id : true
+var rescued_victims := {}       # id : true
+var victim_rescue_state := {}   # id : {stage, layer}
+
+# =========================
+# RESCUE CLOSE-UP STATE
+# =========================
+var rescue_progress := {
+	# victim_id : {
+	#   "stage": "EVAC" / "MEDIC",
+	#   "layer_index": int
+	# }
+}
+
+var spawned_victims := {
+	# victim_id : {
+	#   "position": Vector2,
+	#   "profile": Dictionary
+	# }
+}
+
 
 const MAX_ITEM := 5
+
+
+func register_victim_following(id: String, pos: Vector2, profile: Dictionary):
+	spawned_victims[id] = {
+		"position": pos,
+		"profile": profile
+	}
 
 # ==================================
 # STAGE / DISASTER DATA

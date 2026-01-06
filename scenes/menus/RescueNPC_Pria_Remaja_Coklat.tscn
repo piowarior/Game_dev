@@ -1,0 +1,232 @@
+[gd_scene load_steps=34 format=3 uid="uid://mrew3xpddohy"]
+
+[ext_resource type="Script" uid="uid://urxdgnftglmh" path="res://scenes/menus/rescue_npc.gd" id="1_sywax"]
+[ext_resource type="Texture2D" uid="uid://cchhvat5jlp05" path="res://player/sprite/aksesoris/shadow-2d game.png" id="2_vp8r6"]
+[ext_resource type="Texture2D" uid="uid://de5rqo4tsme1s" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/breathing-idle/south/frame_000.png" id="3_sywax"]
+[ext_resource type="Texture2D" uid="uid://bm5vs14bvnjng" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/breathing-idle/south/frame_001.png" id="4_vp8r6"]
+[ext_resource type="Texture2D" uid="uid://m534dkphuuqq" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/breathing-idle/south/frame_002.png" id="5_pcgaa"]
+[ext_resource type="Texture2D" uid="uid://bhxacfhyfnoui" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/breathing-idle/south/frame_003.png" id="6_dso7p"]
+[ext_resource type="Texture2D" uid="uid://crpjf6a3hu7hm" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/east/frame_000.png" id="7_8ckxf"]
+[ext_resource type="Texture2D" uid="uid://d183n55o2sskx" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/east/frame_001.png" id="8_3ytj1"]
+[ext_resource type="Texture2D" uid="uid://c75ouura6fxm4" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/east/frame_002.png" id="9_77ilk"]
+[ext_resource type="Texture2D" uid="uid://bcl04jtl6qby1" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/east/frame_003.png" id="10_n3pvn"]
+[ext_resource type="Texture2D" uid="uid://bogxoick4qa6i" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/east/frame_004.png" id="11_g5g2h"]
+[ext_resource type="Texture2D" uid="uid://bgkdbjvjur7dd" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/east/frame_005.png" id="12_epl36"]
+[ext_resource type="Texture2D" uid="uid://5a12kks5gxdo" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/north/frame_000.png" id="13_7khuf"]
+[ext_resource type="Texture2D" uid="uid://yt6amufjpnpo" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/north/frame_001.png" id="14_50jd4"]
+[ext_resource type="Texture2D" uid="uid://csd1yawdevj5v" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/north/frame_002.png" id="15_g3gqg"]
+[ext_resource type="Texture2D" uid="uid://dt81muqrmbqni" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/north/frame_003.png" id="16_toc3l"]
+[ext_resource type="Texture2D" uid="uid://ckcygrdrctqjl" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/north/frame_004.png" id="17_gosn6"]
+[ext_resource type="Texture2D" uid="uid://hqhfqqt8h4ag" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/north/frame_005.png" id="18_fnww0"]
+[ext_resource type="Texture2D" uid="uid://dp811ijy8beep" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/south/frame_000.png" id="19_g32dj"]
+[ext_resource type="Texture2D" uid="uid://dhqn2yx3em7u6" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/south/frame_001.png" id="20_20bf6"]
+[ext_resource type="Texture2D" uid="uid://d1c2ko86owj2d" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/south/frame_002.png" id="21_okpy0"]
+[ext_resource type="Texture2D" uid="uid://c2lulykp3pi0b" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/south/frame_003.png" id="22_lsddo"]
+[ext_resource type="Texture2D" uid="uid://c18cp5oajk58n" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/south/frame_004.png" id="23_ufdrr"]
+[ext_resource type="Texture2D" uid="uid://d3sq7i6xxc2so" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/south/frame_005.png" id="24_1jkh2"]
+[ext_resource type="Texture2D" uid="uid://by0ooc4hywkgv" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/west/frame_000.png" id="25_ky2dn"]
+[ext_resource type="Texture2D" uid="uid://ce0cxuc3kvsuv" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/west/frame_001.png" id="26_6se3v"]
+[ext_resource type="Texture2D" uid="uid://cvlrix3vqhksp" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/west/frame_002.png" id="27_5ufpt"]
+[ext_resource type="Texture2D" uid="uid://co4ugw8ukdxd3" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/west/frame_003.png" id="28_3cce8"]
+[ext_resource type="Texture2D" uid="uid://cb1jo60t83xmb" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/west/frame_004.png" id="29_nylnv"]
+[ext_resource type="Texture2D" uid="uid://dmuuhud1q4usx" path="res://assets/NPC/char/char_Pria_Remaja_Coklat/running-6-frames/west/frame_005.png" id="30_34106"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uj6xn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_sywax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vp8r6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pcgaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dso7p")
+}],
+"loop": true,
+"name": &"Idle_East",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_sywax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vp8r6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pcgaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dso7p")
+}],
+"loop": true,
+"name": &"Idle_North",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_sywax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vp8r6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pcgaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dso7p")
+}],
+"loop": true,
+"name": &"Idle_South",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_sywax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vp8r6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pcgaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dso7p")
+}],
+"loop": true,
+"name": &"Idle_West",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_8ckxf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3ytj1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_77ilk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_n3pvn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_g5g2h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_epl36")
+}],
+"loop": true,
+"name": &"Run_East",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_7khuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_50jd4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_g3gqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_toc3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_gosn6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_fnww0")
+}],
+"loop": true,
+"name": &"Run_North",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_g32dj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_20bf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_okpy0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_lsddo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ufdrr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_1jkh2")
+}],
+"loop": true,
+"name": &"Run_South",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_ky2dn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_6se3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_5ufpt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_3cce8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_nylnv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_34106")
+}],
+"loop": true,
+"name": &"Run_West",
+"speed": 9.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ov7ww"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1eo5i"]
+radius = 13.152946
+
+[node name="RescueNpc" type="CharacterBody2D" groups=["npc"]]
+script = ExtResource("1_sywax")
+
+[node name="shadow" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(3.8146973e-06, 19.000008)
+scale = Vector2(0.093564354, 0.091551244)
+texture = ExtResource("2_vp8r6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_uj6xn")
+animation = &"Run_West"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 20)
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_ov7ww")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 20)
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_1eo5i")

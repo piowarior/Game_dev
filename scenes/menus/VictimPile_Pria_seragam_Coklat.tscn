@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=3 uid="uid://dsu4rxgp1glqp"]
+
+[ext_resource type="Script" uid="uid://bojger5kbqu66" path="res://scripts/victim_pile.gd" id="1_1bhcl"]
+[ext_resource type="PackedScene" uid="uid://niikcea06qvt" path="res://scenes/menus/RescueCloseUp.tscn" id="2_48vak"]
+[ext_resource type="Texture2D" uid="uid://dimadswmsrohd" path="res://assets/NPC/Close_up_npc/NPC Close up Pria dewasa Coklat/NPC Pria Dewasa Coklat 1.jpeg" id="3_1bhcl"]
+[ext_resource type="Texture2D" uid="uid://bhvdpotku7mo8" path="res://assets/NPC/Close_up_npc/NPC Close up Pria dewasa Coklat/NPC Pria Dewasa Coklat 2.jpeg" id="4_48vak"]
+[ext_resource type="Texture2D" uid="uid://bxffij11xiuvq" path="res://assets/NPC/Close_up_npc/NPC Close up Pria dewasa Coklat/NPC Pria Dewasa Coklat 3.jpeg" id="5_m1dip"]
+[ext_resource type="Texture2D" uid="uid://neun8y50scxe" path="res://assets/NPC/Close_up_npc/NPC Close up Pria dewasa Coklat/NPC Pria Dewasa Coklat 4.jpeg" id="6_uejmf"]
+[ext_resource type="Texture2D" uid="uid://b1c3itrmaogyv" path="res://assets/NPC/Close_up_npc/NPC Close up Pria dewasa Coklat/NPC Pria Dewasa Coklat 5.jpeg" id="7_lafr7"]
+[ext_resource type="PackedScene" uid="uid://mrew3xpddohy" path="res://scenes/menus/RescueNPC_Pria_Remaja_Coklat.tscn" id="8_1bhcl"]
+[ext_resource type="Texture2D" uid="uid://cn732htqdpa1r" path="res://assets/obstacle/victim/obstacle tertimpa.png" id="9_4kixy"]
+[ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="10_38728"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j4cxr"]
+radius = 80.65358
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2i57d"]
+radius = 61.188232
+
+[node name="VictimPile" type="Node2D"]
+script = ExtResource("1_1bhcl")
+rescue_closeup_scene = ExtResource("2_48vak")
+rescue_profile = {
+"evac_layers": [{
+"label": "Membersihkan puing ringan",
+"texture": ExtResource("3_1bhcl"),
+"tool": "Sarung Tangan"
+}, {
+"label": "Memotong kayu tertindih",
+"texture": ExtResource("4_48vak"),
+"tool": "Gergaji"
+}, {
+"label": "Menghancurkan beton",
+"texture": ExtResource("5_m1dip"),
+"tool": "Pickaxe"
+}, {
+"label": "Membuka besi berat",
+"texture": ExtResource("6_uejmf"),
+"tool": "Linggis"
+}, {
+"label": "Membuka akses korban",
+"texture": ExtResource("7_lafr7"),
+"tool": "Linggis"
+}]
+}
+victim_id = "1"
+follow_npc_scene = ExtResource("8_1bhcl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, -1.0000038)
+scale = Vector2(0.3, 0.295)
+texture = ExtResource("9_4kixy")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 10)
+scale = Vector2(0.9, 0.7)
+shape = SubResource("CircleShape2D_j4cxr")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -31.0
+offset_top = 23.0
+offset_right = 38.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("10_38728")
+theme_override_font_sizes/font_size = 23
+text = "Press F"
+
+[node name="body" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
+y_sort_enabled = true
+position = Vector2(11, 20)
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_2i57d")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dp3lgmneadjw"]
+[gd_scene load_steps=39 format=3 uid="uid://dp3lgmneadjw"]
 
 [ext_resource type="Script" uid="uid://b1v23j4yyf03j" path="res://scenes/levels/map_gempa.gd" id="1_jehm5"]
 [ext_resource type="Texture2D" uid="uid://cmow0pxcq1ih5" path="res://assets/tilesets/asset gemini/asset 10.png" id="2_di5ef"]
@@ -22,6 +22,9 @@
 [ext_resource type="PackedScene" uid="uid://dwj7i66c0bs6d" path="res://scenes/menus/npc2.tscn" id="18_rywwx"]
 [ext_resource type="Script" uid="uid://2ighrjerh8ty" path="res://scenes/levels/markas_2.gd" id="20_w6xi8"]
 [ext_resource type="PackedScene" uid="uid://cc366x350bdy4" path="res://scenes/levels/confirm_back_to_base.tscn" id="21_xdvy2"]
+[ext_resource type="Texture2D" uid="uid://ydg67fpnjx26" path="res://assets/tilesets/item_icon/people (1).png" id="23_xjtx0"]
+[ext_resource type="Texture2D" uid="uid://cqv11sl8x7sju" path="res://assets/tilesets/item_icon/icon_DPS-removebg-preview.png" id="24_7yktb"]
+[ext_resource type="AudioStream" uid="uid://ji2vmj8gdi05" path="res://assets/sound/274510__jbeetle__3-men-cheering.mp3" id="25_7yktb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6p8lb"]
 texture = ExtResource("2_sh21r")
@@ -41290,6 +41293,8 @@ collision_mask = 0
 position = Vector2(225, 231)
 script = ExtResource("20_w6xi8")
 confirm_ui_scene = ExtResource("21_xdvy2")
+icon_victim = ExtResource("23_xjtx0")
+icon_dps = ExtResource("24_7yktb")
 
 [node name="Sprite2D" type="Sprite2D" parent="markas2"]
 position = Vector2(-2, -125)
@@ -41310,6 +41315,11 @@ shape = SubResource("RectangleShape2D_w6xi8")
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Press f"
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="markas2"]
+stream = ExtResource("25_7yktb")
+
+[node name="SpawnPoint" type="Marker2D" parent="markas2"]
 
 [node name="ConfirmBackToBase" parent="." instance=ExtResource("21_xdvy2")]
 visible = false

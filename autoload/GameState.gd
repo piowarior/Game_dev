@@ -111,6 +111,7 @@ var item_database := {
 	"category": "EVAC",
 	"usage_context": ["RESCUE_CLOSEUP"],
 	"icon": preload("res://assets/tilesets/item_icon/item_sarung_tangan-removebg-preview.png"),
+	"sfx": preload("res://assets/sound/sound sarungtangan.mp3"),
 	"description": "Alat dasar untuk membersihkan puing ringan. Wajib digunakan pertama.",
 	"effects": {
 		"can_remove": ["debu", "puing_ringan"],
@@ -140,6 +141,7 @@ var item_database := {
 	"category": "EVAC",
 	"usage_context": ["MAP", "RESCUE_CLOSEUP"],
 	"icon": preload("res://assets/tilesets/item_icon/item_pixace-removebg-preview.png"),
+	"sfx": preload("res://assets/sound/sound pixace.mp3"),
 	"description": "Menghancurkan beton dan puing keras.",
 	"effects": {
 		"can_remove": ["beton"],
@@ -155,6 +157,7 @@ var item_database := {
 	"category": "EVAC",
 	"usage_context": ["RESCUE_CLOSEUP"],
 	"icon": preload("res://assets/tilesets/item_icon/item_linggis-removebg-preview.png"),
+	"sfx": preload("res://assets/sound/sound linggis.mp3"),
 	"description": "Mencongkel besi dan logam berat dengan cepat.",
 	"effects": {
 		"can_remove": ["logam"],
@@ -170,6 +173,7 @@ var item_database := {
 	"category": "EVAC",
 	"usage_context": ["RESCUE_CLOSEUP"],
 	"icon": preload("res://assets/tilesets/item_icon/item_gergaji-removebg-preview.png"),
+	"sfx": preload("res://assets/sound/sound gergaji.mp3"),
 	"description": "Memotong kayu dan balok.",
 	"effects": {
 		"can_remove": ["kayu"],

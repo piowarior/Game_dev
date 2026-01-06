@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://6qn4so8m3amy"
+path="res://.godot/imported/sound gergaji.mp3-04ef94aedb90de3d958d1f63560b9ab5.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/sound gergaji.mp3"
+dest_files=["res://.godot/imported/sound gergaji.mp3-04ef94aedb90de3d958d1f63560b9ab5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

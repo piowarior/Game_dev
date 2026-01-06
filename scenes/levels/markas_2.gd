@@ -8,9 +8,9 @@ signal cancelled
 @onready var sfx_player = $SFXPlayer # Tambahkan AudioStreamPlayer
 
 @export var confirm_ui_scene: PackedScene
-@export var dps_penalty := 3
+@export var dps_penalty := 2
 @export var time_penalty := 30
-@export var dps_reward_per_npc := 10
+@export var dps_reward_per_npc := 2
 
 # Export untuk Icon (Masukkan texture di Inspector)
 @export var icon_victim: Texture2D
@@ -19,6 +19,8 @@ signal cancelled
 var player_inside := false
 var ui_opened := false
 var input_locked := true
+var npc_delivered := 0
+
 
 func _ready():
 	label.visible = false
@@ -43,9 +45,12 @@ func _on_body_entered(body):
 		player_inside = true
 		label.visible = true
 		label.text = "Press F"
+		npc_delivered = 0   # 🔑 RESET
 
 	if body.is_in_group("npc"):
+		npc_delivered += 1
 		_save_npc(body)
+
 
 func _on_body_exited(body):
 	if body.is_in_group("player"):
@@ -136,13 +141,16 @@ func _show_confirm_ui():
 	ui.cancelled.connect(_on_cancelled)
 
 func _on_confirmed():
-	_save_all_npc_in_area()
-	if GameState.victim_saved == 0:
+	# ❌ JANGAN save lagi
+	# _save_all_npc_in_area()
+
+	if npc_delivered == 0:
 		_apply_penalty()
-	
+
 	emit_signal("confirmed")
 	GameState.next_scene_path = "res://Scenes/menus/Basecamp.tscn"
 	get_tree().change_scene_to_file("res://Scenes/menus/LoadingScreen.tscn")
+
 
 func _on_cancelled():
 	ui_opened = false
@@ -153,5 +161,13 @@ func _save_all_npc_in_area():
 		_save_npc(npc)
 
 func _apply_penalty():
-	GameState.decision_points = max(0, GameState.decision_points - dps_penalty)
-	GameState.time_left = max(0, GameState.time_left - time_penalty)
+	GameState.decision_points = max(
+		0,
+		GameState.decision_points - dps_penalty
+	)
+
+	# ⏱️ penalti waktu 2x
+	GameState.time_left = max(
+		0,
+		GameState.time_left - (time_penalty * 2)
+	)

@@ -46,6 +46,9 @@ var dig_tool := ""   # "Sekop" atau "Pickaxe"
 var step_timer := 0.0
 @export var step_interval := 0.35  # suara langkah setiap 0.35 detik saat bergerak
 
+var input_locked := false
+
+
 # --------------------------------------------------------
 # READY
 # --------------------------------------------------------
@@ -74,6 +77,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_tab"):
 		var ui = get_tree().current_scene.get_node("BackpackUI")
 		ui.toggle_ui()
+		
+	if input_locked:
+		return
 
 	_apply_perspective_scale()
 	_update_hand_item()
@@ -82,6 +88,11 @@ func _process(delta):
 # PHYSICS
 # --------------------------------------------------------
 func _physics_process(delta):
+	if input_locked:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+		
 	_handle_dig()
 
 	# ⛔ saat DIG, player berhenti total

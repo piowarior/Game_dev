@@ -71,6 +71,9 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_exit_pressed():
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		player.input_locked = false
 	aborted = true   # 🔑 PENTING
 
 	if victim_id != "":
@@ -81,7 +84,7 @@ func _on_exit_pressed():
 
 	emit_signal("rescue_aborted", stage, layer_index)
 
-	get_tree().paused = false
+	#get_tree().paused = false
 	visible = false
 	queue_free()
 
@@ -120,24 +123,32 @@ func set_victim_id(id: String):
 # =========================
 func open():
 	visible = true
-	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		player.input_locked = true
 
 	if not aborted:
 		layer_index = 0
 		stage = "EVAC"
-	
+
 	hold_progress = 0
 	progress_bar.value = 0
 	load_layer()
 
 
 
+
 func close():
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		player.input_locked = false
+
 	if victim_id != "":
 		GameState.victim_rescue_state.erase(victim_id)
 
-	get_tree().paused = false
+	#get_tree().paused = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	emit_signal("rescue_finished")
 	queue_free()
@@ -192,7 +203,12 @@ func start_hold():
 	hint_label.visible = false
 	label_progress.text = "Bekerja..."
 
-	if sfx:
+	# =========================
+	# 🔊 PLAY TOOL SFX
+	# =========================
+	var item_data = GameState.get_item_data(current_tool)
+	if item_data and item_data.has("sfx"):
+		sfx.stream = item_data.sfx
 		sfx.play()
 
 func stop_hold():
@@ -206,7 +222,7 @@ func stop_hold():
 	progress_ui.visible = false
 	hint_label.visible = true
 
-	if sfx:
+	if sfx and sfx.playing:
 		sfx.stop()
 
 # =========================
@@ -254,21 +270,49 @@ func _process(delta):
 		stop_hold()
 		next_layer()
 
-
 # =========================
 # LAYER
 # =========================
 func load_layer():
 	var layer
-
 	if stage == "EVAC":
 		layer = evac_layers[layer_index]
-	elif stage == "MEDIC":
+	else:
 		layer = medic_layers[layer_index]
 
+	# 1. Pasang Tekstur
 	layer_sprite.texture = layer.texture
 	hint_label.text = layer.label
 
+	# 2. Paksa perhitungan skala di frame berikutnya agar size container sudah stabil
+	fit_sprite_to_container.call_deferred()
+
+func fit_sprite_to_container():
+	if not layer_sprite.texture:
+		return
+
+	var container := $PanelMain/VictimContainer
+	var tex_size = layer_sprite.texture.get_size()
+	
+	# Ambil size container (kotak UI tempat gambar muncul)
+	var container_size = container.size
+
+	# 🚩 CEK: Jika container_size masih (0,0) atau terlalu kecil karena mengikuti gambar
+	# Kita harus pastikan VictimContainer punya 'Min Size' di Inspector.
+	if container_size.x < 10 or container_size.y < 10:
+		return 
+
+	# Rumus Skala: Pilih yang paling kecil agar seluruh gambar masuk (Fit)
+	var scale_factor = min(
+		container_size.x / tex_size.x,
+		container_size.y / tex_size.y
+	)
+
+	# Terapkan skala
+	layer_sprite.scale = Vector2(scale_factor, scale_factor)
+	
+	# Posisikan di tengah container
+	layer_sprite.position = container_size / 2
 
 
 func next_layer():

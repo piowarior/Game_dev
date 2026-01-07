@@ -9,6 +9,14 @@ var current_item := ""
 var decision_points := 10
 var next_scene_path: String = ""
 
+
+# posisi obstacle per stage
+var obstacle_positions := {
+	# "gempa": [
+	#   { "id": "obs_1", "pos": Vector2(...) }
+	# ]
+}
+
 # =========================
 # MAP PROGRESS (PERSISTENT)
 # =========================

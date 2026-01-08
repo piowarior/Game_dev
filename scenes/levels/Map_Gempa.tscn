@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dp3lgmneadjw"]
+[gd_scene load_steps=53 format=3 uid="uid://dp3lgmneadjw"]
 
 [ext_resource type="Script" uid="uid://b1v23j4yyf03j" path="res://scenes/levels/map_gempa.gd" id="1_jehm5"]
 [ext_resource type="Texture2D" uid="uid://cmow0pxcq1ih5" path="res://assets/tilesets/asset gemini/asset 10.png" id="2_di5ef"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://0igcefewmofg" path="res://scenes/menus/DiggableObstacle.tscn" id="16_cxhgx"]
 [ext_resource type="PackedScene" uid="uid://c5mm0rrukj47t" path="res://scenes/menus/VictimPile.tscn" id="18_5dk5o"]
 [ext_resource type="PackedScene" uid="uid://dwj7i66c0bs6d" path="res://scenes/menus/npc2.tscn" id="18_rywwx"]
+[ext_resource type="Script" uid="uid://cuydwggbwqdma" path="res://scenes/levels/obstacle_spawner.gd" id="18_v7qtv"]
 [ext_resource type="PackedScene" uid="uid://dsu4rxgp1glqp" path="res://scenes/menus/VictimPile_Pria_seragam_Coklat.tscn" id="20_l11en"]
 [ext_resource type="Script" uid="uid://2ighrjerh8ty" path="res://scenes/levels/markas_2.gd" id="20_w6xi8"]
 [ext_resource type="PackedScene" uid="uid://cc366x350bdy4" path="res://scenes/levels/confirm_back_to_base.tscn" id="21_xdvy2"]
@@ -41680,6 +41681,12 @@ sources/7 = SubResource("TileSetAtlasSource_0l3hr")
 sources/8 = SubResource("TileSetAtlasSource_rywwx")
 sources/9 = SubResource("TileSetAtlasSource_5dk5o")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljiwj"]
+size = Vector2(2301, 152)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7qtv"]
+size = Vector2(325, 52)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dk5o"]
 size = Vector2(333, 153)
 
@@ -41722,38 +41729,97 @@ camera_offset = Vector2(100, -150)
 
 [node name="GameplayUi" parent="." instance=ExtResource("15_0stko")]
 
-[node name="DiggableObstacle" parent="." instance=ExtResource("16_cxhgx")]
-position = Vector2(507, 257)
+[node name="ObstacleSpawner" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(451, 218)
+script = ExtResource("18_v7qtv")
+
+[node name="SpawnArea" type="Area2D" parent="ObstacleSpawner"]
+position = Vector2(167, 56)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleSpawner/SpawnArea"]
+position = Vector2(939.5, 26)
+shape = SubResource("RectangleShape2D_ljiwj")
+
+[node name="DiggableObstacle" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(56, 39)
 material_type = "tanah"
 obstacle_id = "1"
 has_victim = false
 
-[node name="DiggableObstacle2" parent="." instance=ExtResource("16_cxhgx")]
-position = Vector2(498, 305)
+[node name="DiggableObstacle2" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(47, 87)
 material_type = "tanah"
 obstacle_id = "2"
 has_victim = false
 
-[node name="DiggableObstacle3" parent="." instance=ExtResource("16_cxhgx")]
-position = Vector2(493, 349)
+[node name="DiggableObstacle3" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(42, 131)
 obstacle_id = "3"
 victim_pile_scene = ExtResource("18_5dk5o")
 
-[node name="DiggableObstacle4" parent="." instance=ExtResource("16_cxhgx")]
-position = Vector2(1034, 271)
+[node name="DiggableObstacle4" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(589, 32)
 obstacle_id = "4"
 victim_pile_scene = ExtResource("20_l11en")
 
-[node name="DiggableObstacle5" parent="." instance=ExtResource("16_cxhgx")]
-position = Vector2(1596, 254)
+[node name="DiggableObstacle5" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(1257, 28)
 obstacle_id = "5"
 has_victim = false
 
-[node name="DiggableObstacle6" parent="." instance=ExtResource("16_cxhgx")]
-position = Vector2(1543, 318)
+[node name="DiggableObstacle6" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(801, 55)
 material_type = "tanah"
 obstacle_id = "6"
 has_victim = false
+
+[node name="DiggableObstacle7" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(1607, 60)
+obstacle_id = "6"
+has_victim = false
+
+[node name="DiggableObstacle8" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(444, 96)
+obstacle_id = "6"
+victim_pile_scene = ExtResource("18_5dk5o")
+
+[node name="DiggableObstacle9" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(1024, 103)
+material_type = "tanah"
+obstacle_id = "6"
+has_victim = false
+
+[node name="DiggableObstacle10" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(1195, 103)
+material_type = "tanah"
+obstacle_id = "6"
+has_victim = false
+
+[node name="DiggableObstacle11" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(964, 32)
+obstacle_id = "6"
+has_victim = false
+
+[node name="DiggableObstacle12" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(2028, 74)
+material_type = "tanah"
+obstacle_id = "6"
+victim_pile_scene = ExtResource("20_l11en")
+
+[node name="DiggableObstacle13" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(1342, 98)
+material_type = "tanah"
+obstacle_id = "6"
+victim_pile_scene = ExtResource("20_l11en")
+
+[node name="ForbiddenAreas" type="Node2D" parent="ObstacleSpawner"]
+
+[node name="Area2D" type="Area2D" parent="ObstacleSpawner/ForbiddenAreas"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleSpawner/ForbiddenAreas/Area2D"]
+position = Vector2(759.5, 133)
+shape = SubResource("RectangleShape2D_v7qtv")
 
 [node name="NPC" parent="." instance=ExtResource("18_rywwx")]
 y_sort_enabled = true
@@ -41809,10 +41875,10 @@ centered = false
 offset = Vector2(0, 40)
 
 [node name="Tiang1" type="Sprite2D" parent="."]
-position = Vector2(931, 46)
+y_sort_enabled = true
+position = Vector2(933, 157)
 scale = Vector2(0.8333333, 0.68235296)
 texture = ExtResource("29_v7qtv")
-offset = Vector2(0, 170)
 
 [node name="Tiang3" type="Sprite2D" parent="."]
 position = Vector2(1982, 151.75)

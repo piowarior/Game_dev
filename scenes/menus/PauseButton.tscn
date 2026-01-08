@@ -9,9 +9,9 @@ process_mode = 3
 [node name="TextureButton" type="TextureButton" parent="."]
 process_mode = 3
 offset_left = 1213.0
-offset_top = 48.0
+offset_top = 20.0
 offset_right = 1267.0
-offset_bottom = 96.0
+offset_bottom = 68.0
 mouse_filter = 1
 texture_normal = ExtResource("1_m4i4j")
 stretch_mode = 0

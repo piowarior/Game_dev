@@ -1,12 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyoghnes22w3l"]
+[gd_scene load_steps=11 format=3 uid="uid://dyoghnes22w3l"]
 
 [ext_resource type="Script" uid="uid://c7atmau35h876" path="res://scripts/gameplay_ui.gd" id="1_auo1w"]
-[ext_resource type="Texture2D" uid="uid://cw6pyjuli0c6x" path="res://assets/tilesets/item_icon/icon_timer-removebg-preview.png" id="2_05bsj"]
+[ext_resource type="Texture2D" uid="uid://2r3cxjip8pxu" path="res://assets/tilesets/asset gemini/bguimap.png" id="2_bculi"]
+[ext_resource type="Texture2D" uid="uid://c0y460wo4ltd6" path="res://assets/tilesets/asset gemini/clockgempa.png" id="3_5q5ww"]
 [ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="3_76m5b"]
-[ext_resource type="Texture2D" uid="uid://ydg67fpnjx26" path="res://assets/tilesets/item_icon/people (1).png" id="3_ti4kg"]
-[ext_resource type="Texture2D" uid="uid://cqv11sl8x7sju" path="res://assets/tilesets/item_icon/icon_DPS-removebg-preview.png" id="4_76m5b"]
+[ext_resource type="FontFile" uid="uid://b2tonhw04ev1s" path="res://assets/font/Axolotl.ttf" id="3_bculi"]
+[ext_resource type="Texture2D" uid="uid://cyrmbr6y8okhj" path="res://assets/tilesets/asset gemini/korban.png" id="5_d1brr"]
 [ext_resource type="PackedScene" uid="uid://3u8uwit4858y" path="res://scenes/menus/computer_ui.tscn" id="5_ti4kg"]
 [ext_resource type="PackedScene" uid="uid://ban2yis40xxsh" path="res://scenes/menus/PauseMenu.tscn" id="6_76m5b"]
+[ext_resource type="Texture2D" uid="uid://bqi5l3bcerc8c" path="res://assets/tilesets/asset gemini/dps.png" id="6_ocgh2"]
+[ext_resource type="Texture2D" uid="uid://be3vckh55dyi" path="res://assets/tilesets/asset gemini/bp.png" id="8_5q5ww"]
 
 [node name="GameplayUi" type="CanvasLayer"]
 script = ExtResource("1_auo1w")
@@ -32,20 +35,26 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = 0
 offset_left = 1.0
+offset_top = 10.0
 offset_right = 150.0
-offset_bottom = 130.0
+offset_bottom = 140.0
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/TopBarRoot/TimerBox"]
+position = Vector2(66.62501, 36)
+scale = Vector2(2.3489583, 3.7187505)
+texture = ExtResource("2_bculi")
 
 [node name="IconTimer" type="TextureRect" parent="HUD/TopBarRoot/TimerBox"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -55.0
-offset_right = 63.75
-offset_bottom = -4.5
+offset_left = 17.0
+offset_top = -52.0
+offset_right = 53.0
+offset_bottom = -8.0
 grow_vertical = 2
-texture = ExtResource("2_05bsj")
+texture = ExtResource("3_5q5ww")
 expand_mode = 1
 
 [node name="LabelTimer" type="Label" parent="HUD/TopBarRoot/TimerBox"]
@@ -55,33 +64,41 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -1.0
-offset_top = -41.0
-offset_bottom = -18.0
+offset_left = -87.0
+offset_top = -48.5
+offset_right = -10.0
+offset_bottom = -18.5
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_76m5b")
-theme_override_font_sizes/font_size = 22
+theme_override_fonts/font = ExtResource("3_bculi")
+theme_override_font_sizes/font_size = 35
 
 [node name="VictimBox" type="Control" parent="HUD/TopBarRoot"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = 175.0
+offset_top = 10.0
 offset_right = 375.0
-offset_bottom = 130.0
+offset_bottom = 140.0
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/TopBarRoot/VictimBox"]
+position = Vector2(40, 35.874992)
+scale = Vector2(2.7604163, 3.6093748)
+texture = ExtResource("2_bculi")
 
 [node name="IconVictim" type="TextureRect" parent="HUD/TopBarRoot/VictimBox"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -55.0
-offset_right = 50.0
-offset_bottom = -5.0
+offset_left = -14.0
+offset_top = -50.0
+offset_right = 24.0
+offset_bottom = -10.0
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_ti4kg")
+texture = ExtResource("5_d1brr")
 expand_mode = 1
 
 [node name="LabelVictim" type="Label" parent="HUD/TopBarRoot/VictimBox"]
@@ -91,33 +108,39 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -60.0
-offset_top = -41.0
-offset_right = -59.0
-offset_bottom = -18.0
+offset_left = -162.0
+offset_top = -48.5
+offset_right = -101.0
+offset_bottom = -18.5
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_76m5b")
-theme_override_font_sizes/font_size = 22
+theme_override_fonts/font = ExtResource("3_bculi")
+theme_override_font_sizes/font_size = 35
 
 [node name="DPSBox" type="Control" parent="HUD/TopBarRoot"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = 349.0
-offset_top = 1.0
+offset_top = 11.0
 offset_right = 499.0
-offset_bottom = 131.0
+offset_bottom = 141.0
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/TopBarRoot/DPSBox"]
+position = Vector2(14.499954, 35)
+scale = Vector2(2.395835, 3.625)
+texture = ExtResource("2_bculi")
 
 [node name="IconDPS" type="TextureRect" parent="HUD/TopBarRoot/DPSBox"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -55.0
-offset_right = 37.0
-offset_bottom = -5.2857056
+offset_left = -31.0
+offset_top = -48.0
+offset_right = 8.0
+offset_bottom = -13.0
 grow_vertical = 2
-texture = ExtResource("4_76m5b")
+texture = ExtResource("6_ocgh2")
 expand_mode = 1
 
 [node name="LabelDPS" type="Label" parent="HUD/TopBarRoot/DPSBox"]
@@ -127,22 +150,14 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -60.0
-offset_top = -41.0
-offset_right = -59.0
-offset_bottom = -18.0
+offset_left = -123.0
+offset_top = -48.5
+offset_right = -88.0
+offset_bottom = -18.5
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_76m5b")
-theme_override_font_sizes/font_size = 22
-
-[node name="BtnPause" type="Button" parent="HUD/TopBarRoot"]
-layout_mode = 0
-offset_left = 1223.0
-offset_top = 19.0
-offset_right = 1269.0
-offset_bottom = 62.0
-text = "☰"
+theme_override_fonts/font = ExtResource("3_bculi")
+theme_override_font_sizes/font_size = 35
 
 [node name="BtnMission" type="Button" parent="HUD/TopBarRoot"]
 layout_mode = 0
@@ -152,6 +167,36 @@ offset_right = 1261.0
 offset_bottom = 707.0
 theme_override_fonts/font = ExtResource("3_76m5b")
 text = "Misi"
+
+[node name="Backpack" type="Control" parent="HUD/TopBarRoot"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD/TopBarRoot/Backpack"]
+position = Vector2(56.750015, 154)
+scale = Vector2(1.885416, 6.375)
+texture = ExtResource("2_bculi")
+
+[node name="TextureRect" type="TextureRect" parent="HUD/TopBarRoot/Backpack"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 120.0
+offset_right = 81.0
+offset_bottom = 164.0
+mouse_filter = 2
+texture = ExtResource("8_5q5ww")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HUD/TopBarRoot/Backpack"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 164.0
+offset_right = 98.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("3_bculi")
+theme_override_font_sizes/font_size = 30
+text = "Backpack"
 
 [node name="ComputerUI" parent="." instance=ExtResource("5_ti4kg")]
 process_mode = 3

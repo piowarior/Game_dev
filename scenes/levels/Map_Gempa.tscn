@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dp3lgmneadjw"]
+[gd_scene load_steps=52 format=3 uid="uid://dp3lgmneadjw"]
 
 [ext_resource type="Script" uid="uid://b1v23j4yyf03j" path="res://scenes/levels/map_gempa.gd" id="1_jehm5"]
 [ext_resource type="Texture2D" uid="uid://cmow0pxcq1ih5" path="res://assets/tilesets/asset gemini/asset 10.png" id="2_di5ef"]
@@ -36,6 +36,8 @@
 [ext_resource type="Texture2D" uid="uid://1vupml7foxob" path="res://assets/MapGempaAsset/tiang7.png" id="34_rsysy"]
 [ext_resource type="Texture2D" uid="uid://br4fi3y8m71cj" path="res://assets/MapGempaAsset/tiang8.png" id="35_bwggm"]
 [ext_resource type="Texture2D" uid="uid://ck1w3qjfgg32j" path="res://assets/MapGempaAsset/tiang9.png" id="36_rgrk8"]
+[ext_resource type="PackedScene" uid="uid://bheerotva48ol" path="res://scenes/menus/PauseButton.tscn" id="37_ljiwj"]
+[ext_resource type="PackedScene" uid="uid://ban2yis40xxsh" path="res://scenes/menus/PauseMenu.tscn" id="38_qn8pq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6p8lb"]
 texture = ExtResource("2_sh21r")
@@ -41785,6 +41787,7 @@ shape = SubResource("RectangleShape2D_w6xi8")
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Press f"
+metadata/_edit_use_anchors_ = true
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="markas2"]
 stream = ExtResource("25_7yktb")
@@ -41845,3 +41848,7 @@ texture = ExtResource("36_rgrk8")
 position = Vector2(4641, 153.75)
 scale = Vector2(1, 1.0193133)
 texture = ExtResource("33_1ywk0")
+
+[node name="PauseButton" parent="." instance=ExtResource("37_ljiwj")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("38_qn8pq")]

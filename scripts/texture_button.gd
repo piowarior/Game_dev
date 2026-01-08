@@ -1,16 +1,21 @@
 extends TextureButton
 
 func _ready():
-	# Menghubungkan klik tombol ke fungsi di bawah
-	if not pressed.is_connected(_on_tombol_diklik):
-		pressed.connect(_on_tombol_diklik)
+    # Menghubungkan klik tombol ke fungsi di bawah (Perbaikan Typo)
+    if not pressed.is_connected(_on_pressed):
+        pressed.connect(_on_pressed)
 
-func _on_tombol_diklik():
-	# Mencari node bernama "PauseMenu" di scene mana pun kamu berada
-	var menu_pause = get_tree().current_scene.find_child("PauseMenu", true, false)
-	
-	if menu_pause:
-		menu_pause.toggle_pause() # Memanggil fungsi buka menu
-		print("Berhasil memanggil PauseMenu")
-	else:
-		print("Error: Node PauseMenu tidak ditemukan di scene ini!")
+func _on_pressed():
+    # Mencari node PauseMenu di scene aktif (MapGempa atau Basecamp)
+    var menu = get_tree().current_scene.find_child("PauseMenu", true, false)
+    
+    if menu:
+        menu.toggle_pause()
+        print("PauseMenu ditemukan di scene aktif.")
+    else:
+        # Pencarian cadangan jika hirarki sangat dalam
+        var menu_root = get_tree().root.find_child("PauseMenu", true, false)
+        if menu_root:
+            menu_root.toggle_pause()
+        else:
+            print("Error: Node PauseMenu tidak ditemukan!")

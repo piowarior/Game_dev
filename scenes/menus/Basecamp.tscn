@@ -1,5 +1,6 @@
-[gd_scene load_steps=54 format=3 uid="uid://c0qjs6pcoqmtx"]
+[gd_scene load_steps=55 format=3 uid="uid://c0qjs6pcoqmtx"]
 
+[ext_resource type="Script" uid="uid://b2r2cxbnou6d4" path="res://scenes/menus/basecamp.gd" id="1_eqhqp"]
 [ext_resource type="PackedScene" uid="uid://dlpcru2e77pci" path="res://player/player.tscn" id="1_uti30"]
 [ext_resource type="Texture2D" uid="uid://dvigx5ss7ijem" path="res://assets/tilesets/asset gemini/basecamp/gambar - latar basecamp1.png" id="2_svugy"]
 [ext_resource type="Texture2D" uid="uid://d4dat078sr5om" path="res://assets/tilesets/asset gemini/basecamp/gambar - latar basecamp2.png" id="3_7edgd"]
@@ -24788,6 +24789,8 @@ size = Vector2(102.5, 223)
 
 [node name="Basecamp" type="Node2D"]
 y_sort_enabled = true
+position = Vector2(0, -40)
+script = ExtResource("1_eqhqp")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_24s6u")
@@ -24900,8 +24903,9 @@ text = "Press F"
 script = ExtResource("12_rtabk")
 
 [node name="Panel" type="Panel" parent="EquipmentUI"]
+offset_top = -40.0
 offset_right = 1283.0
-offset_bottom = 720.0
+offset_bottom = 680.0
 script = ExtResource("15_rv6ys")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="EquipmentUI/Panel"]
@@ -25144,8 +25148,9 @@ shape = SubResource("RectangleShape2D_e8vnd")
 script = ExtResource("34_bbpfq")
 
 [node name="Panel" type="Panel" parent="ExitConfirmUI"]
+offset_top = -40.0
 offset_right = 1285.0
-offset_bottom = 720.0
+offset_bottom = 718.0
 
 [node name="Label" type="Label" parent="ExitConfirmUI/Panel"]
 layout_mode = 0

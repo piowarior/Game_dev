@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://dp3lgmneadjw"]
+[gd_scene load_steps=60 format=3 uid="uid://dp3lgmneadjw"]
 
 [ext_resource type="Script" uid="uid://b1v23j4yyf03j" path="res://scenes/levels/map_gempa.gd" id="1_jehm5"]
 [ext_resource type="Texture2D" uid="uid://cmow0pxcq1ih5" path="res://assets/tilesets/asset gemini/asset 10.png" id="2_di5ef"]
@@ -42,6 +42,7 @@
 [ext_resource type="Script" uid="uid://drr5bpb386ifc" path="res://scenes/levels/markas_finish.gd" id="40_1ywk0"]
 [ext_resource type="Texture2D" uid="uid://dpqx2p4ey6xmq" path="res://assets/tilesets/asset gemini/gempa/markasfinis-removebg-preview.png" id="41_rsysy"]
 [ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="42_rsysy"]
+[ext_resource type="AudioStream" uid="uid://confeb3clmtov" path="res://assets/mainmenu/bgmmapgempa.mp3" id="43_bwggm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6p8lb"]
 texture = ExtResource("2_sh21r")
@@ -42100,3 +42101,8 @@ theme_override_fonts/font = ExtResource("42_rsysy")
 theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("43_bwggm")
+autoplay = true
+parameters/looping = true

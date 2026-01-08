@@ -53,7 +53,7 @@ func _process(delta):
 		dig_progress = 0
 		return
 
-	var tool := str(current_player.get_current_item())
+	var tool := GameState.current_item
 
 	# CEK ALAT
 	if material_type == "tanah" and tool != "Sekop":
@@ -77,19 +77,16 @@ func _on_destroyed():
 		"scene": victim_pile_scene.resource_path
 		}
 
-
 		var victim = victim_pile_scene.instantiate()
 		victim.global_position = global_position
 		victim.victim_id = obstacle_id
 		get_tree().current_scene.add_child(victim)
 
-
 	queue_free()
-
 
 # ------------------------------------------------
 func _on_body_entered(body):
-	if body.has_method("get_current_item"):
+	if body is CharacterBody2D:
 		player_in_range = true
 		current_player = body
 

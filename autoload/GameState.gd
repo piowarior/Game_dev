@@ -14,9 +14,9 @@ var next_scene_path: String = ""
 
 # posisi obstacle per stage
 var obstacle_positions := {
-	# "gempa": [
-	#   { "id": "obs_1", "pos": Vector2(...) }
-	# ]
+    # "gempa": [
+    #   { "id": "obs_1", "pos": Vector2(...) }
+    # ]
 }
 
 # =========================

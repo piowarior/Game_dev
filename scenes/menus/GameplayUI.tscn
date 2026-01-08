@@ -22,6 +22,7 @@ anchor_bottom = 1.0
 offset_bottom = -613.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="TopBarRoot" type="Control" parent="HUD"]
 layout_mode = 1
@@ -30,6 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="TimerBox" type="Control" parent="HUD/TopBarRoot"]
 layout_mode = 1
@@ -170,32 +172,34 @@ text = "Misi"
 
 [node name="Backpack" type="Control" parent="HUD/TopBarRoot"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 9.0
+offset_top = 86.0
+offset_right = 89.0
+offset_bottom = 166.0
 
 [node name="Sprite2D" type="Sprite2D" parent="HUD/TopBarRoot/Backpack"]
-position = Vector2(56.750015, 154)
-scale = Vector2(1.885416, 6.375)
+position = Vector2(38.25001, 42.500004)
+scale = Vector2(1.4479158, 4.4375005)
 texture = ExtResource("2_bculi")
 
 [node name="TextureRect" type="TextureRect" parent="HUD/TopBarRoot/Backpack"]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 120.0
-offset_right = 81.0
-offset_bottom = 164.0
+offset_left = 24.0
+offset_top = 22.000004
+offset_right = 54.0
+offset_bottom = 53.000004
 mouse_filter = 2
 texture = ExtResource("8_5q5ww")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="HUD/TopBarRoot/Backpack"]
 layout_mode = 0
-offset_left = 22.0
-offset_top = 164.0
-offset_right = 98.0
-offset_bottom = 192.0
+offset_left = 16.0
+offset_top = 50.000004
+offset_right = 65.0
+offset_bottom = 76.0
 theme_override_fonts/font = ExtResource("3_bculi")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 20
 text = "Backpack"
 
 [node name="ComputerUI" parent="." instance=ExtResource("5_ti4kg")]

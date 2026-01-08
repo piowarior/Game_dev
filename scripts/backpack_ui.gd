@@ -7,55 +7,55 @@ extends CanvasLayer
 @onready var audio_close = $AudioStreamPlayer_Close
 
 func _ready():
-    panel.visible = false
-    panel.scale = Vector2(0.9, 0.9)
-    panel.modulate.a = 0.0
-    close_button.pressed.connect(hide_ui)
+	panel.visible = false
+	panel.scale = Vector2(0.9, 0.9)
+	panel.modulate.a = 0.0
+	close_button.pressed.connect(hide_ui)
 
 # =========================
 # FUNGSI DIPANGGIL GAMEPLAY_UI
 # =========================
 func toggle_backpack():
-    if not panel.visible or panel.modulate.a < 0.5:
-        open_ui()
-    else:
-        hide_ui()
+	if not panel.visible or panel.modulate.a < 0.5:
+		open_ui()
+	else:
+		hide_ui()
 
 func open_ui():
-    audio_open.play()
-    panel.visible = true
-    load_backpack()
+	audio_open.play()
+	panel.visible = true
+	load_backpack()
 
-    var tween = create_tween()
-    tween.set_trans(Tween.TRANS_SINE)
-    tween.set_ease(Tween.EASE_OUT)
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
 
-    panel.scale = Vector2(0.9, 0.9)
-    panel.modulate.a = 0.0
+	panel.scale = Vector2(0.9, 0.9)
+	panel.modulate.a = 0.0
 
-    tween.tween_property(panel, "scale", Vector2(1, 1), 0.15)
-    tween.parallel().tween_property(panel, "modulate:a", 1.0, 0.15)
+	tween.tween_property(panel, "scale", Vector2(1, 1), 0.15)
+	tween.parallel().tween_property(panel, "modulate:a", 1.0, 0.15)
 
 func hide_ui():
-    if not panel.visible: return
-    audio_close.play()
+	if not panel.visible: return
+	audio_close.play()
 
-    var tween = create_tween()
-    tween.set_trans(Tween.TRANS_SINE)
-    tween.set_ease(Tween.EASE_IN)
+	var tween = create_tween()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN)
 
-    tween.tween_property(panel, "scale", Vector2(0.9, 0.9), 0.12)
-    tween.parallel().tween_property(panel, "modulate:a", 0.0, 0.12)
+	tween.tween_property(panel, "scale", Vector2(0.9, 0.9), 0.12)
+	tween.parallel().tween_property(panel, "modulate:a", 0.0, 0.12)
 
-    tween.finished.connect(func():
-        panel.visible = false
-    )
+	tween.finished.connect(func():
+		panel.visible = false
+	)
 
 func load_backpack():
-    list.clear()
-    for item_name in GameState.backpack:
-        var data = GameState.get_item_data(item_name)
-        if data and data.icon:
-            list.add_item(item_name, data.icon)
-        else:
-            list.add_item(item_name)
+	list.clear()
+	for item_name in GameState.backpack:
+		var data = GameState.get_item_data(item_name)
+		if data and data.icon:
+			list.add_item(item_name, data.icon)
+		else:
+			list.add_item(item_name)

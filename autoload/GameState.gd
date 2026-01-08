@@ -10,13 +10,14 @@ var backpack: Array[String] = []
 var current_item := ""
 var decision_points := 10
 var next_scene_path: String = ""
+var last_mission_stars: int = 0
 
 
 # posisi obstacle per stage
 var obstacle_positions := {
-    # "gempa": [
-    #   { "id": "obs_1", "pos": Vector2(...) }
-    # ]
+	# "gempa": [
+	#   { "id": "obs_1", "pos": Vector2(...) }
+	# ]
 }
 
 # =========================
@@ -463,6 +464,26 @@ func add_item(name: String) -> bool:
 
 func get_item_data(name: String):
 	return item_database.get(name, null)
+
+
+func finish_mission(stage_id: String) -> int:
+	var stars := 1
+
+	var total_victim := get_total_victim()
+
+	if victim_saved >= total_victim:
+		stars = 2
+
+	if victim_saved >= total_victim and time_left > 0:
+		stars = 3
+
+	# 🔒 SIMPAN KE STAGE DATA
+	for stage in stage_data:
+		if stage.id == stage_id:
+			stage.stars = max(stage.stars, stars)
+			break
+
+	return stars
 
 
 # ==================================

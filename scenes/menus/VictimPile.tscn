@@ -60,9 +60,9 @@ shape = SubResource("CircleShape2D_j4cxr")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -31.0
-offset_top = 23.0
+offset_top = -5.0
 offset_right = 38.0
-offset_bottom = 47.0
+offset_bottom = 19.0
 theme_override_fonts/font = ExtResource("3_2pl6e")
 theme_override_font_sizes/font_size = 23
 text = "Press F"

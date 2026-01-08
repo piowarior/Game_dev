@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dp3lgmneadjw"]
+[gd_scene load_steps=59 format=3 uid="uid://dp3lgmneadjw"]
 
 [ext_resource type="Script" uid="uid://b1v23j4yyf03j" path="res://scenes/levels/map_gempa.gd" id="1_jehm5"]
 [ext_resource type="Texture2D" uid="uid://cmow0pxcq1ih5" path="res://assets/tilesets/asset gemini/asset 10.png" id="2_di5ef"]
@@ -39,6 +39,9 @@
 [ext_resource type="Texture2D" uid="uid://ck1w3qjfgg32j" path="res://assets/MapGempaAsset/tiang9.png" id="36_rgrk8"]
 [ext_resource type="PackedScene" uid="uid://bheerotva48ol" path="res://scenes/menus/PauseButton.tscn" id="37_ljiwj"]
 [ext_resource type="PackedScene" uid="uid://ban2yis40xxsh" path="res://scenes/menus/PauseMenu.tscn" id="38_qn8pq"]
+[ext_resource type="Script" uid="uid://drr5bpb386ifc" path="res://scenes/levels/markas_finish.gd" id="40_1ywk0"]
+[ext_resource type="Texture2D" uid="uid://dpqx2p4ey6xmq" path="res://assets/tilesets/asset gemini/gempa/markasfinis-removebg-preview.png" id="41_rsysy"]
+[ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="42_rsysy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6p8lb"]
 texture = ExtResource("2_sh21r")
@@ -41693,6 +41696,9 @@ size = Vector2(333, 153)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6xi8"]
 size = Vector2(414, 113)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwggm"]
+size = Vector2(322, 99)
+
 [node name="MapGempa" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(0, -19)
@@ -41917,3 +41923,34 @@ texture = ExtResource("33_1ywk0")
 [node name="PauseButton" parent="." instance=ExtResource("37_ljiwj")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("38_qn8pq")]
+
+[node name="Markas Finish" type="Node2D" parent="."]
+position = Vector2(4074, 246)
+script = ExtResource("40_1ywk0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Markas Finish"]
+position = Vector2(159, -37.999992)
+scale = Vector2(0.764, 0.764)
+texture = ExtResource("41_rsysy")
+
+[node name="FinishArea" type="Area2D" parent="Markas Finish"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Markas Finish/FinishArea"]
+visible = false
+position = Vector2(151, 28.5)
+shape = SubResource("RectangleShape2D_bwggm")
+
+[node name="FinishTimer" type="Timer" parent="Markas Finish"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Markas Finish"]
+
+[node name="CountdownLabel" type="Label" parent="Markas Finish/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("42_rsysy")
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -15,6 +15,8 @@ extends Node2D
 @onready var sprite = $Sprite2D
 @onready var area = $Area2D
 
+
+
 var dig_progress := 0.0
 var player_in_range := false
 var current_player = null
@@ -86,7 +88,7 @@ func _on_destroyed():
 
 # ------------------------------------------------
 func _on_body_entered(body):
-	if body is CharacterBody2D:
+	if body.is_in_group("player"):
 		player_in_range = true
 		current_player = body
 

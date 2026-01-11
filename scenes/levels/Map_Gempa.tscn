@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://dp3lgmneadjw"]
+[gd_scene load_steps=61 format=3 uid="uid://dp3lgmneadjw"]
 
 [ext_resource type="Script" uid="uid://b1v23j4yyf03j" path="res://scenes/levels/map_gempa.gd" id="1_jehm5"]
 [ext_resource type="Texture2D" uid="uid://cmow0pxcq1ih5" path="res://assets/tilesets/asset gemini/asset 10.png" id="2_di5ef"]
@@ -43,6 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://dpqx2p4ey6xmq" path="res://assets/tilesets/asset gemini/gempa/markasfinis-removebg-preview.png" id="41_rsysy"]
 [ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="42_rsysy"]
 [ext_resource type="AudioStream" uid="uid://confeb3clmtov" path="res://assets/mainmenu/bgmmapgempa.mp3" id="43_bwggm"]
+[ext_resource type="Texture2D" uid="uid://cuwudfq275uwp" path="res://assets/MapGempaAsset/rongsokan gempa.png" id="44_rgrk8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6p8lb"]
 texture = ExtResource("2_sh21r")
@@ -41835,7 +41836,7 @@ sources/9 = SubResource("TileSetAtlasSource_5dk5o")
 size = Vector2(2301, 152)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7qtv"]
-size = Vector2(325, 52)
+size = Vector2(363, 52)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dk5o"]
 size = Vector2(333, 153)
@@ -41871,6 +41872,7 @@ map_type = "gempa"
 [node name="Hotbar" parent="." instance=ExtResource("12_6rp7x")]
 
 [node name="BackpackUI" parent="." instance=ExtResource("14_i6bpw")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(300, -380)
@@ -41894,19 +41896,19 @@ position = Vector2(939.5, 26)
 shape = SubResource("RectangleShape2D_ljiwj")
 
 [node name="DiggableObstacle" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(56, 39)
+position = Vector2(85, 34)
 material_type = "tanah"
 obstacle_id = "1"
 has_victim = false
 
 [node name="DiggableObstacle2" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(47, 87)
+position = Vector2(239, 82)
 material_type = "tanah"
 obstacle_id = "2"
 has_victim = false
 
 [node name="DiggableObstacle3" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(42, 131)
+position = Vector2(52, 107)
 obstacle_id = "3"
 victim_pile_scene = ExtResource("18_5dk5o")
 
@@ -41916,7 +41918,7 @@ obstacle_id = "4"
 victim_pile_scene = ExtResource("20_l11en")
 
 [node name="DiggableObstacle5" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(1257, 28)
+position = Vector2(1800, 92)
 obstacle_id = "5"
 has_victim = false
 
@@ -41928,41 +41930,41 @@ has_victim = false
 
 [node name="DiggableObstacle7" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
 position = Vector2(1607, 60)
-obstacle_id = "6"
+obstacle_id = "7"
 has_victim = false
 
 [node name="DiggableObstacle8" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
 position = Vector2(444, 96)
-obstacle_id = "6"
+obstacle_id = "8"
 victim_pile_scene = ExtResource("18_5dk5o")
 
 [node name="DiggableObstacle9" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
 position = Vector2(1024, 103)
 material_type = "tanah"
-obstacle_id = "6"
+obstacle_id = "9"
 has_victim = false
 
 [node name="DiggableObstacle10" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
 position = Vector2(1195, 103)
 material_type = "tanah"
-obstacle_id = "6"
+obstacle_id = "10"
 has_victim = false
 
 [node name="DiggableObstacle11" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
 position = Vector2(964, 32)
-obstacle_id = "6"
+obstacle_id = "11"
 has_victim = false
 
 [node name="DiggableObstacle12" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
 position = Vector2(2028, 74)
 material_type = "tanah"
-obstacle_id = "6"
+obstacle_id = "12"
 victim_pile_scene = ExtResource("20_l11en")
 
 [node name="DiggableObstacle13" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(1342, 98)
+position = Vector2(1412, 101)
 material_type = "tanah"
-obstacle_id = "6"
+obstacle_id = "13"
 victim_pile_scene = ExtResource("20_l11en")
 
 [node name="ForbiddenAreas" type="Node2D" parent="ObstacleSpawner"]
@@ -41970,7 +41972,7 @@ victim_pile_scene = ExtResource("20_l11en")
 [node name="Area2D" type="Area2D" parent="ObstacleSpawner/ForbiddenAreas"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleSpawner/ForbiddenAreas/Area2D"]
-position = Vector2(759.5, 133)
+position = Vector2(755.5, 133)
 shape = SubResource("RectangleShape2D_v7qtv")
 
 [node name="NPC" parent="." instance=ExtResource("18_rywwx")]
@@ -42011,9 +42013,6 @@ metadata/_edit_use_anchors_ = true
 stream = ExtResource("25_7yktb")
 
 [node name="SpawnPoint" type="Marker2D" parent="markas2"]
-
-[node name="ConfirmBackToBase" parent="." instance=ExtResource("21_xdvy2")]
-visible = false
 
 [node name="TiangGempaKe1" type="Sprite2D" parent="."]
 position = Vector2(1469, 149)
@@ -42067,7 +42066,15 @@ position = Vector2(4641, 153.75)
 scale = Vector2(1, 1.0193133)
 texture = ExtResource("33_1ywk0")
 
+[node name="RongsokanGempa" type="Sprite2D" parent="."]
+position = Vector2(1226.5, 301.5)
+scale = Vector2(0.84807694, 0.8333334)
+texture = ExtResource("44_rgrk8")
+
 [node name="PauseButton" parent="." instance=ExtResource("37_ljiwj")]
+
+[node name="ConfirmBackToBase" parent="." instance=ExtResource("21_xdvy2")]
+visible = false
 
 [node name="PauseMenu" parent="." instance=ExtResource("38_qn8pq")]
 
@@ -42083,13 +42090,13 @@ texture = ExtResource("41_rsysy")
 [node name="FinishArea" type="Area2D" parent="Markas Finish"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Markas Finish/FinishArea"]
-visible = false
 position = Vector2(151, 28.5)
 shape = SubResource("RectangleShape2D_bwggm")
 
 [node name="FinishTimer" type="Timer" parent="Markas Finish"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Markas Finish"]
+visible = false
 
 [node name="CountdownLabel" type="Label" parent="Markas Finish/CanvasLayer"]
 anchors_preset = 15
@@ -42102,7 +42109,7 @@ theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("43_bwggm")
 autoplay = true
 parameters/looping = true

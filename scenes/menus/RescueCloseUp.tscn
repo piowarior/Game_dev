@@ -101,5 +101,6 @@ text = "Exit
 metadata/_edit_use_anchors_ = true
 
 [node name="Hotbar" parent="." instance=ExtResource("8_x7fv3")]
+layer = 5
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="."]

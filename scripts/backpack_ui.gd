@@ -51,6 +51,12 @@ func hide_ui():
 		panel.visible = false
 	)
 
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_tab"):
+		toggle_backpack()
+		get_viewport().set_input_as_handled()
+
+
 func load_backpack():
 	list.clear()
 	for item_name in GameState.backpack:

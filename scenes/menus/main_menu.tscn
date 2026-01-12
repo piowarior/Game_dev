@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpultirg5p5sp"]
+[gd_scene load_steps=9 format=3 uid="uid://cpultirg5p5sp"]
 
 [ext_resource type="Script" uid="uid://dwbn7v5yeb1lc" path="res://scripts/main_menu.gd" id="1_imvie"]
 [ext_resource type="Texture2D" uid="uid://cvria1xnqj4u5" path="res://assets/mainmenu/bgloadingscreen.png" id="2_7vrkn"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://b2tonhw04ev1s" path="res://assets/font/Axolotl.ttf" id="3_ng0o5"]
 [ext_resource type="AudioStream" uid="uid://dsx24v1hfxeeb" path="res://assets/mainmenu/clicksfx.wav" id="5_glbon"]
 [ext_resource type="AudioStream" uid="uid://cvso4vv3mfqag" path="res://assets/mainmenu/menubgm.mp3" id="5_ng0o5"]
+[ext_resource type="PackedScene" uid="uid://dlhhvw5v1mmea" path="res://scenes/menus/stage_select.tscn" id="7_8r73w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhts7"]
 bg_color = Color(0, 0, 0, 1)
@@ -98,8 +99,6 @@ text = "Exit"
 
 [node name="LoadingTimer" type="Timer" parent="."]
 wait_time = 3.0
-one_shot = true
-autostart = true
 
 [node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_ng0o5")
@@ -108,6 +107,10 @@ bus = &"music"
 
 [node name="ClickSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_glbon")
+
+[node name="StageSelect" parent="." instance=ExtResource("7_8r73w")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="MenuContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuContainer/OptionButton" to="." method="_on_option_button_pressed"]

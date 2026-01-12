@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxtjvv1fodoqe"]
+
+[ext_resource type="Script" uid="uid://cfu43bo0bslnv" path="res://scripts/loading_screensplashtomenu.gd" id="1_qr0x0"]
+[ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="2_1is7g"]
+
+[sub_resource type="Animation" id="Animation_mhth0"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_vyo8w"]
+resource_name = "fade_in"
+
+[sub_resource type="Animation" id="Animation_si7r8"]
+resource_name = "fade_out"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1qusk"]
+_data = {
+&"RESET": SubResource("Animation_mhth0"),
+&"fade_in": SubResource("Animation_vyo8w"),
+&"fade_out": SubResource("Animation_si7r8")
+}
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qr0x0")
+
+[node name="BackgroundLayer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="Background" type="Sprite2D" parent="BackgroundLayer"]
+z_index = -1
+
+[node name="UI" type="VBoxContainer" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -523.0
+offset_top = -319.0
+offset_right = 552.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="TitleLabel" type="Label" parent="UI"]
+modulate = Color(0.64, 0.64, 0.64, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1is7g")
+theme_override_font_sizes/font_size = 16
+text = "MEMBUAT MISI"
+
+[node name="TipLabel" type="Label" parent="UI"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1is7g")
+theme_override_font_sizes/font_size = 16
+text = "Tips akan muncul di sini"
+autowrap_mode = 3
+
+[node name="LoadingBar" type="ProgressBar" parent="UI"]
+layout_mode = 2
+show_percentage = false
+
+[node name="Spinner" type="TextureRect" parent="UI"]
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1qusk")
+}
+
+[node name="ChangeTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true

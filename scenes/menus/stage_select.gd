@@ -32,5 +32,8 @@ func _ready():
 
 
 func _on_back_button_pressed():
-	# Langsung pindah ke Main Menu
-	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
+	# tampilkan menu utama lagi
+	get_parent().menu_container.visible = true
+
+	# hapus StageSelect dari scene
+	queue_free()

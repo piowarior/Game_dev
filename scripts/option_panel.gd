@@ -34,9 +34,16 @@ func _ready():
 		shake_check.toggled.connect(_on_shake_check_toggled)
 
 	# 3. Hubungkan Sinyal
-	volume_slider.value_changed.connect(_on_volume_slider_value_changed)
-	music_check.toggled.connect(_on_music_check_button_toggled)
-	back_button.pressed.connect(_on_back_button_pressed)
+# 3. Hubungkan Sinyal (AMAN, ANTI DOBEL)
+	if not volume_slider.value_changed.is_connected(_on_volume_slider_value_changed):
+		volume_slider.value_changed.connect(_on_volume_slider_value_changed)
+
+	if not music_check.toggled.is_connected(_on_music_check_button_toggled):
+		music_check.toggled.connect(_on_music_check_button_toggled)
+
+	if not back_button.pressed.is_connected(_on_back_button_pressed):
+		back_button.pressed.connect(_on_back_button_pressed)
+
 
 	# 4. Inisialisasi Audio
 	_initialize_audio()

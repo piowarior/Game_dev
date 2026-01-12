@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://c0qjs6pcoqmtx"]
+[gd_scene load_steps=58 format=3 uid="uid://c0qjs6pcoqmtx"]
 
 [ext_resource type="Script" uid="uid://b2r2cxbnou6d4" path="res://scenes/menus/basecamp.gd" id="1_eqhqp"]
 [ext_resource type="PackedScene" uid="uid://dlpcru2e77pci" path="res://player/player.tscn" id="1_uti30"]
@@ -26,6 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://gygdg3fibj1f" path="res://assets/sound/790072__omiranda14__sfx_inventorysounds_equipping_05.mp3" id="23_okxjf"]
 [ext_resource type="Texture2D" uid="uid://ca034qu4bm7s" path="res://assets/tilesets/asset gemini/CoffeMug.png" id="26_okxjf"]
 [ext_resource type="Texture2D" uid="uid://cwus7xq571k3d" path="res://assets/tilesets/asset gemini/smoke1.png" id="27_fnmt5"]
+[ext_resource type="Texture2D" uid="uid://oj22vp2ombbp" path="res://assets/tilesets/asset gemini/basecamp/papan item cover.PNG" id="28_6b1dx"]
 [ext_resource type="Texture2D" uid="uid://du8st3cwwmn7c" path="res://assets/tilesets/asset gemini/smoke2.png" id="28_e8vnd"]
 [ext_resource type="Script" uid="uid://prkh5npbld2g" path="res://scripts/computer_desk.gd" id="28_hon0v"]
 [ext_resource type="Texture2D" uid="uid://dexn1urts6j7g" path="res://assets/tilesets/asset gemini/smoke3.png" id="29_lch73"]
@@ -25070,11 +25071,20 @@ offset_bottom = 106.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("16_wguex")
 
+[node name="TextureRect" type="TextureRect" parent="EquipmentUI/Panel"]
+layout_mode = 0
+offset_left = 858.0
+offset_top = 88.0
+offset_right = 1252.0
+offset_bottom = 579.0
+texture = ExtResource("28_6b1dx")
+expand_mode = 1
+
 [node name="InfoLabel" type="Label" parent="EquipmentUI/Panel"]
 layout_mode = 0
 offset_left = 884.0
 offset_top = 113.0
-offset_right = 1250.0
+offset_right = 1239.0
 offset_bottom = 563.0
 
 [node name="AudioStreamPlayer_Open" type="AudioStreamPlayer" parent="EquipmentUI"]

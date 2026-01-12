@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Sar Rescue"
-run/main_scene="uid://cpultirg5p5sp"
+run/main_scene="uid://bq1naahgxj3x6"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
@@ -19,12 +19,18 @@ config/icon="res://icon.svg"
 
 GameState="*res://autoload/GameState.gd"
 PauseMenu="*res://scenes/menus/PauseMenu.tscn"
+sp="*res://addons/awesome_splash/utils_splash.gd"
+gd="*res://addons/godot-action/utils_gd_action.tscn"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/awesome_splash/plugin.cfg", "res://addons/godot-action/plugin.cfg")
 
 [input]
 

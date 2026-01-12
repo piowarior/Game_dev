@@ -25,9 +25,7 @@ var STAGE_DATA = [
 @onready var click_sfx_player = $ClickSFX
 # ---------------------------
 
-# Variabel untuk simulasi loading
-var loading_progress = 0.0
-var loading_speed = 33.33 
+var loading_dots := 0
 
 
 # --- FUNGSI GLOBAL SFX ---
@@ -38,24 +36,35 @@ func play_click_sfx():
 # -------------------------
 
 
+var loading_progress := 0
+var loading_speed := 1 # per tick (1%)
+
 func _ready():
 	menu_container.visible = false
 	if menu_background:
 		menu_background.visible = false
-		
+
 	loading_panel.visible = true
+	loading_bar.value = 0
+	loading_label.text = "Loading"
+
+	loading_timer.wait_time = 0.04
+	loading_timer.timeout.connect(_on_loading_tick)
 	loading_timer.start()
 
-func _process(delta):
-	if loading_timer.is_stopped() == false and loading_progress < 100.0:
-		loading_progress += loading_speed * delta
-		loading_bar.value = loading_progress
-		
-		if loading_progress >= 100.0:
-			loading_progress = 100.0
-			loading_bar.value = loading_progress
-			_on_loading_finished()
-			loading_timer.stop()
+func _on_loading_tick():
+	# animasi titik
+	loading_dots = (loading_dots + 1) % 4
+	loading_label.text = "Loading" + ".".repeat(loading_dots)
+
+	# progress bar tetap jalan tapi TIDAK ditampilkan di label
+	loading_progress += loading_speed
+	loading_progress = min(loading_progress, 100)
+	loading_bar.value = loading_progress
+
+	if loading_progress >= 100:
+		loading_timer.stop()
+		_on_loading_finished()
 
 
 # --- FUNGSI TRANSISI ANIMASI ---

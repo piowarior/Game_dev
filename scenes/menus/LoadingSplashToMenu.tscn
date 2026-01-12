@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cxtjvv1fodoqe"]
 
 [ext_resource type="Script" uid="uid://cfu43bo0bslnv" path="res://scripts/loading_screensplashtomenu.gd" id="1_qr0x0"]
-[ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="2_1is7g"]
+[ext_resource type="FontFile" uid="uid://cptowgqbrc6pc" path="res://assets/font/MANGOLD.ttf" id="2_qr0x0"]
 
 [sub_resource type="Animation" id="Animation_mhth0"]
 length = 0.001
@@ -54,13 +54,13 @@ alignment = 2
 [node name="TitleLabel" type="Label" parent="UI"]
 modulate = Color(0.64, 0.64, 0.64, 1)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_1is7g")
+theme_override_fonts/font = ExtResource("2_qr0x0")
 theme_override_font_sizes/font_size = 16
 text = "MEMBUAT MISI"
 
 [node name="TipLabel" type="Label" parent="UI"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_1is7g")
+theme_override_fonts/font = ExtResource("2_qr0x0")
 theme_override_font_sizes/font_size = 16
 text = "Tips akan muncul di sini"
 autowrap_mode = 3

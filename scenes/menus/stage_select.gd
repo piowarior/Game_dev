@@ -12,6 +12,16 @@ func initialize_menu():
 	for stage in GameState.stage_data:
 		var box = STAGE_BOX_SCENE.instantiate()
 		stage_container.add_child(box)
+		
+		# Logika penentuan gambar berdasarkan ID/Tipe
+		var img_path = "res://assets/stage/stage1image.png" # Default gempa
+		
+		if "banjir" in stage.id:
+			img_path = "res://assets/stage/stage2image.png"
+		elif "kebakaran" in stage.id:
+			img_path = "res://assets/stage/stage3image.png"
+		elif "gempa" in stage.id:
+			img_path = "res://assets/stage/stage1image.png"
 
 		box.setup_stage({
 			"id": stage.id,
@@ -19,11 +29,9 @@ func initialize_menu():
 			"disaster": stage.id,
 			"stars": stage.stars,
 			"unlocked": stage.unlocked,
-			"image": preload("res://assets/stage/stage1image.png"),
+			"image": load(img_path), # Menggunakan load agar dinamis
 			"path": stage.scene
 		})
-
-
 
 func _ready():
 	initialize_menu()

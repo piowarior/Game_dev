@@ -25113,10 +25113,8 @@ stream = ExtResource("23_okxjf")
 volume_db = -15.0
 
 [node name="BackpackUI" parent="." instance=ExtResource("21_0hkjv")]
-visible = false
 
 [node name="Object_komputer" type="Node2D" parent="."]
-visible = false
 
 [node name="ComputerDesk" type="Area2D" parent="Object_komputer"]
 position = Vector2(513, 146)
@@ -25158,10 +25156,8 @@ autoplay = "default"
 frame_progress = 0.507732
 
 [node name="ComputerUI" parent="." instance=ExtResource("23_hon0v")]
-visible = false
 
 [node name="Object_ExitDoor" type="Node2D" parent="."]
-visible = false
 script = ExtResource("32_6qudo")
 
 [node name="ExitArea" type="Area2D" parent="Object_ExitDoor"]
@@ -25185,7 +25181,6 @@ position = Vector2(25.75, 74.5)
 shape = SubResource("RectangleShape2D_e8vnd")
 
 [node name="ExitConfirmUI" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("34_bbpfq")
 
 [node name="Panel" type="Panel" parent="ExitConfirmUI"]
@@ -25220,17 +25215,13 @@ offset_bottom = 596.0
 text = "Batal"
 
 [node name="PauseMenu" parent="." instance=ExtResource("37_bbpfq")]
-visible = false
 
 [node name="PauseButton" parent="." instance=ExtResource("36_wa6ji")]
-visible = false
 
 [node name="Radio" parent="." instance=ExtResource("30_0hkjv")]
-visible = false
 position = Vector2(935, 170)
 
 [node name="lemaribesi" type="Sprite2D" parent="."]
-visible = false
 y_sort_enabled = true
 position = Vector2(282.5, 116)
 scale = Vector2(0.7459676, 0.75454545)
@@ -25238,11 +25229,9 @@ texture = ExtResource("31_udq64")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 100
-visible = false
 
 [node name="PauseButton" parent="HUD" instance=ExtResource("36_wa6ji")]
 
 [node name="PauseMenu2" parent="." instance=ExtResource("37_bbpfq")]
-visible = false
 
 [connection signal="pressed" from="EquipmentUI/Panel/CloseButton" to="EquipmentUI" method="_on_take_button_2_pressed"]

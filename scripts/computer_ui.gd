@@ -74,26 +74,31 @@ func _type_text(full_text: String) -> void:
 func _build_mission_text() -> String:
 	var mission = GameState.current_mission
 	if mission.is_empty():
-		return "[color=gray]>> SYSTEM\nTidak ada misi aktif.[/color]"
+		return "[color=gray]>> SYSTEM\nTidak ada data transmisi.[/color]"
 
 	var text := ""
-	text += "[color=lime][b]>> TARGET MISI[/b][/color]\n"
-	text += "[color=green]-----------------------------[/color]\n"
-
-	text += "\n[color=cyan][b]KORBAN[/b][/color]\n"
+	text += "[center][b][color=lime]--- DATA TRANSMISI RESCUE ---[/color][/b][/center]\n"
+	
+	# Bagian Korban
+	text += "\n[color=cyan][b]Daftar Korban Terdeteksi:[/b][/color]\n"
 	for k in mission.korban:
-		text += "- %d %s ([color=orange]%s[/color])\n" % [
-			k.count,
-			k.type.capitalize(),
-			k.status
-		]
+		var status_color = "orange"
+		if "tidak diketahui" in k.status: status_color = "red"
+		
+		text += "• [b]%s[/b]\n" % k.type.to_upper()
+		text += "  [color=gray]Status:[/color] [color=%s]%s[/color]\n" % [status_color, k.status]
+		text += "  [color=yellow]Tindakan:[/color] [i]%s[/i]\n" % k.task
+		text += "[color=#333333]-----------------------------[/color]\n"
 
-	text += "\n[color=cyan][b]BATAS WAKTU[/b][/color]\n"
-	text += "- [color=yellow]%d detik[/color]\n" % mission.time_limit
+	# Bagian Waktu (Konversi ke Menit)
+	var minutes = int(mission.time_limit / 60)
+	var seconds = int(mission.time_limit) % 60
+	text += "\n[color=cyan][b]Estimasi Waktu Aman:[/b][/color]\n"
+	text += "- [color=yellow]%d Menit %d Detik[/color]\n" % [minutes, seconds]
 
-	text += "\n[color=cyan][b]DECISION POINTS[/b][/color]\n"
-	text += "- Awal: [color=yellow]%d[/color]\n" % mission.decision_points
-	text += "- [color=red]Kesalahan mengurangi poin[/color]\n"
+	# Bagian Poin
+	text += "\n[color=cyan][b]Decision Points:[/b][/color] [color=white]%d[/color]\n" % mission.decision_points
+	text += "[i][color=red]*Kesalahan prosedur akan memotong poin ini.[/color][/i]\n"
 
 	return text
 

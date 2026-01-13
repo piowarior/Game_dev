@@ -123,7 +123,7 @@ var item_database := {
 	"usage_context": ["RESCUE_CLOSEUP"],
 	"icon": preload("res://assets/tilesets/item_icon/item_sarung_tangan-removebg-preview.png"),
 	"sfx": preload("res://assets/sound/sound sarungtangan.mp3"),
-	"description": "Alat dasar untuk membersihkan puing ringan. Wajib digunakan pertama.",
+	"description": "Alat pelindung dasar yang wajib digunakan pada tahap awal evakuasi. Sarung tangan memungkinkan petugas membersihkan debu dan puing ringan tanpa melukai tangan, serta menjadi syarat utama sebelum menggunakan alat berat lain. Tanpa sarung tangan, progres evakuasi awal akan lebih lambat dan berisiko cedera.",
 	"effects": {
 		"can_remove": ["debu", "puing_ringan"],
 		"speed": 0.6
@@ -138,7 +138,7 @@ var item_database := {
 	"category": "EVAC",
 	"usage_context": ["MAP"],
 	"icon": preload("res://assets/tilesets/item_icon/item_scrup_1-removebg-preview.png"),
-	"description": "Menggali tanah dan reruntuhan lunak sebelum rescue.",
+	"description": "Digunakan untuk menggali tanah, lumpur, dan reruntuhan lunak di area peta. Sekop membantu membuka jalur evakuasi awal sebelum korban dapat dijangkau. Tidak efektif digunakan pada area close-up karena ukurannya yang besar dan membutuhkan ruang gerak.",
 	"effects": {
 		"can_clear_path": true,
 		"speed": 1.0
@@ -153,7 +153,7 @@ var item_database := {
 	"usage_context": ["MAP", "RESCUE_CLOSEUP"],
 	"icon": preload("res://assets/tilesets/item_icon/item_pixace-removebg-preview.png"),
 	"sfx": preload("res://assets/sound/sound pixace.mp3"),
-	"description": "Menghancurkan beton dan puing keras.",
+	"description": "Alat berat untuk menghancurkan beton, batu besar, dan puing keras. Efektif pada lapisan keras baik di map maupun close-up, namun membutuhkan stamina lebih besar dan berisiko salah penggunaan jika tidak sesuai lapisan.",
 	"effects": {
 		"can_remove": ["beton"],
 		"speed": 1.4,
@@ -169,7 +169,7 @@ var item_database := {
 	"usage_context": ["RESCUE_CLOSEUP"],
 	"icon": preload("res://assets/tilesets/item_icon/item_linggis-removebg-preview.png"),
 	"sfx": preload("res://assets/sound/sound linggis.mp3"),
-	"description": "Mencongkel besi dan logam berat dengan cepat.",
+	"description": "Digunakan untuk mencongkel besi, rangka logam, atau pintu yang terjepit. Sangat cepat membuka jalur logam, namun menimbulkan suara keras yang dapat meningkatkan stres korban atau menarik bahaya tambahan.",
 	"effects": {
 		"can_remove": ["logam"],
 		"speed": 1.6
@@ -185,7 +185,7 @@ var item_database := {
 	"usage_context": ["RESCUE_CLOSEUP"],
 	"icon": preload("res://assets/tilesets/item_icon/item_gergaji-removebg-preview.png"),
 	"sfx": preload("res://assets/sound/sound gergaji.mp3"),
-	"description": "Memotong kayu dan balok.",
+	"description": "Alat pemotong kayu dan balok besar. Cocok untuk membersihkan reruntuhan kayu yang menghalangi korban. Jika digunakan pada material yang salah, progres akan berhenti total.",
 	"effects": {
 		"can_remove": ["kayu"],
 		"speed": 1.2
@@ -194,6 +194,142 @@ var item_database := {
 		"wrong_layer_zero_progress": true
 	}
 },
+
+"Gunting Kawat Air": {
+	"category": "EVAC",
+	"usage_context": ["RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_pemotong_kawat.PNG"),
+	"description": "Digunakan untuk memotong kawat, pagar, dan jerat logam yang terendam air.",
+	"effects": {
+		"can_remove": ["kawat", "pagar"],
+		"speed": 1.2
+	},
+	"rules": {}
+},
+
+"Pemotong Sampah": {
+	"category": "EVAC",
+	"usage_context": ["RESCUE_CLOSEUP", "MAP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_penghancur_sampah.PNG"),
+	"description": "Menghancurkan tumpukan sampah, plastik, dan ranting yang menyumbat jalur evakuasi banjir.",
+	"effects": {
+		"can_clear_path": true,
+		"speed": 1.0
+	},
+	"rules": {}
+},
+
+"Tangga Apung": {
+	"category": "EVAC",
+	"usage_context": ["MAP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_jembatan_keperahu.PNG"),
+	"description": "Tangga ringan yang digunakan untuk naik ke perahu atau permukaan aman dari area banjir.",
+	"effects": {
+		"open_escape_route": true
+	},
+	"rules": {
+		"static_position": true
+	}
+},
+
+"Pelampung Keselamatan": {
+	"category": "EVAC",
+	"usage_context": ["RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_pelampung_banjir.PNG"),
+	"description": "Menjaga korban tetap mengapung selama proses evakuasi di air.",
+	"effects": {
+		"prevent_drowning": true
+	},
+	"rules": {}
+},
+
+"Handuk Termal": {
+	"category": "EVAC",
+	"usage_context": ["RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_selimut_penghangat.PNG"),
+	"description": "Menghangatkan korban setelah dievakuasi dari air untuk mencegah hipotermia.",
+	"effects": {
+		"reduce_hypothermia": true
+	},
+	"rules": {}
+},
+
+"Alat Pemadam Api": {
+	"category": "EVAC",
+	"usage_context": ["MAP", "RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_pemadam_api.PNG"),
+	"description": "Digunakan untuk memadamkan api kecil hingga sedang agar jalur evakuasi aman.",
+	"effects": {
+		"extinguish_fire": true,
+		"reduce_fire_area": true,
+		"safe_path": true
+	},
+	"rules": {
+		"limited_use": true,
+		"uses": 3
+	}
+},
+
+
+"Kapak Pemadam": {
+	"category": "EVAC",
+	"usage_context": ["RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_Kapak_pemadam.PNG"),
+	"description": "Digunakan untuk membuka pintu dan struktur yang terbakar.",
+	"effects": {
+		"can_remove": ["kayu_terbakar"],
+		"speed": 1.3
+	},
+	"rules": {}
+},
+
+"Pemotong Baja Panas": {
+	"category": "EVAC",
+	"usage_context": ["RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_Pemotong_tahanapi.PNG"),
+	"description": "Memotong rangka logam yang panas akibat kebakaran.",
+	"effects": {
+		"can_remove": ["logam_panas"],
+		"stamina_cost": 2
+	},
+	"rules": {}
+},
+
+"Alat Penarik Korban": {
+	"category": "EVAC",
+	"usage_context": ["RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_alat_penarik_korban.PNG"),
+	"description": "Menarik korban dari area panas tanpa kontak langsung.",
+	"effects": {
+		"safe_pull": true
+	},
+	"rules": {}
+},
+
+"Tangga Evakuasi Api": {
+	"category": "EVAC",
+	"usage_context": ["MAP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_tangga_evakuasi_api.PNG"),
+	"description": "Digunakan untuk menyelamatkan korban dari ketinggian saat kebakaran.",
+	"effects": {
+		"open_escape_route": true
+	},
+	"rules": {}
+},
+
+"Pemecah Kaca": {
+	"category": "EVAC",
+	"usage_context": ["RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_pemecah_kaca.PNG"),
+	"description": "Memecahkan kaca jendela untuk jalur evakuasi darurat.",
+	"effects": {
+		"can_remove": ["kaca"],
+		"speed": 1.5
+	},
+	"rules": {}
+},
+
+
 
 # =================================================
 # 🩺 MEDIS (SETELAH PUING BERSIH)
@@ -263,14 +399,76 @@ var item_database := {
 	}
 },
 
+"Telepon Ambulans": {
+	"category": "MEDIC",
+	"usage_context": ["RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_telpon_ambulan.PNG"),
+	"description": "Perangkat komunikasi darurat untuk memanggil ambulans ke lokasi. Korban akan langsung dievakuasi oleh tim medis. Hanya dapat digunakan satu kali.",
+	"effects": {
+		"call_ambulance": true,
+		"instant_evacuate": true,
+		"single_use": true
+	},
+	"rules": {
+		"remove_after_use": true
+	}
+},
+
+"Selimut Termal": {
+	"category": "MEDIC",
+	"usage_context": ["RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_selimut_termal.PNG"),
+	"description": "Menjaga suhu tubuh korban setelah terendam air dingin.",
+	"effects": {
+		"prevent_hypothermia": true
+	},
+	"rules": {}
+},
+
+"Pembersih Luka Air Kotor": {
+	"category": "MEDIC",
+	"usage_context": ["RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_pembersih_lukaairkotor.PNG"),
+	"description": "Membersihkan luka dari bakteri dan kotoran air banjir.",
+	"effects": {
+		"remove_status": ["infeksi_air"]
+	},
+	"rules": {}
+},
+
+"Salep Luka Bakar": {
+	"category": "MEDIC",
+	"usage_context": ["RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_salep_lukabakar.PNG"),
+	"description": "Mengurangi kerusakan dan nyeri akibat luka bakar.",
+	"effects": {
+		"heal_burn": true
+	},
+	"rules": {}
+},
+
+"Masker Oksigen Portable": {
+	"category": "MEDIC",
+	"usage_context": ["RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_masker_oksigenportabel.PNG"),
+	"description": "Membantu korban yang mengalami keracunan asap.",
+	"effects": {
+		"remove_status": ["asap"],
+		"revive": true
+	},
+	"rules": {}
+},
+
+
+
 # =================================================
 # 🔦 PENERANGAN (AWAL RESCUE)
 # =================================================
 "Senter": {
 	"category": "LIGHT",
 	"usage_context": ["RESCUE_CLOSEUP", "MAP"],
-	"icon": preload("res://assets/tilesets/item_icon/item_senter2-removebg-preview.png"),
-	"description": "Menerangi seluruh area rescue dengan cahaya normal.",
+	"icon": preload("res://assets/tilesets/item_icon/item_senter3.PNG"),
+	"description": "Penerangan standar untuk area rescue. Memberikan visibilitas normal tanpa bonus atau penalti tambahan.",
 	"effects": {
 		"light_radius": "full",
 		"rescue_speed_bonus": 0
@@ -283,8 +481,8 @@ var item_database := {
 "Headlamp": {
 	"category": "LIGHT",
 	"usage_context": ["RESCUE_CLOSEUP", "MAP"],
-	"icon": preload("res://assets/tilesets/item_icon/item_senter-removebg-preview.png"),
-	"description": "Cahaya fokus, mempercepat rescue.",
+	"icon": preload("res://assets/tilesets/item_icon/item_hadlamp.PNG"),
+	"description": "Lampu kepala dengan cahaya fokus. Memberikan bonus kecepatan rescue karena tangan tetap bebas, namun memiliki keterbatasan daya baterai.",
 	"effects": {
 		"light_radius": "focused",
 		"rescue_speed_bonus": 0.2
@@ -294,6 +492,31 @@ var item_database := {
 	}
 },
 
+"Lampu Tahan Air": {
+	"category": "LIGHT",
+	"usage_context": ["MAP", "RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_senter_tahan_air.PNG"),
+	"description": "Lampu khusus yang tetap menyala di area tergenang air. Membantu visibilitas di air keruh saat proses evakuasi banjir.",
+	"effects": {
+		"light_radius": "water",
+		"visibility_bonus": true
+	},
+	"rules": {}
+},
+
+"Kamera Termal": {
+	"category": "LIGHT",
+	"usage_context": ["MAP", "RESCUE_CLOSEUP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_kamera_termal.PNG"),
+	"description": "Menampilkan panas tubuh korban melalui asap tebal dan api.",
+	"effects": {
+		"detect_heat": true
+	},
+	"rules": {}
+},
+
+
+
 # =================================================
 # 📣 KOMUNIKASI (MAP NORMAL)
 # =================================================
@@ -301,7 +524,7 @@ var item_database := {
 	"category": "COMM",
 	"usage_context": ["MAP"],
 	"icon": preload("res://assets/tilesets/item_icon/item_peluit-removebg-preview.png"),
-	"description": "Memancing respon korban di sekitar.",
+	"description": "Digunakan untuk memancing respon suara korban di sekitar area. Tidak menunjukkan posisi pasti, tetapi membantu menentukan area pencarian.",
 	"effects": {
 		"scan_radius": 5,
 		"show_presence": true
@@ -316,7 +539,7 @@ var item_database := {
 	"category": "COMM",
 	"usage_context": ["MAP"],
 	"icon": preload("res://assets/tilesets/item_icon/item_flare-removebg-preview.png"),
-	"description": "Menandai area luas dan memancing respon korban.",
+	"description": "Digunakan untuk menandai area luas dan menarik perhatian korban. Sekali pakai dan sangat efektif untuk area besar.",
 	"effects": {
 		"scan_radius": 10,
 		"single_use": true
@@ -327,8 +550,8 @@ var item_database := {
 "Radio Scanner": {
 	"category": "COMM",
 	"usage_context": ["MAP"],
-	"icon": preload("res://assets/tilesets/item_icon/item_senter-removebg-preview.png"),
-	"description": "Mendeteksi sinyal suara dan reruntuhan aktif.",
+	"icon": preload("res://assets/tilesets/item_icon/item_radio_scaner.PNG"),
+	"description": "Mendeteksi sinyal suara dan aktivitas reruntuhan. Membutuhkan waktu pemindaian sebelum hasil muncul.",
 	"effects": {
 		"detect_paths": true,
 		"delay": 2
@@ -339,8 +562,8 @@ var item_database := {
 "Beacon Suara": {
 	"category": "COMM",
 	"usage_context": ["MAP"],
-	"icon": preload("res://assets/tilesets/item_icon/item_p3k-removebg-preview.png"),
-	"description": "Menarik suara balasan korban dari area tertentu.",
+	"icon": preload("res://assets/tilesets/item_icon/item_becon_suar.PNG"),
+	"description": "Diletakkan di satu titik untuk menarik respon korban ke lokasi tertentu.",
 	"effects": {
 		"lure_npc": true
 	},
@@ -348,6 +571,31 @@ var item_database := {
 		"static_position": true
 	}
 },
+
+"Pelampung Sinyal": {
+	"category": "COMM",
+	"usage_context": ["MAP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_pelampung_sinyal.PNG"),
+	"description": "Mengirim sinyal lokasi korban di area banjir yang luas.",
+	"effects": {
+		"show_presence": true,
+		"scan_radius": 8
+	},
+	"rules": {}
+},
+
+"Radio Tahan Panas": {
+	"category": "COMM",
+	"usage_context": ["MAP"],
+	"icon": preload("res://assets/tilesets/item_icon/item_radio_tahanapi2.PNG"),
+	"description": "Radio komunikasi yang tetap berfungsi di suhu tinggi.",
+	"effects": {
+		"communication_stable": true
+	},
+	"rules": {}
+},
+
+
 
 # =================================================
 # 🛡️ KEAMANAN (PASSIVE BUFF)
@@ -362,6 +610,29 @@ var item_database := {
 	},
 	"rules": {}
 },
+
+"Baju Tahan Api": {
+	"category": "SAFETY",
+	"usage_context": ["PASSIVE"],
+	"icon": preload("res://assets/tilesets/item_icon/item_baju_tahanapi_tipe1.PNG"),
+	"description": "Mengurangi kerusakan akibat panas dan api.",
+	"effects": {
+		"fire_resist": true
+	},
+	"rules": {}
+},
+
+"Masker Respirator Api": {
+	"category": "SAFETY",
+	"usage_context": ["PASSIVE"],
+	"icon": preload("res://assets/tilesets/item_icon/item_masker_respiratorapi.PNG"),
+	"description": "Melindungi pernapasan dari asap tebal dan gas beracun.",
+	"effects": {
+		"smoke_resist": true
+	},
+	"rules": {}
+},
+
 
 "Masker": {
 	"category": "SAFETY",
@@ -392,7 +663,7 @@ var item_database := {
 "Sarung Tangan Safety": {
 	"category": "SAFETY",
 	"usage_context": ["PASSIVE"],
-	"icon": preload("res://assets/tilesets/item_icon/item_senter-removebg-preview.png"),
+	"icon": preload("res://assets/tilesets/item_icon/item_sarungtangan_safty.PNG"),
 	"description": "Pegangan lebih aman saat rescue.",
 	"effects": {
 		"mistake_tolerance": true
@@ -413,9 +684,23 @@ var item_database := {
 	"rules": {
 		"sprint_penalty": true
 	}
+},
+
+"Rompi Pelampung": {
+	"category": "SAFETY",
+	"usage_context": ["PASSIVE"],
+	"icon": preload("res://assets/tilesets/item_icon/item_rompi_pelampung.PNG"),
+	"description": "Mencegah petugas tenggelam saat melakukan evakuasi banjir.",
+	"effects": {
+		"prevent_drowning": true
+	},
+	"rules": {}
 }
 
+
 }
+
+
 
 # ==================================
 # BACKPACK

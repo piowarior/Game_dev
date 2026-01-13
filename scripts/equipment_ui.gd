@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @onready var panel = $Panel
-@onready var info = $Panel/InfoLabel
+@onready var info: RichTextLabel = $Panel/InfoPanel/MarginContainer/InfoLabel
 @onready var take_button = $Panel/TakeButton
 @onready var close_button = $Panel/CloseButton
 @onready var vbox = $Panel/ScrollContainer/VBoxContainer
@@ -21,16 +21,24 @@ const CATEGORY_LABEL: Dictionary = {
 }
 
 func _ready() -> void:
-	# awal panel hidden
 	panel.visible = false
 	
-	# connect button dengan Godot 4.5 syntax
+	# === STYLE INFO PANEL ===
+	var bg = StyleBoxFlat.new()
+	bg.bg_color = Color(0.15, 0.15, 0.15, 0.95) # abu gelap
+	bg.border_color = Color(0.35, 0.35, 0.35)
+	bg.set_border_width_all(2)
+	bg.corner_radius_top_left = 12
+	bg.corner_radius_top_right = 12
+	bg.corner_radius_bottom_left = 12
+	bg.corner_radius_bottom_right = 12
+	
+	$Panel/InfoPanel.add_theme_stylebox_override("panel", bg)
+	
+	# connect button
 	take_button.pressed.connect(_on_take_pressed)
 	close_button.pressed.connect(hide_menu)
-	
-	# ubah teks button via kode (opsional)
-	take_button.text = "Ambil Alat"
-	close_button.text = "Tutup"
+
 	
 # =========================
 # Buka Equipment UI + sound
@@ -148,11 +156,40 @@ func _deselect_item(item_name: String, slot: PanelContainer) -> void:
 # =========================
 # Tampilkan info alat
 # =========================
+# =========================
+# Tampilkan info alat
+# =========================
 func _show_item_info(item_name: String) -> void:
 	var data = GameState.get_item_data(item_name)
-	if data == null: return
-	info.text = "[b]%s[/b]\n%s\n\nKategori: %s" % [item_name, data.description, data.category]
+	if data == null:
+		return
 
+	var display_name = item_name.to_upper() # Judul pakai huruf besar semua biar tegas
+	var cat_name = CATEGORY_LABEL.get(data.category, data.category)
+	
+	info.clear() # Bersihkan teks
+	
+	# 1. JUDUL (Font lebih besar & Tebal)
+	info.append_text("[center][font_size=24][b][color=#FFFFFF]%s[/color][/b][/font_size][/center]\n" % display_name)
+	
+	# 2. GARIS PEMBATAS (Horizontal Rule)
+	info.append_text("[center][color=#444444]──────────────────────────────[/color][/center]\n")
+	
+	# 3. DESKRIPSI (Rata Tengah & Font sedang)
+	info.append_text("[center][font_size=18][color=#CCCCCC]%s[/color][/font_size][/center]\n\n" % data.description)
+	
+	# 4. INFO DETAIL (Dibuat seperti label kecil di bawah)
+	info.append_text("[center]") # Mulai rata tengah untuk bagian bawah
+	info.append_text("[font_size=14][color=#7FBFFF]PROPERTY[/color][/font_size]\n")
+	
+	# Menggunakan format "Tag" untuk Kategori
+	info.append_text("[bgcolor=#222222][color=#DDDDDD]  %s  [/color][/bgcolor]" % cat_name)
+	
+	# Tambahkan info tambahan jika ada di database (contoh: Stamina/Power)
+	if data.has("stamina_cost"):
+		info.append_text("  [bgcolor=#442222][color=#FFAAAA] ⚡ STAMINA: %d [/color][/bgcolor]" % data.stamina_cost)
+		
+	info.append_text("[/center]")
 # =========================
 # Tutup Equipment UI + sound
 # =========================

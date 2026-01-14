@@ -47,6 +47,26 @@
 [ext_resource type="AudioStream" uid="uid://wdilylndnbim" path="res://assets/mainmenu/basecampbgm.mp3" id="43_jqrbc"]
 [ext_resource type="AudioStream" uid="uid://c31rd3b5vl332" path="res://assets/mainmenu/bgmgempa.mp3" id="44_bmice"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_eqhqp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_fnmt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_e8vnd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_lch73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_wa6ji")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_df7ix"]
 texture = ExtResource("2_svugy")
 0:0/0 = 0
@@ -24768,26 +24788,6 @@ size = Vector2(271, 196)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b185e"]
 size = Vector2(210, 57)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_eqhqp"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("27_fnmt5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("28_e8vnd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("29_lch73")
-}, {
-"duration": 1.0,
-"texture": ExtResource("30_wa6ji")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.0
-}]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8vnd"]
 size = Vector2(102.5, 223)
 
@@ -24802,6 +24802,21 @@ stream = ExtResource("43_jqrbc")
 [node name="AudioStreamPlayerShake" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("44_bmice")
 volume_db = 24.0
+
+[node name="Mug" type="Sprite2D" parent="."]
+visibility_layer = 512
+z_index = 1
+y_sort_enabled = true
+position = Vector2(589.5, 128)
+scale = Vector2(1.4375, 1.5)
+texture = ExtResource("26_okxjf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Mug"]
+position = Vector2(-0.3478233, -10.666666)
+scale = Vector2(0.12176121, 0.124999955)
+sprite_frames = SubResource("SpriteFrames_eqhqp")
+autoplay = "default"
+frame_progress = 0.507732
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_24s6u")
@@ -24852,11 +24867,6 @@ y_sort_enabled = true
 position = Vector2(1130, 226)
 scale = Vector2(1.106, 1.008)
 texture = ExtResource("7_8h0m6")
-
-[node name="PotonganKursiKomputer" type="Sprite2D" parent="."]
-y_sort_enabled = true
-position = Vector2(514, 146)
-texture = ExtResource("9_eje2e")
 
 [node name="KotakRemoveBg" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -24911,6 +24921,7 @@ text = "Press F"
 [node name="Hotbar" parent="." instance=ExtResource("16_b185e")]
 
 [node name="EquipmentUI" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("12_rtabk")
 
 [node name="Panel" type="Panel" parent="EquipmentUI"]
@@ -25113,6 +25124,12 @@ stream = ExtResource("23_okxjf")
 volume_db = -15.0
 
 [node name="BackpackUI" parent="." instance=ExtResource("21_0hkjv")]
+visible = false
+
+[node name="PotonganKursiKomputer" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(514, 146)
+texture = ExtResource("9_eje2e")
 
 [node name="Object_komputer" type="Node2D" parent="."]
 
@@ -25141,23 +25158,11 @@ shape = SubResource("RectangleShape2D_b185e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object_komputer/ComputerDesk"]
 
-[node name="Mug" type="Sprite2D" parent="Object_komputer/ComputerDesk"]
-visibility_layer = 512
-z_index = 1
-position = Vector2(76.5, -18)
-scale = Vector2(1.4375, 1.5)
-texture = ExtResource("26_okxjf")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Object_komputer/ComputerDesk/Mug"]
-position = Vector2(-0.3478233, -10.666666)
-scale = Vector2(0.12176121, 0.124999955)
-sprite_frames = SubResource("SpriteFrames_eqhqp")
-autoplay = "default"
-frame_progress = 0.507732
-
 [node name="ComputerUI" parent="." instance=ExtResource("23_hon0v")]
+visible = false
 
 [node name="Object_ExitDoor" type="Node2D" parent="."]
+visible = false
 script = ExtResource("32_6qudo")
 
 [node name="ExitArea" type="Area2D" parent="Object_ExitDoor"]
@@ -25181,6 +25186,7 @@ position = Vector2(25.75, 74.5)
 shape = SubResource("RectangleShape2D_e8vnd")
 
 [node name="ExitConfirmUI" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("34_bbpfq")
 
 [node name="Panel" type="Panel" parent="ExitConfirmUI"]
@@ -25215,13 +25221,17 @@ offset_bottom = 596.0
 text = "Batal"
 
 [node name="PauseMenu" parent="." instance=ExtResource("37_bbpfq")]
+visible = false
 
 [node name="PauseButton" parent="." instance=ExtResource("36_wa6ji")]
+visible = false
 
 [node name="Radio" parent="." instance=ExtResource("30_0hkjv")]
+visible = false
 position = Vector2(935, 170)
 
 [node name="lemaribesi" type="Sprite2D" parent="."]
+visible = false
 y_sort_enabled = true
 position = Vector2(282.5, 116)
 scale = Vector2(0.7459676, 0.75454545)
@@ -25229,9 +25239,11 @@ texture = ExtResource("31_udq64")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 100
+visible = false
 
 [node name="PauseButton" parent="HUD" instance=ExtResource("36_wa6ji")]
 
 [node name="PauseMenu2" parent="." instance=ExtResource("37_bbpfq")]
+visible = false
 
 [connection signal="pressed" from="EquipmentUI/Panel/CloseButton" to="EquipmentUI" method="_on_take_button_2_pressed"]

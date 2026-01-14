@@ -184,9 +184,11 @@ func _start_quake():
 		show_info("GEMPA SUSULAN!\nSEGERA MENUJU AREA COVER!")
 		
 	if GameState.player_in_cover:
-		stability_ui.start()
+		if not stability_ui.is_running:
+			stability_ui.start()
 	else:
 		stability_ui.stop()
+
 
 
 	
@@ -225,20 +227,24 @@ func _start_quake():
 
 
 func _update_quake(delta):
-	# pastikan sound gempa terus jalan
-	if sfx_quake and not sfx_quake.playing:
-		sfx_quake.play()
+	# sinkronisasi cover ↔ stability ui
+	if GameState.player_in_cover:
+		if not stability_ui.is_running:
+			stability_ui.start()
+	else:
+		if stability_ui.is_running:
+			stability_ui.stop()
 
-	timer -= delta
-	penalty_timer += delta
-
-	# CAMERA SHAKE (offset only)
+	# camera shake
 	camera.offset = base_camera_offset + Vector2(
 		randf_range(-shake_intensity, shake_intensity),
 		randf_range(-shake_intensity, shake_intensity)
 	)
 
-	# DPS penalty
+	# penalty logic tetap
+	timer -= delta
+	penalty_timer += delta
+
 	if penalty_timer >= penalty_interval:
 		penalty_timer = 0.0
 		if not GameState.player_in_cover:
@@ -249,6 +255,7 @@ func _update_quake(delta):
 
 	if timer <= 0:
 		_end_quake()
+
 		
 
 func show_info(text: String):

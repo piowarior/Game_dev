@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://qfwurxevn4ta"]
+
+[ext_resource type="Script" uid="uid://kqt4gc6rn1sy" path="res://scenes/menus/cover_spot.tscn.gd" id="1_0vorr"]
+[ext_resource type="Texture2D" uid="uid://jpryui365sea" path="res://assets/tilesets/asset gemini/gempa/tempat cover 1.png" id="2_d21iv"]
+[ext_resource type="Texture2D" uid="uid://b6deqf0klwufu" path="res://assets/tilesets/asset gemini/gempa/tempat  cover 2.png" id="3_cxwu3"]
+[ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="4_d21iv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxwu3"]
+size = Vector2(170, 101)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5r5nd"]
+size = Vector2(154, 95)
+
+[node name="CoverSpot" type="Node2D"]
+script = ExtResource("1_0vorr")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+self_modulate = Color(0.36365017, 0.36365017, 0.36365017, 1)
+position = Vector2(2.1457672e-06, 3.4999971)
+scale = Vector2(0.299187, 0.30788177)
+texture = ExtResource("2_d21iv")
+
+[node name="Sprite_Empty" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_d21iv")
+
+[node name="Sprite_Hidden" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_cxwu3")
+
+[node name="Area2D_Detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Detect"]
+visible = false
+position = Vector2(3, 19.5)
+shape = SubResource("RectangleShape2D_cxwu3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
+position = Vector2(8, 1.5)
+shape = SubResource("RectangleShape2D_5r5nd")
+
+[node name="Label_PressF" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("4_d21iv")
+text = "Press F"

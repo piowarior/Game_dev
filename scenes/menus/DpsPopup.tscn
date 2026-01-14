@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://fpobnw347i6n"]
+
+[ext_resource type="Script" uid="uid://j1qvs1hf40bc" path="res://scenes/menus/dps_popup.gd" id="1_u62yf"]
+
+[node name="DpsPopup" type="Node2D"]
+script = ExtResource("1_u62yf")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "-2"

@@ -12,7 +12,7 @@
 script = ExtResource("1_bcysm")
 custom_node/type = 0
 custom_node/default_time = 3.0
-skip/type = 0
+skip/type = 1
 move_to_scene = ExtResource("2_1wxq7")
 trainsition_type = 5
 min_pixel = 1.0

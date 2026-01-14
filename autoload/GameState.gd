@@ -11,6 +11,7 @@ var current_item := ""
 var decision_points := 10
 var next_scene_path: String = ""
 var last_mission_stars: int = 0
+var player_in_cover: bool = false
 
 
 # posisi obstacle per stage
@@ -119,7 +120,7 @@ var mission_database := {
 			{"type": "lansia", "status": "pingsan", "task": "MEDIC ONLY"},
 			{"type": "pemuda", "status": "tidak diketahui", "task": "SEARCH INFO"}
 		],
-		"time_limit": 480, # 8 menit dalam detik
+		"time_limit": 60, # 8 menit dalam detik
 		"decision_points": 10
 	},
 	"gempa_2": {

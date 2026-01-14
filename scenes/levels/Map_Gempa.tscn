@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://dp3lgmneadjw"]
+[gd_scene load_steps=65 format=3 uid="uid://dp3lgmneadjw"]
 
 [ext_resource type="Script" uid="uid://b1v23j4yyf03j" path="res://scenes/levels/map_gempa.gd" id="1_jehm5"]
 [ext_resource type="Texture2D" uid="uid://cmow0pxcq1ih5" path="res://assets/tilesets/asset gemini/asset 10.png" id="2_di5ef"]
@@ -44,6 +44,10 @@
 [ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="42_rsysy"]
 [ext_resource type="AudioStream" uid="uid://confeb3clmtov" path="res://assets/mainmenu/bgmmapgempa.mp3" id="43_bwggm"]
 [ext_resource type="Texture2D" uid="uid://cuwudfq275uwp" path="res://assets/MapGempaAsset/rongsokan gempa.png" id="44_rgrk8"]
+[ext_resource type="Texture2D" uid="uid://cyms1g8e0pa5a" path="res://assets/tilesets/asset gemini/gempa/logo_peringatan_gempa_2-removebg-preview.png" id="45_fnksf"]
+[ext_resource type="Script" uid="uid://bm1uvw51auylj" path="res://scenes/levels/stability_ui.gd" id="46_0j3i5"]
+[ext_resource type="AudioStream" uid="uid://bqhwexe1wsdn6" path="res://assets/sound/horror-orchestra-warning-338415.mp3" id="46_fnksf"]
+[ext_resource type="AudioStream" uid="uid://c31rd3b5vl332" path="res://assets/mainmenu/bgmgempa.mp3" id="46_vw5th"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6p8lb"]
 texture = ExtResource("2_sh21r")
@@ -42095,7 +42099,6 @@ shape = SubResource("RectangleShape2D_bwggm")
 [node name="FinishTimer" type="Timer" parent="Markas Finish"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Markas Finish"]
-visible = false
 
 [node name="CountdownLabel" type="Label" parent="Markas Finish/CanvasLayer"]
 anchors_preset = 15
@@ -42111,4 +42114,79 @@ vertical_alignment = 1
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("43_bwggm")
 autoplay = true
+parameters/looping = true
+
+[node name="ScreenOverlay" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="TopBar" type="ColorRect" parent="ScreenOverlay"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -650.0
+offset_bottom = -650.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="BottomBar" type="ColorRect" parent="ScreenOverlay"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 650.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="WarningLogo" type="TextureRect" parent="ScreenOverlay"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -170.61539
+offset_right = 73.0
+offset_bottom = -13.384613
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("45_fnksf")
+expand_mode = 1
+
+[node name="InfoLabel" type="Label" parent="ScreenOverlay"]
+offset_left = 525.0
+offset_top = 356.0
+offset_right = 763.0
+offset_bottom = 390.0
+theme_override_fonts/font = ExtResource("42_rsysy")
+theme_override_font_sizes/font_size = 23
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StabilityUI" type="Control" parent="ScreenOverlay"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 609.0
+offset_top = 419.0
+offset_right = 677.0
+offset_bottom = 459.0
+script = ExtResource("46_0j3i5")
+
+[node name="ProgressBar" type="ProgressBar" parent="ScreenOverlay/StabilityUI"]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="Timer" type="Timer" parent="ScreenOverlay/StabilityUI"]
+
+[node name="Audio_Warning" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("46_fnksf")
+
+[node name="Audio_Quake" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("46_vw5th")
+volume_db = 6.0
+bus = &"SFX"
 parameters/looping = true

@@ -40,8 +40,16 @@ func _ready():
 
 
 func _on_back_button_pressed():
-	# tampilkan menu utama lagi
-	get_parent().menu_container.visible = true
+	# Mencari node bernama "MainMenu" di atasnya
+	var main_menu = get_parent()
+	
+	if main_menu.has_node("menu_container"): # Cek dulu ada nodenya gak
+		main_menu.get_node("menu_container").visible = true
+	else:
+		# Jika ternyata menu_container itu variabel di dalam script parent:
+		if "menu_container" in main_menu:
+			main_menu.menu_container.visible = true
+			
 
 	# hapus StageSelect dari scene
 	queue_free()

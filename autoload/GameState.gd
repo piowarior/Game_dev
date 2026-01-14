@@ -11,6 +11,7 @@ var current_item := ""
 var decision_points := 10
 var next_scene_path: String = ""
 var last_mission_stars: int = 0
+var player_in_cover: bool = false
 
 
 # posisi obstacle per stage
@@ -57,48 +58,111 @@ func register_victim_following(id: String, pos: Vector2, profile: Dictionary):
 # ==================================
 # STAGE / DISASTER DATA
 # ==================================
+# ==================================
+# STAGE / DISASTER DATA (Daftarkan semua di sini)
+# ==================================
 var stage_data := [
 	{
-		"id": "gempa",
-		"name": "Gempa Bumi",
-		"unlocked": true,
-		"stars": 0,              # ⭐ HASIL PEMAIN
+		"id": "gempa_1",
+		"name": "Gempa: Reruntuhan Kota",
+		"unlocked": true, # Terbuka sejak awal
+		"stars": 0,
 		"scene": "res://scenes/stage_1.tscn"
 	},
 	{
-		"id": "banjir",
-		"name": "Banjir",
+		"id": "gempa_2",
+		"name": "Gempa: Pemukiman",
+		"unlocked": false, # Terkunci
+		"stars": 0,
+		"scene": "res://scenes/stage_gempa_2.tscn"
+	},
+	{
+		"id": "gempa_3",
+		"name": "Gempa: Mall",
 		"unlocked": false,
 		"stars": 0,
-		"scene": "res://scenes/stage_2.tscn"
+		"scene": "res://scenes/stage_gempa_3.tscn"
+	},
+	{
+		"id": "banjir_1",
+		"name": "Banjir: Sungai",
+		"unlocked": false,
+		"stars": 0,
+		"scene": "res://scenes/stage_banjir_1.tscn"
+	},
+	{
+		"id": "banjir_2",
+		"name": "Banjir: Area Terisolasi",
+		"unlocked": false,
+		"stars": 0,
+		"scene": "res://scenes/stage_banjir_2.tscn"
+	},
+	{
+		"id": "kebakaran_1",
+		"name": "Kebakaran: Gudang",
+		"unlocked": false,
+		"stars": 0,
+		"scene": "res://scenes/stage_kebakaran_1.tscn"
 	}
 ]
-
 
 
 # ==================================
 # MISSION DATABASE (STATIC)
 # ==================================
 var mission_database := {
-	"gempa": {
+	"gempa_1": {
+		"name": "Reruntuhan Kota MisTykhan",
 		"korban": [
-			{"type": "anak", "count": 2, "status": "tertimbun"},
-			{"type": "lansia", "count": 1, "status": "sekarat"},
-			{"type": "pemuda", "count": 1, "status": "terjebak"},
-			{"type": "ibu hamil", "count": 1, "status": "kurang jelas"}
+			{"type": "anak perempuan", "status": "tertimbun + terluka", "task": "EVAC + MEDIC + FOLLOW"},
+			{"type": "bapak-Bapak", "status": "tertimbun", "task": "EVAC ONLY"},
+			{"type": "ibu", "status": "tertimbun + pingsan", "task": "EVAC + MEDIC + AMBULANCE"},
+			{"type": "lansia", "status": "pingsan", "task": "MEDIC ONLY"},
+			{"type": "pemuda", "status": "tidak diketahui", "task": "SEARCH INFO"}
+		],
+		"time_limit": 60, # 8 menit dalam detik
+		"decision_points": 10
+	},
+	"gempa_2": {
+		"name": "Sektor Pemukiman",
+		"korban": [
+			{"type": "bayi", "status": "terjebak", "task": "EVAC + FOLLOW"},
+			{"type": "ayah", "status": "luka berat", "task": "MEDIC + AMBULANCE"}
+		],
+		"time_limit": 480,
+		"decision_points": 12
+	},
+	"gempa_3": {
+		"name": "Pusat Perbelanjaan",
+		"korban": [
+			{"type": "wanita", "status": "tertimbun + terluka", "task": "EVAC + MEDIC + FOLLOW"}
+		],
+		"time_limit": 600,
+		"decision_points": 15
+	},
+	"banjir_1": {
+		"name": "Luapan Sungai",
+		"korban": [
+			{"type": "anak laki-laki", "status": "hanyut", "task": "RESCUE + MEDIC"}
 		],
 		"time_limit": 300,
-		"decision_points": 10,
-		"total_victim": 5
+		"decision_points": 8
 	},
-	"banjir": {
+	"banjir_2": {
+		"name": "Area Terisolasi",
 		"korban": [
-			{"type": "anak", "count": 3, "status": "terjebak"},
-			{"type": "dewasa", "count": 2, "status": "aman"}
+			{"type": "ibu hamil", "status": "terjebak", "task": "EVAC + AMBULANCE"}
 		],
-		"time_limit": 240,
-		"decision_points": 8,
-		"total_victim": 5
+		"time_limit": 420,
+		"decision_points": 10
+	},
+	"kebakaran_1": {
+		"name": "Gudang Kimia",
+		"korban": [
+			{"type": "petugas", "status": "sesak nafas", "task": "MEDIC + EVAC"}
+		],
+		"time_limit": 360,
+		"decision_points": 10
 	}
 }
 
@@ -769,6 +833,14 @@ func finish_mission(stage_id: String) -> int:
 			break
 
 	return stars
+	
+func unlock_next_stage(current_id: String):
+	for i in range(stage_data.size()):
+		if stage_data[i].id == current_id:
+			# Jika ada stage berikutnya, buka kunci stage tersebut
+			if i + 1 < stage_data.size():
+				stage_data[i+1].unlocked = true
+			break
 
 
 # ==================================

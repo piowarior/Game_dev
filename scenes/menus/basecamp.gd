@@ -12,7 +12,7 @@ var shake_duration: float = 0.0
 
 func _ready():
 	if camera:
-		camera.offset = Vector2.ZERO
+		camera.offset = Vector2.ZERO	
 	
 	# 1. Jalankan Efek Fade-In Musik Basecamp
 	_play_bgm_fade_in()

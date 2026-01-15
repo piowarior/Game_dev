@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://badwdteqosm10"
-path="res://.godot/imported/layar komputer misi.png-2a1d2ff0537351b7b1bc29fa432dfa86.ctex"
+uid="uid://dxruesoyvhsd"
+path="res://.godot/imported/textbox.png-e7ad1dc496a4ac33e4a6be591084ce03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/asset gemini/basecamp/layar komputer misi.png"
-dest_files=["res://.godot/imported/layar komputer misi.png-2a1d2ff0537351b7b1bc29fa432dfa86.ctex"]
+source_file="res://assets/tilesets/asset gemini/textbox.png"
+dest_files=["res://.godot/imported/textbox.png-e7ad1dc496a4ac33e4a6be591084ce03.ctex"]
 
 [params]
 

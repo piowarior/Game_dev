@@ -1,19 +1,36 @@
 extends Control
 
+# Memastikan scene box level sudah ter-preload
 const STAGE_BOX_SCENE = preload("res://scenes/menus/stage_box.tscn")
-@onready var stage_container = %StageContainer
-@onready var back_button = $CenterContainer/VBoxContainer_Outer/BackButton
 
-# DATA STAGE: Set stars ke 0 biar kosong pas awal
+# Referensi node menggunakan % (Unique Name) atau path lengkap
+@onready var stage_container = %StageContainer
+@onready var back_button = find_child("BackButton")
+
+func _ready():
+	# Inisialisasi menu saat scene siap
+	initialize_menu()
+	
+	# Hubungkan sinyal tombol back
+	if back_button:
+		if not back_button.pressed.is_connected(_on_back_button_pressed):
+			back_button.pressed.connect(_on_back_button_pressed)
+
 func initialize_menu():
+	# 1. Bersihkan sisa-sisa stage lama di container
 	for child in stage_container.get_children():
 		child.queue_free()
 
+	# 2. Atur jarak antar kartu stage agar rapi saat di-scroll (Horizontal)
+	if stage_container is HBoxContainer:
+		stage_container.add_theme_constant_override("separation", 35)
+
+	# 3. Loop data stage dari GameState
 	for stage in GameState.stage_data:
 		var box = STAGE_BOX_SCENE.instantiate()
 		stage_container.add_child(box)
 		
-		# Logika penentuan gambar berdasarkan ID/Tipe (Versi Update)
+		# Logika penentuan gambar berdasarkan tipe bencana di ID
 		var img_path = "res://assets/stage/stage1image.png" # Default gempa
 		
 		if "banjir" in stage.id:
@@ -23,32 +40,30 @@ func initialize_menu():
 		elif "gempa" in stage.id:
 			img_path = "res://assets/stage/stage1image.png"
 
+		# Setup data ke dalam box
 		box.setup_stage({
 			"id": stage.id,
 			"name": stage.name,
 			"disaster": stage.id,
 			"stars": stage.stars,
 			"unlocked": stage.unlocked,
-			"image": load(img_path), # Menggunakan load agar dinamis mengikuti folder assets
+			"image": load(img_path),
 			"path": stage.scene
 		})
 
-func _ready():
-	initialize_menu()
-	if back_button:
-		back_button.pressed.connect(_on_back_button_pressed)
-
-
 func _on_back_button_pressed():
-	# Mencari node menu utama (Versi Update: Lebih aman dari crash)
+	# Logika kembali ke menu utama
 	var main_menu = get_parent()
 	
-	if main_menu.has_node("menu_container"): # Cek jika node ada
+	# Cek apakah node menu_container tersedia di parent
+	if main_menu.has_node("menu_container"):
 		main_menu.get_node("menu_container").visible = true
+	elif "menu_container" in main_menu:
+		main_menu.menu_container.visible = true
 	else:
-		# Jika menu_container adalah variabel di dalam script parent
-		if "menu_container" in main_menu:
-			main_menu.menu_container.visible = true
+		# Fallback jika parent tidak punya menu_container, muat ulang scene menu utama
+		# get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
+		push_warning("menu_container tidak ditemukan di parent!")
 
-	# hapus StageSelect dari scene
+	# Hapus menu select stage dari memory
 	queue_free()

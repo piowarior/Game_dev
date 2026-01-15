@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://c0qjs6pcoqmtx"]
+[gd_scene load_steps=65 format=3 uid="uid://c0qjs6pcoqmtx"]
 
 [ext_resource type="Script" uid="uid://b2r2cxbnou6d4" path="res://scenes/menus/basecamp.gd" id="1_eqhqp"]
 [ext_resource type="PackedScene" uid="uid://dlpcru2e77pci" path="res://player/player.tscn" id="1_uti30"]
@@ -48,6 +48,10 @@
 [ext_resource type="AudioStream" uid="uid://c31rd3b5vl332" path="res://assets/mainmenu/bgmgempa.mp3" id="44_bmice"]
 [ext_resource type="Texture2D" uid="uid://dxruesoyvhsd" path="res://assets/tilesets/asset gemini/textbox.png" id="47_3c2ot"]
 [ext_resource type="Texture2D" uid="uid://dwdg1b2ucjx61" path="res://assets/tilesets/asset gemini/fullfacec.png" id="48_hci10"]
+[ext_resource type="Texture2D" uid="uid://cbvhv46lnbgf6" path="res://assets/tilesets/asset gemini/bookguide.png" id="49_jtjw7"]
+[ext_resource type="Texture2D" uid="uid://2r3cxjip8pxu" path="res://assets/tilesets/asset gemini/bguimap.png" id="50_jc1ff"]
+[ext_resource type="Texture2D" uid="uid://kojnfo4xop4v" path="res://assets/tilesets/asset gemini/bguide.png" id="51_4vm3n"]
+[ext_resource type="Texture2D" uid="uid://dysw34sqywlfs" path="res://assets/tilesets/asset gemini/closeguide.png" id="52_t76fr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_df7ix"]
 texture = ExtResource("2_svugy")
@@ -25188,6 +25192,7 @@ script = ExtResource("34_bbpfq")
 offset_top = -40.0
 offset_right = 1285.0
 offset_bottom = 718.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="ExitConfirmUI/Panel"]
 layout_mode = 0
@@ -25276,5 +25281,86 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("39_lch73")
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
+
+[node name="HUDUI" type="CanvasLayer" parent="."]
+
+[node name="BtnGuide" type="Button" parent="HUDUI"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 71.0
+offset_bottom = 72.0
+flat = true
+
+[node name="BgCoklat" type="TextureRect" parent="HUDUI/BtnGuide"]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 55.0
+mouse_filter = 2
+texture = ExtResource("50_jc1ff")
+expand_mode = 1
+
+[node name="Book" type="TextureRect" parent="HUDUI/BtnGuide"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 2.0
+offset_right = 50.0
+offset_bottom = 43.0
+texture = ExtResource("49_jtjw7")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HUDUI/BtnGuide"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 26.0
+offset_right = 49.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("39_lch73")
+theme_override_font_sizes/font_size = 25
+text = "Guide"
+
+[node name="GuideUI" type="Control" parent="HUDUI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="GuideBox" type="TextureRect" parent="HUDUI/GuideUI"]
+layout_mode = 0
+offset_left = -271.0
+offset_top = -284.0
+offset_right = 319.0
+offset_bottom = 285.0
+mouse_filter = 2
+texture = ExtResource("51_4vm3n")
+
+[node name="GuideText" type="RichTextLabel" parent="HUDUI/GuideUI/GuideBox"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 129.0
+offset_right = 469.0
+offset_bottom = 435.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("39_lch73")
+bbcode_enabled = true
+
+[node name="CloseGuideButton" type="Button" parent="HUDUI/GuideUI/GuideBox"]
+layout_mode = 0
+offset_left = 443.99994
+offset_top = 56.000015
+offset_right = 465.99994
+offset_bottom = 78.000015
+scale = Vector2(2.5, 2.5)
+icon = ExtResource("52_t76fr")
+flat = true
+
+[node name="Button" type="Button" parent="HUDUI/GuideUI"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
 
 [connection signal="pressed" from="EquipmentUI/Panel/CloseButton" to="EquipmentUI" method="_on_take_button_2_pressed"]

@@ -1,0 +1,112 @@
+[gd_scene load_steps=19 format=3 uid="uid://cq2scpsvbac0n"]
+
+[ext_resource type="Script" uid="uid://bojger5kbqu66" path="res://scripts/victim_pile.gd" id="1_i1hlr"]
+[ext_resource type="PackedScene" uid="uid://niikcea06qvt" path="res://scenes/menus/RescueCloseUp.tscn" id="2_h8esj"]
+[ext_resource type="Texture2D" uid="uid://bwlhcke7galnq" path="res://assets/NPC/Close_up_npc/NPC Cewek remaja/close up cewek evas layer 1.png" id="3_posvc"]
+[ext_resource type="Texture2D" uid="uid://boqiuw4r42ils" path="res://assets/NPC/Close_up_npc/NPC Cewek remaja/close up cewek evas layer 2.png" id="4_vhgj4"]
+[ext_resource type="Texture2D" uid="uid://cn2gey06ertn" path="res://assets/NPC/Close_up_npc/NPC Cewek remaja/close up cewek evas layer 3.png" id="5_4drjx"]
+[ext_resource type="Texture2D" uid="uid://bj7um70cvcg1d" path="res://assets/NPC/Close_up_npc/NPC Cewek remaja/close up cewek evas layer 4.png" id="6_2vtmh"]
+[ext_resource type="Texture2D" uid="uid://drs4m033jicfa" path="res://assets/NPC/Close_up_npc/NPC Cewek remaja/close up cewek evas layer 5.png" id="7_wr803"]
+[ext_resource type="PackedScene" uid="uid://bc0sxbwk0r2ys" path="res://scenes/menus/RescueNPC.tscn" id="8_4drjx"]
+[ext_resource type="Texture2D" uid="uid://b1301rkwpcwrb" path="res://assets/NPC/Close_up_npc/NPC Cewek remaja/close up cewek medic layer 1.png" id="8_poda1"]
+[ext_resource type="Texture2D" uid="uid://cn732htqdpa1r" path="res://assets/obstacle/victim/obstacle tertimpa.png" id="9_2vtmh"]
+[ext_resource type="Texture2D" uid="uid://b6xklpypaqwb6" path="res://assets/NPC/Close_up_npc/NPC Cewek remaja/close up cewek medic layer 2.png" id="9_tn55h"]
+[ext_resource type="Texture2D" uid="uid://c74omwwp2s2ad" path="res://assets/NPC/Close_up_npc/NPC Cewek remaja/close up cewek medic layer 3.png" id="10_tluln"]
+[ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="10_wr803"]
+[ext_resource type="Texture2D" uid="uid://c5pkg7u1ai4r6" path="res://assets/NPC/Close_up_npc/NPC Cewek remaja/close up cewek medic layer 4.png" id="11_xa2x2"]
+[ext_resource type="Texture2D" uid="uid://8bduy3o3gh54" path="res://assets/NPC/Close_up_npc/NPC Cewek remaja/close up cewek medic layer 5.png" id="12_jsjlk"]
+[ext_resource type="AudioStream" uid="uid://ji2vmj8gdi05" path="res://assets/sound/274510__jbeetle__3-men-cheering.mp3" id="16_vhgj4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j4cxr"]
+radius = 80.65358
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2i57d"]
+radius = 61.188232
+
+[node name="VictimPile" type="Node2D"]
+script = ExtResource("1_i1hlr")
+rescue_closeup_scene = ExtResource("2_h8esj")
+rescue_profile = {
+"evac_layers": [{
+"label": "Membersihkan puing ringan",
+"texture": ExtResource("3_posvc"),
+"tool": "Sarung Tangan"
+}, {
+"label": "Memotong kayu tertindih",
+"texture": ExtResource("4_vhgj4"),
+"tool": "Gergaji"
+}, {
+"label": "Menghancurkan beton",
+"texture": ExtResource("5_4drjx"),
+"tool": "Pickaxe"
+}, {
+"label": "Membuka besi berat",
+"texture": ExtResource("6_2vtmh"),
+"tool": "Linggis"
+}, {
+"label": "Membuka akses korban",
+"texture": ExtResource("7_wr803"),
+"tool": "Linggis"
+}],
+"medic_layers": [{
+"label": "Membersihkan debu dan kotoran yang menempel",
+"texture": ExtResource("8_poda1"),
+"tool": "Air"
+}, {
+"label": "Rawat Luka Dengan P3K",
+"texture": ExtResource("9_tn55h"),
+"tool": "P3K"
+}, {
+"label": "Kenakan masker oksigen untuk pertolongan pertama",
+"texture": ExtResource("10_tluln"),
+"tool": "Masker Oksigen"
+}, {
+"label": "Segera hubungi petugas medis yang bertugas",
+"texture": ExtResource("11_xa2x2"),
+"tool": "Telepon Ambulans"
+}, {
+"label": "Serahkan penangan kepada petugas medic",
+"texture": ExtResource("12_jsjlk"),
+"tool": "Telepon Ambulans"
+}]
+}
+victim_id = "1"
+condition = "PINGSAN"
+follow_npc_scene = ExtResource("8_4drjx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, -1.0000038)
+scale = Vector2(0.3, 0.295)
+texture = ExtResource("9_2vtmh")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 10)
+scale = Vector2(0.9, 0.7)
+shape = SubResource("CircleShape2D_j4cxr")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -31.0
+offset_top = -5.0
+offset_right = 38.0
+offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("10_wr803")
+theme_override_font_sizes/font_size = 23
+text = "Press F"
+
+[node name="body" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
+y_sort_enabled = true
+position = Vector2(11, 20)
+scale = Vector2(1, 0.5)
+shape = SubResource("CircleShape2D_2i57d")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+z_index = 1
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_vhgj4")

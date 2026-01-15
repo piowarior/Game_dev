@@ -121,17 +121,46 @@ func restore_visual_state():
 	if has_node("Label"):
 		label.visible = player_in_range
 
+func give_instant_reward():
+	var victim_point := 1
+	var dps_point := 3
+
+	GameState.victim_saved += victim_point
+	GameState.decision_points += dps_point
+
+	# 🔊 SOUND REWARD
+	if has_node("SFXPlayer"):
+		$SFXPlayer.play()
+
+	# 🎉 ANIMASI DARI SPAWNPOIN
+	spawn_local_floating_text(
+		"+" + str(victim_point) + " Korban",
+		Color.WHITE,
+		-1.0
+	)
+
+	spawn_local_floating_text(
+		"+" + str(dps_point) + " DPS",
+		Color.YELLOW,
+		1.0
+	)
+
+
 
 func _on_rescue_finished():
 	GameState.rescued_victims[victim_id] = true
 	GameState.victim_rescue_state.erase(victim_id)
-	GameState.spawned_victims.erase(victim_id) # 🔥 PENTING
-	print("Rescue selesai → VictimPile dihapus")
+	GameState.spawned_victims.erase(victim_id)
 
 	if condition == "SADAR":
+		# 🔹 SADAR → NPC FOLLOW → REWARD DI MARKAS
 		spawn_follow_npc()
-		
+	else:
+		# 🔥 PINGSAN → REWARD LANGSUNG
+		give_instant_reward()
+
 	queue_free()
+
 
 func spawn_follow_npc():
 	if follow_npc_scene == null:
@@ -146,6 +175,33 @@ func spawn_follow_npc():
 	npc.target = get_tree().current_scene.get_node("CharacterBody2D")
 
 	get_tree().current_scene.add_child(npc)
+	
+
+func spawn_local_floating_text(text: String, color: Color, side: float):
+	var lbl = Label.new()
+	lbl.text = text
+	lbl.modulate = color
+	lbl.set_as_top_level(true)
+	get_tree().current_scene.add_child(lbl)
+
+	var start_pos = global_position
+	if has_node("SpawnPoin"):
+		start_pos = $SpawnPoin.global_position
+
+	lbl.global_position = start_pos
+	lbl.scale = Vector2.ZERO
+
+	var tween = create_tween().set_parallel(true)
+
+	tween.tween_property(lbl, "scale", Vector2(1.2, 1.2), 0.2)\
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(lbl, "global_position:y", start_pos.y - 80, 0.6)
+	tween.tween_property(lbl, "global_position:x", start_pos.x + (side * 40), 0.6)
+
+	tween.tween_property(lbl, "modulate:a", 0.0, 0.3).set_delay(0.6)
+	tween.chain().tween_callback(lbl.queue_free)
+
 
 
 

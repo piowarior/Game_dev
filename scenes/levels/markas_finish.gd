@@ -5,6 +5,7 @@ extends Node2D
 @onready var finish_area: Area2D = $FinishArea
 @onready var label: Label = $CanvasLayer/CountdownLabel
 @onready var timer: Timer = $FinishTimer
+@onready var sfx: AudioStreamPlayer = $AudioStreamPlayer
 
 var countdown := 0
 var player_inside := false
@@ -29,6 +30,10 @@ func _on_body_entered(body):
 	label.visible = true
 	label.text = str(countdown)
 
+	# 🔊 SOUND DIPUTAR SEKALI SAJA
+	if sfx and not sfx.playing:
+		sfx.play()
+
 	timer.start()
 
 # ------------------------------------------------
@@ -39,6 +44,11 @@ func _on_body_exited(body):
 	player_inside = false
 	timer.stop()
 	label.visible = false
+
+	# 🔥 STOP SOUND SAAT KELUAR AREA
+	if sfx and sfx.playing:
+		sfx.stop()
+
 
 # ------------------------------------------------
 func _on_timer_timeout():
@@ -60,12 +70,7 @@ func _on_finish():
 
 	var stars: int = GameState.finish_mission("gempa")
 
-	# simpan buat UI menu
 	GameState.next_scene_path = "res://scenes/menus/stage_select.tscn"
 	GameState.last_mission_stars = stars
 
 	get_tree().change_scene_to_file("res://scenes/menus/LoadingScreen.tscn")
-
-	# contoh nanti:
-	# GameState.finish_mission()
-	# get_tree().change_scene_to_file("res://scenes/basecamp.tscn")

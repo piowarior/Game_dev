@@ -2,7 +2,7 @@ extends Control
 
 @onready var bar: ProgressBar = $ProgressBar
 var fill_style: StyleBoxFlat
-var tap_boost := 2.0
+var tap_boost := 1.0
 var tap_window := 0.15
 var tap_timer := 0.0
 

@@ -114,13 +114,13 @@ var mission_database := {
 	"gempa_1": {
 		"name": "Reruntuhan Kota MisTykhan",
 		"korban": [
-			{"type": "anak perempuan", "status": "tertimbun + terluka", "task": "EVAC + MEDIC + FOLLOW"},
+			{"type": "ibu-Ibu", "status": "tertimbun + terluka", "task": "EVAC + MEDIC + FOLLOW"},
 			{"type": "bapak-Bapak", "status": "tertimbun", "task": "EVAC ONLY"},
-			{"type": "ibu", "status": "tertimbun + pingsan", "task": "EVAC + MEDIC + AMBULANCE"},
+			{"type": "anak perempuan", "status": "tertimbun + pingsan", "task": "EVAC + MEDIC + AMBULANCE"},
 			{"type": "lansia", "status": "pingsan", "task": "MEDIC ONLY"},
 			{"type": "pemuda", "status": "tidak diketahui", "task": "SEARCH INFO"}
 		],
-		"time_limit": 60, # 8 menit dalam detik
+		"time_limit": 480, # 8 menit dalam detik
 		"decision_points": 10
 	},
 	"gempa_2": {
@@ -847,8 +847,8 @@ func unlock_next_stage(current_id: String):
 # UI HELPER (OPSIONAL TAPI AMAN)
 # ==================================
 func get_total_victim() -> int:
-	if current_mission.has("total_victim"):
-		return current_mission["total_victim"]
+	if current_mission.has("korban"):
+		return current_mission["korban"].size()
 	return 0
 
 

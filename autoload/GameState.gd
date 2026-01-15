@@ -232,7 +232,7 @@ var item_database := {
 	"category": "EVAC",
 	"usage_context": ["RESCUE_CLOSEUP"],
 	"icon": preload("res://assets/tilesets/item_icon/item_linggis-removebg-preview.png"),
-	"sfx": preload("res://assets/sound/sound linggis.mp3"),
+	"sfx": preload("res://assets/sound/linggis2 sound.mp3"),
 	"description": "Digunakan untuk mencongkel besi, rangka logam, atau pintu yang terjepit. Sangat cepat membuka jalur logam, namun menimbulkan suara keras yang dapat meningkatkan stres korban atau menarik bahaya tambahan.",
 	"effects": {
 		"can_remove": ["logam"],

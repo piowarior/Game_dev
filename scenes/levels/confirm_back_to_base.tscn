@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc366x350bdy4"]
+[gd_scene load_steps=5 format=3 uid="uid://cc366x350bdy4"]
 
 [ext_resource type="Script" uid="uid://byk0jor1klh0n" path="res://scenes/levels/markas_confirm_ui.gd" id="1_a35wy"]
 [ext_resource type="Texture2D" uid="uid://cedxce4qxryjx" path="res://assets/tilesets/asset gemini/gambar tim sar ingin pulang.png" id="2_dibv7"]
+[ext_resource type="FontFile" uid="uid://cptowgqbrc6pc" path="res://assets/font/MANGOLD.ttf" id="3_c0p43"]
+[ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="4_4iww3"]
 
 [node name="ConfirmBackToBase" type="CanvasLayer"]
 script = ExtResource("1_a35wy")
@@ -19,27 +21,34 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BtnYes" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(150, 40)
 layout_mode = 0
 offset_left = 425.0
-offset_top = 617.0
-offset_right = 518.0
-offset_bottom = 648.0
+offset_top = 613.0
+offset_right = 575.0
+offset_bottom = 653.0
+theme_override_fonts/font = ExtResource("3_c0p43")
 text = "Konfirmasi"
 
 [node name="BtnNo" type="Button" parent="Panel"]
+custom_minimum_size = Vector2(150, 40)
 layout_mode = 0
-offset_left = 722.0
-offset_top = 618.0
-offset_right = 772.0
-offset_bottom = 649.0
+offset_left = 750.0
+offset_top = 613.0
+offset_right = 900.0
+offset_bottom = 653.0
+theme_override_fonts/font = ExtResource("3_c0p43")
 text = "Tidak"
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 499.0
-offset_top = 220.0
-offset_right = 700.0
-offset_bottom = 295.0
-text = "\"Balik ke Markas?
-NPC & DPS akan dihitung\"
-"
+offset_left = 225.0
+offset_top = 318.0
+offset_right = 1077.0
+offset_bottom = 419.0
+theme_override_fonts/font = ExtResource("4_4iww3")
+theme_override_font_sizes/font_size = 20
+text = "Kembali ke Markas sekarang?
+NPC yang berhasil diselamatkan akan dikunci.
+DPS −2 , Waktu pemulihan di markas akan dipotong dua kali lipat dari waktu yang kamu habiskan di lapangan."
+horizontal_alignment = 1

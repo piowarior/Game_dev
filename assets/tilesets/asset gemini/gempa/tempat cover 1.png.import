@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://badwdteqosm10"
-path="res://.godot/imported/layar komputer Misi.png-bd1ab5f2544a12789382b745960f8997.ctex"
+uid="uid://jpryui365sea"
+path="res://.godot/imported/tempat cover 1.png-16c35d695e21b10755af6fed8946dc11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/asset gemini/basecamp/layar komputer Misi.png"
-dest_files=["res://.godot/imported/layar komputer Misi.png-bd1ab5f2544a12789382b745960f8997.ctex"]
+source_file="res://assets/tilesets/asset gemini/gempa/tempat cover 1.png"
+dest_files=["res://.godot/imported/tempat cover 1.png-16c35d695e21b10755af6fed8946dc11.ctex"]
 
 [params]
 

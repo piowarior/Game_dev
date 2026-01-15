@@ -43,7 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://ban2yis40xxsh" path="res://scenes/menus/PauseMenu.tscn" id="37_bbpfq"]
 [ext_resource type="FontFile" uid="uid://b2tonhw04ev1s" path="res://assets/font/Axolotl.ttf" id="39_lch73"]
 [ext_resource type="Texture2D" uid="uid://cm4non8srdixf" path="res://assets/tilesets/asset gemini/clock.png" id="39_wa6ji"]
-[ext_resource type="Script" uid="uid://dfh4gle7kgimj" path="res://scripts/jam_digital.gd" id="40_wa6ji"]
+[ext_resource type="Script" path="res://scripts/jam_digital.gd" id="40_wa6ji"]
 [ext_resource type="AudioStream" uid="uid://wdilylndnbim" path="res://assets/mainmenu/basecampbgm.mp3" id="43_jqrbc"]
 [ext_resource type="AudioStream" uid="uid://c31rd3b5vl332" path="res://assets/mainmenu/bgmgempa.mp3" id="44_bmice"]
 [ext_resource type="Texture2D" uid="uid://dxruesoyvhsd" path="res://assets/tilesets/asset gemini/textbox.png" id="47_3c2ot"]
@@ -24927,7 +24927,6 @@ text = "Press F"
 [node name="Hotbar" parent="." instance=ExtResource("16_b185e")]
 
 [node name="EquipmentUI" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("12_rtabk")
 
 [node name="Panel" type="Panel" parent="EquipmentUI"]
@@ -25129,7 +25128,6 @@ stream = ExtResource("23_okxjf")
 volume_db = -15.0
 
 [node name="BackpackUI" parent="." instance=ExtResource("21_0hkjv")]
-visible = false
 
 [node name="PotonganKursiKomputer" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -25164,10 +25162,8 @@ shape = SubResource("RectangleShape2D_b185e")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Object_komputer/ComputerDesk"]
 
 [node name="ComputerUI" parent="." instance=ExtResource("23_hon0v")]
-visible = false
 
 [node name="Object_ExitDoor" type="Node2D" parent="."]
-visible = false
 script = ExtResource("32_6qudo")
 
 [node name="ExitArea" type="Area2D" parent="Object_ExitDoor"]
@@ -25191,7 +25187,6 @@ position = Vector2(25.75, 74.5)
 shape = SubResource("RectangleShape2D_e8vnd")
 
 [node name="ExitConfirmUI" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("34_bbpfq")
 
 [node name="Panel" type="Panel" parent="ExitConfirmUI"]
@@ -25227,17 +25222,13 @@ offset_bottom = 596.0
 text = "Batal"
 
 [node name="PauseMenu" parent="." instance=ExtResource("37_bbpfq")]
-visible = false
 
 [node name="PauseButton" parent="." instance=ExtResource("36_wa6ji")]
-visible = false
 
 [node name="Radio" parent="." instance=ExtResource("30_0hkjv")]
-visible = false
 position = Vector2(935, 170)
 
 [node name="lemaribesi" type="Sprite2D" parent="."]
-visible = false
 y_sort_enabled = true
 position = Vector2(282.5, 116)
 scale = Vector2(0.7459676, 0.75454545)
@@ -25245,12 +25236,10 @@ texture = ExtResource("31_udq64")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 100
-visible = false
 
 [node name="PauseButton" parent="HUD" instance=ExtResource("36_wa6ji")]
 
 [node name="PauseMenu2" parent="." instance=ExtResource("37_bbpfq")]
-visible = false
 
 [node name="NarrativeUI" type="CanvasLayer" parent="."]
 

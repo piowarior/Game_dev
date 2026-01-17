@@ -41930,30 +41930,6 @@ material_type = "tanah"
 obstacle_id = "2"
 has_victim = false
 
-[node name="DiggableObstacle17" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(2684, 96)
-material_type = "tanah"
-obstacle_id = "17"
-has_victim = false
-
-[node name="DiggableObstacle18" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(2874, 56)
-material_type = "tanah"
-obstacle_id = "18"
-has_victim = false
-
-[node name="DiggableObstacle19" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(2205, 33)
-material_type = "tanah"
-obstacle_id = "19"
-has_victim = false
-
-[node name="DiggableObstacle20" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(3094, 91)
-material_type = "tanah"
-obstacle_id = "20"
-has_victim = false
-
 [node name="DiggableObstacle3" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
 position = Vector2(710, 34)
 obstacle_id = "3"
@@ -42190,6 +42166,7 @@ stream = ExtResource("44_h8qng")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("43_bwggm")
+volume_db = -10.0
 autoplay = true
 parameters/looping = true
 

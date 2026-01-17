@@ -43,7 +43,7 @@
 [ext_resource type="PackedScene" uid="uid://ban2yis40xxsh" path="res://scenes/menus/PauseMenu.tscn" id="37_bbpfq"]
 [ext_resource type="FontFile" uid="uid://b2tonhw04ev1s" path="res://assets/font/Axolotl.ttf" id="39_lch73"]
 [ext_resource type="Texture2D" uid="uid://cm4non8srdixf" path="res://assets/tilesets/asset gemini/clock.png" id="39_wa6ji"]
-[ext_resource type="Script" path="res://scripts/jam_digital.gd" id="40_wa6ji"]
+[ext_resource type="Script" uid="uid://dfh4gle7kgimj" path="res://scripts/jam_digital.gd" id="40_wa6ji"]
 [ext_resource type="AudioStream" uid="uid://wdilylndnbim" path="res://assets/mainmenu/basecampbgm.mp3" id="43_jqrbc"]
 [ext_resource type="AudioStream" uid="uid://c31rd3b5vl332" path="res://assets/mainmenu/bgmgempa.mp3" id="44_bmice"]
 [ext_resource type="Texture2D" uid="uid://dxruesoyvhsd" path="res://assets/tilesets/asset gemini/textbox.png" id="47_3c2ot"]
@@ -24804,6 +24804,7 @@ script = ExtResource("1_eqhqp")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("43_jqrbc")
+volume_db = -21.0
 
 [node name="AudioStreamPlayerShake" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("44_bmice")
@@ -25122,11 +25123,11 @@ bbcode_enabled = true
 
 [node name="AudioStreamPlayer_Open" type="AudioStreamPlayer" parent="EquipmentUI"]
 stream = ExtResource("22_ts7go")
-volume_db = -15.0
+volume_db = -5.0
 
 [node name="AudioStreamPlayer_Close" type="AudioStreamPlayer" parent="EquipmentUI"]
 stream = ExtResource("23_okxjf")
-volume_db = -15.0
+volume_db = -5.0
 
 [node name="BackpackUI" parent="." instance=ExtResource("21_0hkjv")]
 

@@ -28,7 +28,7 @@ extends Node2D
 
 # Audio
 @onready var sfx_shake = get_node_or_null("AudioStreamPlayerShake")
-@onready var bgm_player = get_node_or_null("AudioStreamPlayerBGM")
+@onready var bgm_player = get_node_or_null("AudioStreamPlayer")
 
 # --- DATA ---
 var manual_text: String = "[center][b]GUIDE RESCUER[/b][/center]\n\n" + \

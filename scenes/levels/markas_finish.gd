@@ -68,9 +68,7 @@ func _on_timer_timeout():
 func _on_finish():
 	print("MISSION SELESAI")
 
-	var stars: int = GameState.finish_mission("gempa")
+	GameState.finish_mission(GameState.disaster_selected)
 
-	GameState.next_scene_path = "res://scenes/menus/stage_select.tscn"
-	GameState.last_mission_stars = stars
-
+	GameState.next_scene_path = "res://scenes/menus/ScoreScreen.tscn"
 	get_tree().change_scene_to_file("res://scenes/menus/LoadingScreen.tscn")

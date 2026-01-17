@@ -120,8 +120,8 @@ var mission_database := {
 			{"type": "lansia", "status": "pingsan", "task": "MEDIC ONLY"},
 			{"type": "pemuda", "status": "tidak diketahui", "task": "SEARCH INFO"}
 		],
-		"time_limit": 480, # 8 menit dalam detik
-		"decision_points": 10
+		"time_limit": 300, # 8 menit dalam detik
+		"decision_points": 5
 	},
 	"gempa_2": {
 		"name": "Sektor Pemukiman",
@@ -816,23 +816,50 @@ func get_item_data(name: String):
 
 
 func finish_mission(stage_id: String) -> int:
-	var stars := 1
+	var stars := calculate_stars()
 
-	var total_victim := get_total_victim()
+	# 🔥 SIMPAN HASIL TERAKHIR
+	last_mission_stars = stars
 
-	if victim_saved >= total_victim:
-		stars = 2
+	for i in range(stage_data.size()):
+		var stage = stage_data[i]
 
-	if victim_saved >= total_victim and time_left > 0:
-		stars = 3
-
-	# 🔒 SIMPAN KE STAGE DATA
-	for stage in stage_data:
 		if stage.id == stage_id:
 			stage.stars = max(stage.stars, stars)
-			break
+
+			if i + 1 < stage_data.size():
+				stage_data[i + 1].unlocked = true
+
+			return stars
+
+	return 0
+
+
+
+func calculate_stars() -> int:
+	var stars := 0
+
+	# =========================
+	# ⭐ 1. SEMUA KORBAN SELAMAT
+	# =========================
+	var total_victim := get_total_victim()
+	if victim_saved == total_victim and total_victim > 0:
+		stars += 1
+
+	# =========================
+	# ⭐ 2. WAKTU TIDAK HABIS
+	# =========================
+	if time_left > 0:
+		stars += 1
+
+	# =========================
+	# ⭐ 3. DPS TIDAK HABIS
+	# =========================
+	if decision_points > 0:
+		stars += 1
 
 	return stars
+
 	
 func unlock_next_stage(current_id: String):
 	for i in range(stage_data.size()):

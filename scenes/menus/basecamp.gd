@@ -1,7 +1,7 @@
 extends Node2D
 
 # =====================================================================
-# SAR RESCUE - BASECAMP SYSTEM (CLEAN VERSION)
+# SAR RESCUE - BASECAMP SYSTEM (INTEGRATED VERSION)
 # =====================================================================
 
 # --- SETTING FONT ---
@@ -9,6 +9,9 @@ extends Node2D
 @export var guide_font_size: int = 25
 @export var dialog_font_size: int = 22
 @export_file("*.ttf") var custom_font_path: String = "res://assets/font/Axolotl.ttf"
+
+# --- NAVIGATION PATH ---
+@export_file("*.tscn") var main_menu_path: String = "res://scenes/menus/main_menu.tscn"
 
 # --- REFERENSI NODE ---
 @onready var camera = $Camera2D 
@@ -41,7 +44,7 @@ var manual_text: String = "[center][b]GUIDE RESCUER[/b][/center]\n\n" + \
     "[b]PROSEDUR KESELAMATAN:[/b]\n" + \
     "- Waspada terhadap gempa susulan.\n" + \
     "- Jika layar berguncang, karakter akan berhenti sejenak.\n" + \
-	"- Pastikan semua warga dievakuasi sebelum kembali ke Basecamp."
+    "- Pastikan semua warga dievakuasi sebelum kembali ke Basecamp."
 
 var dialog_list: Array = [
     "Guncangan yang sangat hebat... apa semua orang baik-baik saja?",
@@ -50,7 +53,7 @@ var dialog_list: Array = [
     "Aku tidak bisa tinggal diam. Aku harus memastikan peralatan SAR sudah siap di tas punggungku.",
     "Aku harus segera menuju ke lokasi kejadian sebelum gempa susulan merobohkan sisa bangunan yang ada.",
     "Ayo bergerak! Setiap detik sangat berharga untuk menyelamatkan mereka.",
-	"MARI BERGERAK!"
+    "MARI BERGERAK!"
 ]
 
 var current_dialog_index: int = 0
@@ -59,6 +62,9 @@ var is_guide_open: bool = false
 var shake_duration: float = 0.0 
 var shake_intensity: float = 6.0
 
+# ===============================
+# READY & INITIALIZATION
+# ===============================
 func _ready():
     # 1. Inisialisasi UI
     if camera: camera.offset = Vector2.ZERO
@@ -69,23 +75,41 @@ func _ready():
     _setup_ui_visuals()
     _play_bgm_fade_in()
     
-    # 3. Mouse Filter Setup (Agar Tombol X Berfungsi)
+    # 3. Mouse Filter Setup
     if guide_label: guide_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
     if guide_box: guide_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
     if close_guide_btn: close_guide_btn.mouse_filter = Control.MOUSE_FILTER_STOP
     
-    # 4. Koneksi Sinyal
+    # 4. Koneksi Sinyal Guide
     if btn_guide and not btn_guide.pressed.is_connected(_on_open_guide):
         btn_guide.pressed.connect(_on_open_guide)
     if close_guide_btn and not close_guide_btn.pressed.is_connected(_on_close_guide):
         close_guide_btn.pressed.connect(_on_close_guide)
 
-    # 5. Jalankan Efek Gempa (Hanya sekali per sesi Basecamp)
+    # 5. Jalankan Efek Gempa (Hanya sekali)
     if not GameState.has_shaken_in_basecamp:
         GameState.has_shaken_in_basecamp = true
         await get_tree().create_timer(2.0).timeout
         _start_shake(3.0)
 
+# ===============================
+# EXIT NAVIGATION (PENTING)
+# ===============================
+
+# Hubungkan tombol EXIT di Pause Menu / HUD ke fungsi ini
+func _on_exit_button_pressed():
+    # 1. Matikan pause agar scene Main Menu tidak membeku
+    get_tree().paused = false 
+    
+    # 2. Pindah ke Main Menu
+    if FileAccess.file_exists(main_menu_path):
+        get_tree().change_scene_to_file(main_menu_path)
+    else:
+        push_error("Gagal kembali! File tidak ditemukan di: " + main_menu_path)
+
+# ===============================
+# FUNGSI GUIDE & VISUALS
+# ===============================
 func _setup_ui_visuals():
     var dynamic_font = load(custom_font_path)
     if guide_label and dynamic_font:
@@ -100,7 +124,6 @@ func _setup_ui_visuals():
         dialog_text.add_theme_font_override("font", dynamic_font)
         dialog_text.add_theme_font_size_override("font_size", dialog_font_size)
 
-# --- FUNGSI GUIDE ---
 func _on_open_guide():
     is_guide_open = true
     if guide_ui: guide_ui.visible = true
@@ -170,6 +193,7 @@ func _complete_narrative():
 
 func _set_player_freeze(freeze: bool):
     if player:
+        # Menggunakan process_mode agar player benar-benar berhenti
         player.process_mode = Node.PROCESS_MODE_DISABLED if freeze else Node.PROCESS_MODE_INHERIT
 
 func _play_bgm_fade_in():

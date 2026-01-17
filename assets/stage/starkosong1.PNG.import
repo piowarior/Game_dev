@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://badwdteqosm10"
-path="res://.godot/imported/layar komputer Misi.png-bd1ab5f2544a12789382b745960f8997.ctex"
+uid="uid://bf1oq5akjygff"
+path="res://.godot/imported/starkosong1.PNG-5331fb03afebe185d9e7cdd45c392ada.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/asset gemini/basecamp/layar komputer Misi.png"
-dest_files=["res://.godot/imported/layar komputer Misi.png-bd1ab5f2544a12789382b745960f8997.ctex"]
+source_file="res://assets/stage/starkosong1.PNG"
+dest_files=["res://.godot/imported/starkosong1.PNG-5331fb03afebe185d9e7cdd45c392ada.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://badwdteqosm10"
-path="res://.godot/imported/layar komputer Misi.png-bd1ab5f2544a12789382b745960f8997.ctex"
+uid="uid://b1301rkwpcwrb"
+path="res://.godot/imported/close up cewek medic layer 1.png-4221ff984252b87b87749658c632ea7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/asset gemini/basecamp/layar komputer Misi.png"
-dest_files=["res://.godot/imported/layar komputer Misi.png-bd1ab5f2544a12789382b745960f8997.ctex"]
+source_file="res://assets/NPC/Close_up_npc/NPC Cewek remaja/close up cewek medic layer 1.png"
+dest_files=["res://.godot/imported/close up cewek medic layer 1.png-4221ff984252b87b87749658c632ea7d.ctex"]
 
 [params]
 

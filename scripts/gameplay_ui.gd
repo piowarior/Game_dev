@@ -113,16 +113,15 @@ func _process(delta):
 
 func _update_hud():
 	label_timer.text = _format_time(GameState.time_left)
-	
-	if GameState.current_mission.has("total_victim"):
-		label_victim.text = "%d / %d" % [
-			GameState.victim_saved, 
-			GameState.current_mission.total_victim
-		]
-	else:
-		label_victim.text = "0 / 0"
-		
+
+	var total_victim := GameState.get_total_victim()
+	label_victim.text = "%d / %d" % [
+		GameState.victim_saved,
+		total_victim
+	]
+
 	label_dps.text = str(GameState.decision_points)
+
 
 func _open_pause_menu():
 	get_tree().paused = true

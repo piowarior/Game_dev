@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://stagebox"]
+[gd_scene load_steps=6 format=3 uid="uid://stagebox"]
 
 [ext_resource type="Script" uid="uid://ciy4pdwxpattw" path="res://scenes/menus/stage_box.gd" id="1_oo0b0"]
-[ext_resource type="Texture2D" uid="uid://cj77c0wjc3gfv" path="res://assets/stage/starkosong.png" id="2_92j4d"]
+[ext_resource type="Texture2D" uid="uid://bf1oq5akjygff" path="res://assets/stage/starkosong1.PNG" id="2_i7ysl"]
+[ext_resource type="Texture2D" uid="uid://l0tgxv3wb27y" path="res://assets/stage/star1.png" id="2_recg6"]
 [ext_resource type="FontFile" uid="uid://b2tonhw04ev1s" path="res://assets/font/Axolotl.ttf" id="3_i7ysl"]
 [ext_resource type="Texture2D" uid="uid://s4df5vf77ok2" path="res://assets/stage/lock.png" id="3_n4g8j"]
 
@@ -11,6 +12,8 @@ offset_right = 220.0
 offset_bottom = 300.0
 size_flags_horizontal = 4
 script = ExtResource("1_oo0b0")
+star_full = ExtResource("2_recg6")
+star_empty = ExtResource("2_i7ysl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -29,21 +32,23 @@ theme_override_constants/separation = 8
 alignment = 1
 
 [node name="Star1" type="TextureRect" parent="VBoxContainer/StarContainer"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-texture = ExtResource("2_92j4d")
+texture = ExtResource("2_i7ysl")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Star2" type="TextureRect" parent="VBoxContainer/StarContainer"]
-custom_minimum_size = Vector2(120, 60)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("2_92j4d")
+texture = ExtResource("2_i7ysl")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Star3" type="TextureRect" parent="VBoxContainer/StarContainer"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-texture = ExtResource("2_92j4d")
+texture = ExtResource("2_i7ysl")
 expand_mode = 1
 stretch_mode = 5
 

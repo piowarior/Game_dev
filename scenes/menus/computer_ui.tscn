@@ -61,11 +61,12 @@ bbcode_enabled = true
 [node name="TypingSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_x0iuw")
 volume_db = -10.209
+parameters/looping = true
 
 [node name="AudioOpen" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_htf4x")
-volume_db = -20.0
+volume_db = -9.688
 
 [node name="AudioClose" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_xxjq0")
-volume_db = -20.0
+volume_db = -5.0

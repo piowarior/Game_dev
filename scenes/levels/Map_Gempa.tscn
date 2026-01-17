@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://dp3lgmneadjw"]
+[gd_scene load_steps=71 format=3 uid="uid://dp3lgmneadjw"]
 
 [ext_resource type="Script" uid="uid://b1v23j4yyf03j" path="res://scenes/levels/map_gempa.gd" id="1_jehm5"]
 [ext_resource type="Texture2D" uid="uid://cmow0pxcq1ih5" path="res://assets/tilesets/asset gemini/asset 10.png" id="2_di5ef"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://cuydwggbwqdma" path="res://scenes/levels/obstacle_spawner.gd" id="18_v7qtv"]
 [ext_resource type="PackedScene" uid="uid://dsu4rxgp1glqp" path="res://scenes/menus/VictimPile_Pria_seragam_Coklat.tscn" id="20_l11en"]
 [ext_resource type="Script" uid="uid://2ighrjerh8ty" path="res://scenes/levels/markas_2.gd" id="20_w6xi8"]
+[ext_resource type="PackedScene" uid="uid://cq2scpsvbac0n" path="res://scenes/menus/VictimPile_Remaja_wanita.tscn" id="21_g010i"]
 [ext_resource type="PackedScene" uid="uid://cc366x350bdy4" path="res://scenes/levels/confirm_back_to_base.tscn" id="21_xdvy2"]
 [ext_resource type="Texture2D" uid="uid://ydg67fpnjx26" path="res://assets/tilesets/item_icon/people (1).png" id="23_xjtx0"]
 [ext_resource type="Texture2D" uid="uid://cqv11sl8x7sju" path="res://assets/tilesets/item_icon/icon_DPS-removebg-preview.png" id="24_7yktb"]
@@ -43,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://dpqx2p4ey6xmq" path="res://assets/tilesets/asset gemini/gempa/markasfinis-removebg-preview.png" id="41_rsysy"]
 [ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="42_rsysy"]
 [ext_resource type="AudioStream" uid="uid://confeb3clmtov" path="res://assets/mainmenu/bgmmapgempa.mp3" id="43_bwggm"]
+[ext_resource type="AudioStream" uid="uid://crmr2xr32lmrw" path="res://assets/sound/10sec-digital-countdown-sfx-319873_aboZtL99.mp3" id="44_h8qng"]
 [ext_resource type="Texture2D" uid="uid://cuwudfq275uwp" path="res://assets/MapGempaAsset/rongsokan gempa.png" id="44_rgrk8"]
 [ext_resource type="Texture2D" uid="uid://cyms1g8e0pa5a" path="res://assets/tilesets/asset gemini/gempa/logo_peringatan_gempa_2-removebg-preview.png" id="45_fnksf"]
 [ext_resource type="Script" uid="uid://bm1uvw51auylj" path="res://scenes/levels/stability_ui.gd" id="46_0j3i5"]
@@ -41838,7 +41840,7 @@ sources/8 = SubResource("TileSetAtlasSource_rywwx")
 sources/9 = SubResource("TileSetAtlasSource_5dk5o")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ljiwj"]
-size = Vector2(2301, 152)
+size = Vector2(2944, 152)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7qtv"]
 size = Vector2(363, 52)
@@ -41851,6 +41853,9 @@ size = Vector2(414, 113)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwggm"]
 size = Vector2(322, 99)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j3i5"]
+size = Vector2(328, 118)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0j3i5"]
 bg_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
@@ -41891,7 +41896,6 @@ map_type = "gempa"
 [node name="Hotbar" parent="." instance=ExtResource("12_6rp7x")]
 
 [node name="BackpackUI" parent="." instance=ExtResource("14_i6bpw")]
-visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(300, -380)
@@ -41911,30 +41915,30 @@ script = ExtResource("18_v7qtv")
 position = Vector2(167, 56)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleSpawner/SpawnArea"]
-position = Vector2(939.5, 26)
+position = Vector2(1629, 26)
 shape = SubResource("RectangleShape2D_ljiwj")
 
 [node name="DiggableObstacle" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(85, 34)
+position = Vector2(447, 38)
 material_type = "tanah"
 obstacle_id = "1"
 has_victim = false
 
 [node name="DiggableObstacle2" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(239, 82)
+position = Vector2(2299, 94)
 material_type = "tanah"
 obstacle_id = "2"
 has_victim = false
 
 [node name="DiggableObstacle3" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(52, 107)
+position = Vector2(710, 34)
 obstacle_id = "3"
 victim_pile_scene = ExtResource("18_5dk5o")
 
 [node name="DiggableObstacle4" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(589, 32)
+position = Vector2(2616, 44)
 obstacle_id = "4"
-victim_pile_scene = ExtResource("20_l11en")
+victim_pile_scene = ExtResource("21_g010i")
 
 [node name="DiggableObstacle5" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
 position = Vector2(1800, 92)
@@ -41942,7 +41946,7 @@ obstacle_id = "5"
 has_victim = false
 
 [node name="DiggableObstacle6" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(801, 55)
+position = Vector2(1430, 39)
 material_type = "tanah"
 obstacle_id = "6"
 has_victim = false
@@ -41953,7 +41957,7 @@ obstacle_id = "7"
 has_victim = false
 
 [node name="DiggableObstacle8" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
-position = Vector2(444, 96)
+position = Vector2(2444, 68)
 obstacle_id = "8"
 victim_pile_scene = ExtResource("18_5dk5o")
 
@@ -41967,6 +41971,23 @@ has_victim = false
 position = Vector2(1195, 103)
 material_type = "tanah"
 obstacle_id = "10"
+has_victim = false
+
+[node name="DiggableObstacle14" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(2141, 103)
+obstacle_id = "14"
+has_victim = false
+
+[node name="DiggableObstacle15" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(1599, 103)
+material_type = "tanah"
+obstacle_id = "15"
+has_victim = false
+
+[node name="DiggableObstacle16" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
+position = Vector2(1141, 43)
+material_type = "tanah"
+obstacle_id = "16"
 has_victim = false
 
 [node name="DiggableObstacle11" parent="ObstacleSpawner" instance=ExtResource("16_cxhgx")]
@@ -41996,7 +42017,7 @@ shape = SubResource("RectangleShape2D_v7qtv")
 
 [node name="NPC" parent="." instance=ExtResource("18_rywwx")]
 y_sort_enabled = true
-position = Vector2(860, 249)
+position = Vector2(512, 217)
 collision_layer = 16
 collision_mask = 0
 
@@ -42132,8 +42153,20 @@ theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Markas Finish"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Markas Finish/StaticBody2D"]
+position = Vector2(154, -30)
+shape = SubResource("RectangleShape2D_0j3i5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Markas Finish"]
+stream = ExtResource("44_h8qng")
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("43_bwggm")
+volume_db = -10.0
 autoplay = true
 parameters/looping = true
 
@@ -42226,3 +42259,7 @@ position = Vector2(1648, 210)
 
 [node name="CoverSpot_tscn3" parent="." instance=ExtResource("49_0j3i5")]
 position = Vector2(2444, 220)
+
+[node name="CoverSpot_tscn4" parent="." instance=ExtResource("49_0j3i5")]
+position = Vector2(3407, 217)
+scale = Vector2(0.8, 0.8)

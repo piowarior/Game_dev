@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://y0spoju500k6"]
+
+[ext_resource type="Script" uid="uid://bdpmypd84jlgg" path="res://scenes/menus/score_screen.gd" id="1_q6xrn"]
+[ext_resource type="Texture2D" uid="uid://t3pkadhrecpi" path="res://assets/mainmenu/menu finis latar.png" id="2_nf4x1"]
+[ext_resource type="FontFile" uid="uid://b7my3tigisr8y" path="res://assets/font/BlockheadNova-Bold.otf" id="3_vl52q"]
+[ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="4_otlbn"]
+
+[node name="ScoreScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q6xrn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_nf4x1")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelTitle" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 323.0
+offset_right = 400.0
+offset_bottom = 346.0
+theme_override_fonts/font = ExtResource("3_vl52q")
+theme_override_font_sizes/font_size = 25
+text = "HASIL MISI"
+horizontal_alignment = 1
+
+[node name="LabelStars" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 342.0
+offset_right = 335.0
+offset_bottom = 411.0
+scale = Vector2(4, 4)
+theme_override_font_sizes/font_size = 50
+text = "★★★"
+horizontal_alignment = 1
+
+[node name="LabelScore" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 431.0
+offset_right = 399.0
+offset_bottom = 477.0
+theme_override_fonts/font = ExtResource("4_otlbn")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="LabelDetail" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 880.0
+offset_top = 284.0
+offset_right = 1121.0
+offset_bottom = 356.0
+theme_override_fonts/font = ExtResource("4_otlbn")
+theme_override_font_sizes/font_size = 20
+
+[node name="LabelQuote" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 872.0
+offset_top = 457.0
+offset_right = 1119.0
+offset_bottom = 517.0
+theme_override_fonts/font = ExtResource("4_otlbn")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ButtonContinue" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 558.0
+offset_top = 667.0
+offset_right = 708.0
+offset_bottom = 707.0
+theme_override_fonts/font = ExtResource("4_otlbn")
+theme_override_font_sizes/font_size = 20
+text = "continue"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

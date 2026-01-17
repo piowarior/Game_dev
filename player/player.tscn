@@ -378,7 +378,6 @@ wall_min_slide_angle = 0.18151425
 script = ExtResource("1_4cdfs")
 run_sound = ExtResource("70_utr5e")
 tool_sound = ExtResource("71_kewli")
-step_interval = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 19)
@@ -408,8 +407,8 @@ libraries = {
 
 [node name="AudioPlayer_Run" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("70_utr5e")
-volume_db = -50.0
+volume_db = -10.0
 
 [node name="AudioPlayer_Tool" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("71_kewli")
-volume_db = -10.0
+volume_db = 9.873

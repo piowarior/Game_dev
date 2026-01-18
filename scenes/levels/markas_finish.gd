@@ -49,7 +49,6 @@ func _on_body_exited(body):
 	if sfx and sfx.playing:
 		sfx.stop()
 
-
 # ------------------------------------------------
 func _on_timer_timeout():
 	if not player_inside:
@@ -68,7 +67,13 @@ func _on_timer_timeout():
 func _on_finish():
 	print("MISSION SELESAI")
 
-	GameState.finish_mission(GameState.disaster_selected)
+	# Mengambil data bencana yang sedang dimainkan secara dinamis
+	var current_disaster = GameState.disaster_selected
+	var stars: int = GameState.finish_mission(current_disaster)
 
+	# Simpan data untuk ditampilkan di ScoreScreen
+	GameState.last_mission_stars = stars
 	GameState.next_scene_path = "res://scenes/menus/ScoreScreen.tscn"
+
+	# Pindah ke Loading Screen terlebih dahulu
 	get_tree().change_scene_to_file("res://scenes/menus/LoadingScreen.tscn")

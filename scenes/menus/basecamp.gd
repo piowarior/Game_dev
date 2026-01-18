@@ -1,7 +1,7 @@
 extends Node2D
 
 # =====================================================================
-# SAR RESCUE - BASECAMP SYSTEM (CLEAN VERSION)
+# SAR RESCUE - BASECAMP SYSTEM (CLEAN INTEGRATED VERSION)
 # =====================================================================
 
 # --- SETTING FONT ---
@@ -9,6 +9,9 @@ extends Node2D
 @export var guide_font_size: int = 25
 @export var dialog_font_size: int = 22
 @export_file("*.ttf") var custom_font_path: String = "res://assets/font/Axolotl.ttf"
+
+# --- NAVIGATION PATH ---
+@export_file("*.tscn") var main_menu_path: String = "res://scenes/menus/main_menu.tscn"
 
 # --- REFERENSI NODE ---
 @onready var camera = $Camera2D 
@@ -30,7 +33,7 @@ extends Node2D
 @onready var sfx_shake = get_node_or_null("AudioStreamPlayerShake")
 @onready var bgm_player = get_node_or_null("AudioStreamPlayer")
 
-# --- DATA ---
+# --- DATA TEKS ---
 var manual_text: String = "[center][b]GUIDE RESCUER[/b][/center]\n\n" + \
 	"[b]TUJUAN UTAMA:[/b]\n" + \
 	"Lakukan evakuasi warga yang terjebak di reruntuhan sektor selatan.\n\n" + \
@@ -59,6 +62,9 @@ var is_guide_open: bool = false
 var shake_duration: float = 0.0 
 var shake_intensity: float = 6.0
 
+# ===============================
+# READY & INITIALIZATION
+# ===============================
 func _ready():
 	# 1. Inisialisasi UI
 	if camera: camera.offset = Vector2.ZERO
@@ -86,6 +92,19 @@ func _ready():
 		await get_tree().create_timer(2.0).timeout
 		_start_shake(3.0)
 
+# ===============================
+# EXIT NAVIGATION
+# ===============================
+func _on_exit_button_pressed():
+	get_tree().paused = false 
+	if FileAccess.file_exists(main_menu_path):
+		get_tree().change_scene_to_file(main_menu_path)
+	else:
+		push_error("Gagal kembali! File tidak ditemukan di: " + main_menu_path)
+
+# ===============================
+# FUNGSI GUIDE & VISUALS
+# ===============================
 func _setup_ui_visuals():
 	var dynamic_font = load(custom_font_path)
 	if guide_label and dynamic_font:
@@ -100,7 +119,6 @@ func _setup_ui_visuals():
 		dialog_text.add_theme_font_override("font", dynamic_font)
 		dialog_text.add_theme_font_size_override("font_size", dialog_font_size)
 
-# --- FUNGSI GUIDE ---
 func _on_open_guide():
 	is_guide_open = true
 	if guide_ui: guide_ui.visible = true

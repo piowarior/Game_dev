@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://dp3lgmneadjw"]
+[gd_scene load_steps=75 format=3 uid="uid://dp3lgmneadjw"]
 
 [ext_resource type="Script" uid="uid://b1v23j4yyf03j" path="res://scenes/levels/map_gempa.gd" id="1_jehm5"]
 [ext_resource type="Texture2D" uid="uid://cmow0pxcq1ih5" path="res://assets/tilesets/asset gemini/asset 10.png" id="2_di5ef"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://cc366x350bdy4" path="res://scenes/levels/confirm_back_to_base.tscn" id="21_xdvy2"]
 [ext_resource type="Texture2D" uid="uid://ydg67fpnjx26" path="res://assets/tilesets/item_icon/people (1).png" id="23_xjtx0"]
 [ext_resource type="Texture2D" uid="uid://cqv11sl8x7sju" path="res://assets/tilesets/item_icon/icon_DPS-removebg-preview.png" id="24_7yktb"]
+[ext_resource type="Texture2D" uid="uid://byxrpa7dk23fr" path="res://assets/tilesets/asset gemini/fulfacenpc.png" id="24_p12bf"]
 [ext_resource type="AudioStream" uid="uid://ji2vmj8gdi05" path="res://assets/sound/274510__jbeetle__3-men-cheering.mp3" id="25_7yktb"]
 [ext_resource type="Texture2D" uid="uid://cs68g48785pex" path="res://assets/MapGempaAsset/tiang gempa ke 1.png" id="27_cwm8r"]
 [ext_resource type="Texture2D" uid="uid://de78bqn3jb033" path="res://assets/MapGempaAsset/tiang4.png" id="28_de6cn"]
@@ -51,6 +52,9 @@
 [ext_resource type="AudioStream" uid="uid://bqhwexe1wsdn6" path="res://assets/sound/horror-orchestra-warning-338415.mp3" id="46_fnksf"]
 [ext_resource type="AudioStream" uid="uid://c31rd3b5vl332" path="res://assets/mainmenu/bgmgempa.mp3" id="46_vw5th"]
 [ext_resource type="PackedScene" uid="uid://qfwurxevn4ta" path="res://scenes/menus/CoverSpot.tscn.tscn" id="49_0j3i5"]
+[ext_resource type="Texture2D" uid="uid://dxruesoyvhsd" path="res://assets/tilesets/asset gemini/textbox.png" id="52_dtj3p"]
+[ext_resource type="Texture2D" uid="uid://dwdg1b2ucjx61" path="res://assets/tilesets/asset gemini/fullfacec.png" id="53_p12bf"]
+[ext_resource type="FontFile" uid="uid://b2tonhw04ev1s" path="res://assets/font/Axolotl.ttf" id="54_67f6y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6p8lb"]
 texture = ExtResource("2_sh21r")
@@ -42020,6 +42024,8 @@ y_sort_enabled = true
 position = Vector2(512, 217)
 collision_layer = 16
 collision_mask = 0
+portrait_npc = ExtResource("24_p12bf")
+portrait_player = ExtResource("53_p12bf")
 
 [node name="markas2" type="Node2D" parent="."]
 position = Vector2(225, 231)
@@ -42263,3 +42269,46 @@ position = Vector2(2444, 220)
 [node name="CoverSpot_tscn4" parent="." instance=ExtResource("49_0j3i5")]
 position = Vector2(3407, 217)
 scale = Vector2(0.8, 0.8)
+
+[node name="NarrativeUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="DialogBox" type="NinePatchRect" parent="NarrativeUI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 461.0
+offset_top = -171.0
+offset_right = -311.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+mouse_filter = 0
+texture = ExtResource("52_dtj3p")
+
+[node name="Portrait" type="TextureRect" parent="NarrativeUI/DialogBox"]
+layout_mode = 0
+offset_left = -122.0
+offset_top = -3.0
+offset_right = 65.5
+offset_bottom = 164.5
+scale = Vector2(0.8, 0.8)
+mouse_filter = 2
+texture = ExtResource("53_p12bf")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="DialogText" type="RichTextLabel" parent="NarrativeUI/DialogBox"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 39.0
+offset_right = 445.0
+offset_bottom = 130.0
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("54_67f6y")
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true

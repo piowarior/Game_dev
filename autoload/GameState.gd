@@ -12,6 +12,9 @@ var decision_points := 10
 var next_scene_path: String = ""
 var last_mission_stars: int = 0
 var player_in_cover: bool = false
+# stage yang dipilih player (ID)
+var selected_stage_id: String = ""
+
 
 
 # posisi obstacle per stage
@@ -70,11 +73,11 @@ var stage_data := [
 		"scene": "res://scenes/stage_1.tscn"
 	},
 	{
-		"id": "gempa_2",
-		"name": "Gempa: Pemukiman",
-		"unlocked": false, # Terkunci
+		"id": "longsor_1",
+		"name": "Tanah Longsor: Perbukitan",
+		"unlocked": false,
 		"stars": 0,
-		"scene": "res://scenes/stage_gempa_2.tscn"
+		"scene": "res://scenes/Map_TanahLongsor.tscn"
 	},
 	{
 		"id": "gempa_3",
@@ -123,14 +126,27 @@ var mission_database := {
 		"time_limit": 300, # 8 menit dalam detik
 		"decision_points": 5
 	},
-	"gempa_2": {
-		"name": "Sektor Pemukiman",
+	"longsor_1": {
+		"name": "Longsor Perbukitan",
 		"korban": [
-			{"type": "bayi", "status": "terjebak", "task": "EVAC + FOLLOW"},
-			{"type": "ayah", "status": "luka berat", "task": "MEDIC + AMBULANCE"}
+			{
+				"type": "bapak-bapak",
+				"status": "tertimbun",
+				"task": "EVAC + FOLLOW"
+			},
+			{
+				"type": "remaja laki-laki",
+				"status": "tertimbun",
+				"task": "EVAC + FOLLOW"
+			},
+			{
+				"type": "remaja perempuan",
+				"status": "luka berat",
+				"task": "EVAC + MEDIC + AMBULANCE"
+			}
 		],
-		"time_limit": 480,
-		"decision_points": 12
+		"time_limit": 300,
+		"decision_points": 10
 	},
 	"gempa_3": {
 		"name": "Pusat Perbelanjaan",

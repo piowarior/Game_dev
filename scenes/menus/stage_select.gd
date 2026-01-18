@@ -31,14 +31,17 @@ func initialize_menu():
 		stage_container.add_child(box)
 		
 		# Logika penentuan gambar berdasarkan tipe bencana di ID
-		var img_path = "res://assets/stage/stage1image.png" # Default gempa
-		
+		var img_path := "res://assets/stage/stage1image.png" # default gempa
+
 		if "banjir" in stage.id:
 			img_path = "res://assets/stage/stage2image.png"
 		elif "kebakaran" in stage.id:
 			img_path = "res://assets/stage/stage3image.png"
+		elif "longsor" in stage.id:
+			img_path = "res://assets/stage/stage4image.png" # TANAH LONGSOR
 		elif "gempa" in stage.id:
 			img_path = "res://assets/stage/stage1image.png"
+
 
 		# Setup data ke dalam box
 		box.setup_stage({

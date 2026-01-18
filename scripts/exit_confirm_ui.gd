@@ -10,8 +10,23 @@ func _ready():
 	btn_close.pressed.connect(_on_close)
 
 func _on_berangkat():
-	GameState.next_scene_path = "res://scenes/levels/Map_Gempa.tscn"  # sesuaikan level
-	get_tree().change_scene_to_file("res://scenes/menus/LoadingScreen.tscn")
+	# 🔥 fallback: kalau selected_stage_id kosong, pakai disaster_selected
+	var stage_id := GameState.selected_stage_id
+	if stage_id == "":
+		stage_id = GameState.disaster_selected
+
+	if stage_id == "":
+		push_error("Stage belum dipilih!")
+		return
+
+	# cari scene dari stage_data
+	for stage in GameState.stage_data:
+		if stage.id == stage_id:
+			GameState.next_scene_path = stage.scene
+			get_tree().change_scene_to_file("res://scenes/menus/LoadingScreen.tscn")
+			return
+
+	push_error("Stage ID tidak ditemukan: " + stage_id)
 
 
 func _on_close():

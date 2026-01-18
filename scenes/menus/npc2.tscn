@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwj7i66c0bs6d"]
+[gd_scene load_steps=11 format=3 uid="uid://dwj7i66c0bs6d"]
 
 [ext_resource type="Script" uid="uid://stgglwdhn0l3" path="res://scripts/npc_2.gd" id="1_etjmq"]
 [ext_resource type="Texture2D" uid="uid://k70v8vy4lgcp" path="res://assets/NPC/breathing-idle/south/frame_000.png" id="1_f8r33"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://lvx4bclfrqbd" path="res://assets/NPC/breathing-idle/south/frame_002.png" id="3_fk682"]
 [ext_resource type="Texture2D" uid="uid://v1tpgraal8b4" path="res://assets/NPC/breathing-idle/south/frame_003.png" id="4_1qlri"]
 [ext_resource type="Texture2D" uid="uid://cchhvat5jlp05" path="res://player/sprite/aksesoris/shadow-2d game.png" id="6_fk682"]
+[ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="7_ylyta"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ep07"]
 animations = [{
@@ -31,7 +32,7 @@ animations = [{
 radius = 16.27882
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fk682"]
-radius = 25.019993
+radius = 77.16217
 
 [node name="NPC" type="CharacterBody2D"]
 script = ExtResource("1_etjmq")
@@ -39,7 +40,7 @@ script = ExtResource("1_etjmq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 texture_filter = 1
-scale = Vector2(2.015625, 2.015625)
+scale = Vector2(1.8, 1.8)
 sprite_frames = SubResource("SpriteFrames_5ep07")
 animation = &"Idle"
 
@@ -60,3 +61,9 @@ texture = ExtResource("6_fk682")
 position = Vector2(0, 41)
 scale = Vector2(1, 0.6)
 shape = SubResource("CircleShape2D_fk682")
+
+[node name="InteractionLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("7_ylyta")
+text = "Press F"

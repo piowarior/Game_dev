@@ -16,22 +16,29 @@ var target : Node2D
 func _ready():
 	target = get_node(target_path)
 	enabled = true
-	
+
 	if target:
-		# PENTING: Atur posisi awal kamera agar langsung berada di posisi offset target
-		# Ini mencegah kamera 'melompat' dari (0,0) ke tengah sebelum lerp dimulai.
 		global_position = target.global_position + camera_offset
 
-	if map_type == "gempa":
+	var map_name := get_tree().current_scene.name
+
+	if map_name == "MapGempa":
 		limit_left = -300
 		limit_right = 4400
 		limit_top = 0
 		limit_bottom = 1050
+
+	elif map_name == "MapTanahLongsor":
+		limit_left = 0
+		limit_right = 2750   # 👈 LEBIH KECIL
+		limit_top = 0
+		limit_bottom = 900
+
 	else:
 		limit_left = 0
-		limit_right = 2700
+		limit_right = 2000
 		limit_top = 0
-		limit_bottom = 1050
+		limit_bottom = 1000
 
 
 func _process(delta):

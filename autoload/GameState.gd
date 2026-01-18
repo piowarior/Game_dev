@@ -70,14 +70,14 @@ var stage_data := [
 		"name": "Gempa: Reruntuhan Kota",
 		"unlocked": true, # Terbuka sejak awal
 		"stars": 0,
-		"scene": "res://scenes/stage_1.tscn"
+		"scene": "res://scenes/levels/Map_Gempa.tscn"
 	},
 	{
 		"id": "longsor_1",
 		"name": "Tanah Longsor: Perbukitan",
 		"unlocked": false,
 		"stars": 0,
-		"scene": "res://scenes/Map_TanahLongsor.tscn"
+		"scene": "res://scenes/levels/Map_TanahLongsor.tscn"
 	},
 	{
 		"id": "gempa_3",

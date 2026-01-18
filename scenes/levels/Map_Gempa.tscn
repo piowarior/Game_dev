@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://cc366x350bdy4" path="res://scenes/levels/confirm_back_to_base.tscn" id="21_xdvy2"]
 [ext_resource type="Texture2D" uid="uid://ydg67fpnjx26" path="res://assets/tilesets/item_icon/people (1).png" id="23_xjtx0"]
 [ext_resource type="Texture2D" uid="uid://cqv11sl8x7sju" path="res://assets/tilesets/item_icon/icon_DPS-removebg-preview.png" id="24_7yktb"]
-[ext_resource type="Texture2D" uid="uid://byxrpa7dk23fr" path="res://assets/tilesets/asset gemini/fulfacenpc.png" id="24_p12bf"]
+[ext_resource type="Texture2D" uid="uid://dr0p86ekxjdbn" path="res://assets/tilesets/asset gemini/npcface2.png" id="24_p12bf"]
 [ext_resource type="AudioStream" uid="uid://ji2vmj8gdi05" path="res://assets/sound/274510__jbeetle__3-men-cheering.mp3" id="25_7yktb"]
 [ext_resource type="Texture2D" uid="uid://cs68g48785pex" path="res://assets/MapGempaAsset/tiang gempa ke 1.png" id="27_cwm8r"]
 [ext_resource type="Texture2D" uid="uid://de78bqn3jb033" path="res://assets/MapGempaAsset/tiang4.png" id="28_de6cn"]

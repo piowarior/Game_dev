@@ -6,25 +6,34 @@ extends CanvasLayer
 
 func _ready():
 	visible = false
-	btn_berangkat.pressed.connect(_on_berangkat)
-	btn_close.pressed.connect(_on_close)
+
+	if not btn_berangkat.pressed.is_connected(_on_berangkat):
+		btn_berangkat.pressed.connect(_on_berangkat)
+
+	if not btn_close.pressed.is_connected(_on_close):
+		btn_close.pressed.connect(_on_close)
+
 
 func _on_berangkat():
-	# ambil stage yang benar-benar dipilih player
+	# ambil stage yang dipilih player
 	var stage_id: String = GameState.disaster_selected
 
 	if stage_id == "":
 		push_error("Stage belum dipilih!")
 		return
 
-	# ambil scene berdasarkan stage yang aktif
+	# cari scene sesuai stage
 	for stage in GameState.stage_data:
 		if stage.id == stage_id:
 			GameState.next_scene_path = stage.scene
-			get_tree().change_scene_to_file("res://scenes/menus/LoadingScreen.tscn")
+			print("Berangkat ke:", GameState.next_scene_path)
+			get_tree().change_scene_to_file(
+				"res://scenes/menus/LoadingScreen.tscn"
+			)
 			return
 
 	push_error("Scene stage tidak ditemukan untuk: " + stage_id)
+
 
 func _on_close():
 	visible = false

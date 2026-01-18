@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://cqv11sl8x7sju" path="res://assets/tilesets/item_icon/icon_DPS-removebg-preview.png" id="27_fvfkh"]
 [ext_resource type="FontFile" uid="uid://sdehxe5o7ttb" path="res://assets/font/small-pixel7/small_pixel-7.ttf" id="28_o1v6j"]
 [ext_resource type="AudioStream" uid="uid://ji2vmj8gdi05" path="res://assets/sound/274510__jbeetle__3-men-cheering.mp3" id="29_8byrc"]
-[ext_resource type="Texture2D" uid="uid://byxrpa7dk23fr" path="res://assets/tilesets/asset gemini/fulfacenpc.png" id="33_lenwn"]
+[ext_resource type="Texture2D" uid="uid://dr0p86ekxjdbn" path="res://assets/tilesets/asset gemini/npcface2.png" id="33_lenwn"]
 [ext_resource type="Texture2D" uid="uid://dwdg1b2ucjx61" path="res://assets/tilesets/asset gemini/fullfacec.png" id="34_56ncj"]
 [ext_resource type="PackedScene" uid="uid://bheerotva48ol" path="res://scenes/menus/PauseButton.tscn" id="41_vyh6y"]
 [ext_resource type="PackedScene" uid="uid://ban2yis40xxsh" path="res://scenes/menus/PauseMenu.tscn" id="42_hpct6"]

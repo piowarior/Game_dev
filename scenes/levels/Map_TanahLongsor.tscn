@@ -1,5 +1,6 @@
-[gd_scene load_steps=82 format=3 uid="uid://d04vfhgtls0n2"]
+[gd_scene load_steps=87 format=3 uid="uid://d04vfhgtls0n2"]
 
+[ext_resource type="Script" uid="uid://nnmxg72htvyp" path="res://scenes/levels/map_tanah_longsor.gd" id="1_56ncj"]
 [ext_resource type="Texture2D" uid="uid://b4ogmg6ewvrik" path="res://assets/tilesets/asset gemini/asset 9.jpg" id="2_lenwn"]
 [ext_resource type="Texture2D" uid="uid://ddvrfv0xavb4o" path="res://assets/MapTanahLongsor/Gemini_Generated_Image_3b70y73b70y73b70.png" id="3_4olud"]
 [ext_resource type="Texture2D" uid="uid://cmow0pxcq1ih5" path="res://assets/tilesets/asset gemini/asset 10.png" id="3_56ncj"]
@@ -52,6 +53,8 @@
 [ext_resource type="AudioStream" uid="uid://c31rd3b5vl332" path="res://assets/mainmenu/bgmgempa.mp3" id="50_s7clk"]
 [ext_resource type="Texture2D" uid="uid://dxruesoyvhsd" path="res://assets/tilesets/asset gemini/textbox.png" id="51_nkfo5"]
 [ext_resource type="FontFile" uid="uid://b2tonhw04ev1s" path="res://assets/font/Axolotl.ttf" id="52_iyaya"]
+[ext_resource type="Texture2D" uid="uid://dxj118honso72" path="res://assets/MapTanahLongsor/tanah longsor.png" id="54_nkfo5"]
+[ext_resource type="Script" uid="uid://cykybolo0kdpr" path="res://scenes/levels/area_2d_tanah_longsor.gd" id="55_iyaya"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6p8lb"]
 texture = ExtResource("2_lenwn")
@@ -82872,9 +82875,17 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyaya"]
+size = Vector2(951, 822)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_iyaya"]
+a = Vector2(-504.5, 204)
+b = Vector2(376.5, -544)
+
 [node name="MapTanahLongsor" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(0, -19)
+script = ExtResource("1_56ncj")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
@@ -82889,7 +82900,7 @@ position = Vector2(223, 106)
 texture = ExtResource("12_skvqo")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("13_qnc0f")]
-position = Vector2(426, 317)
+position = Vector2(2327, 265)
 collision_mask = 16
 map_type = "gempa"
 
@@ -83071,6 +83082,7 @@ shape = SubResource("RectangleShape2D_w6xi8")
 [node name="PauseButton" parent="." instance=ExtResource("41_vyh6y")]
 
 [node name="ConfirmBackToBase" parent="." instance=ExtResource("25_jnh1j")]
+visible = false
 
 [node name="PauseMenu" parent="." instance=ExtResource("42_hpct6")]
 
@@ -83123,7 +83135,6 @@ parameters/looping = true
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="."]
 layer = 10
-visible = false
 
 [node name="TopBar" type="ColorRect" parent="ScreenOverlay"]
 anchors_preset = 15
@@ -83196,7 +83207,7 @@ show_percentage = false
 [node name="Audio_Warning" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("49_rpsvb")
 
-[node name="Audio_Quake" type="AudioStreamPlayer" parent="."]
+[node name="Audio_Landslide" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("50_s7clk")
 volume_db = 6.0
 bus = &"SFX"
@@ -83244,3 +83255,30 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("52_iyaya")
 theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
+
+[node name="LandslideVisual" type="Node2D" parent="."]
+position = Vector2(3700, 0)
+
+[node name="LandslideSprite" type="Sprite2D" parent="LandslideVisual"]
+z_index = 11
+position = Vector2(-177, 108.74998)
+scale = Vector2(1.7979996, 1.8869997)
+texture = ExtResource("54_nkfo5")
+
+[node name="DustParticles" type="GPUParticles2D" parent="LandslideVisual"]
+
+[node name="Area2D" type="Area2D" parent="LandslideVisual"]
+script = ExtResource("55_iyaya")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LandslideVisual/Area2D"]
+z_index = 12
+position = Vector2(-188.5, 22)
+shape = SubResource("RectangleShape2D_iyaya")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LandslideVisual"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="Collision" type="CollisionShape2D" parent="LandslideVisual/StaticBody2D"]
+position = Vector2(-132.5, 189)
+shape = SubResource("SegmentShape2D_iyaya")

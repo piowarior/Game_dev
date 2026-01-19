@@ -29,7 +29,7 @@ func _ready():
 		limit_bottom = 1050
 
 	elif map_name == "MapTanahLongsor":
-		limit_left = 0
+		limit_left = -300
 		limit_right = 2750   # 👈 LEBIH KECIL
 		limit_top = 0
 		limit_bottom = 900

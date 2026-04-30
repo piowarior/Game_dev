@@ -88,9 +88,9 @@ Proyek ini mengintegrasikan empat pilar risiko bencana ke dalam *gameplay*:
 ## 👤 Tim Pengembang (Made By)
 Proyek ini merupakan karya orisinal yang dikembangkan secara intensif oleh:
 
-**Muhamad Rohisul Iman**
-**Muhamad Virga Mulia**
-**Angga Yunanda**
-**Ivan Edward**
+*   **Muhamad Rohisul Iman**
+*   **Muhamad Virga Mulia**
+*   **Angga Yunanda**
+*   **Ivan Edward**
 ---
 *Proyek ini diajukan untuk meningkatkan standar edukasi mitigasi bencana digital di lingkungan akademis dan masyarakat luas.*

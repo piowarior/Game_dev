@@ -3,6 +3,8 @@
 
 **Implementasi Digital Game-Based Learning pada Simulator Bencana untuk Edukasi Strategi Mitigasi Bencana Alam di Indonesia**
 
+link Youtube :  https://youtu.be/k3n4JmlnBsk?si=VRNQ6d0C89K35AMH
+
 ---
 
 ## 📌 Konsep Game
